@@ -1,5 +1,7 @@
 <template>
-    <p>footer</p>
+    <div class="v-footer">
+        <p>FOOTER</p>
+    </div>
 </template>
 
 <script>
@@ -13,5 +15,7 @@
 </script>
 
 <style>
-
+    .v-footer{
+        background: #ddd54d;
+    }
 </style>

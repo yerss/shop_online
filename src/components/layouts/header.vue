@@ -1,5 +1,7 @@
 <template>
-    <p>header</p>
+    <div class="v-header">
+        <p>HEADER</p>
+    </div>
 </template>
 
 <script>
@@ -12,6 +14,8 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+    .v-header{
+        background: #50ad5d;
+    }
 </style>
