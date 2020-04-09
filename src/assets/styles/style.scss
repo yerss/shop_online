@@ -5,4 +5,41 @@
   padding: $padding $padding*2;
   color: #ffffff;
   border: 0;
+  &__dark{
+    background: #454545;
+    border: #454545;
+    padding: 10px 15px;
+    color: $white;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+}
+.v-login-register{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  &__lr{
+    flex: 1;
+    padding: 30px;
+    border-radius: 0;
+    border: 1px solid #d5d5d5;
+    margin: 20px;
+  }
+  .single-input{
+    display: block;
+    flex: 0 0 100%;
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  label{
+    display: block;
+    font-size: 14px;
+    text-align: left;
+  }
+  input{
+    height: 30px;
+    line-height: 48px;
+    width: 100%;
+    font-size: 14px;
+  }
 }
