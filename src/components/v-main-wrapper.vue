@@ -1,13 +1,15 @@
 <template>
     <div class="v-main-wrapper">
+        <v-header/>
         <keep-alive>
             <router-view></router-view>
         </keep-alive>
+        <v-footer/>
     </div>
-
 </template>
 <script>
-
+    import vFooter from "./layouts/footer";
+    import vHeader from "./layouts/header";
     export default {
         name: 'v-main-wrapper',
         props: {},
@@ -17,7 +19,11 @@
             }
         },
         methods:{},
-        watch:{}
+        watch:{},
+        components:{
+            vFooter,
+            vHeader
+        }
     }
 </script>
 <style>
