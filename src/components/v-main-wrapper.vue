@@ -28,7 +28,7 @@
 </script>
 <style>
     .v-main-wrapper{
-        max-width: 900px;
+        max-width: 80%;
         margin: 0 auto;
     }
 </style>
