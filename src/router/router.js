@@ -12,7 +12,6 @@ let router = new Router({
             component: vSign
         }
         ]
-
 })
 
 export default router;

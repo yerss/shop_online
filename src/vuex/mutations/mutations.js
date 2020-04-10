@@ -30,5 +30,8 @@ export default {
         }else{
             state.cart.splice(index,1)
         }
+    },
+    SAVE_TOKEN:(data)=>{
+        localStorage.setItem('access_token', data.token)
     }
 }
