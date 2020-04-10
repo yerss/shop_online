@@ -30,7 +30,11 @@
                            <li><a href="#">My account</a></li>
                            <li><a href="#">My wishlist</a></li>
                            <li><a href="#">Checkout</a></li>
-                           <li><a href="#">Sign in</a></li>
+                           <li>
+                              <router-link :to="{name: 'sign'}">
+                                 Sign in
+                              </router-link>
+                           </li>
                         </ul>
                      </div>
                   </div>
@@ -49,8 +53,20 @@
             <div class="header-nav">
                <nav>
                   <ul>
-                     <li><a href="#">Home</a></li>
-                     <li><a href="#">Shop</a></li>
+                     <li>
+                        <a href="#">
+                           <router-link :to="{name: 'catalog'}">
+                              Home
+                           </router-link>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                           <router-link :to="{name: 'catalog'}">
+                              Shop
+                           </router-link>
+                        </a>
+                     </li>
                      <li><a href="#">About us</a></li>
                      <li><a href="#">Contact</a></li>
                   </ul>

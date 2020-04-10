@@ -1,7 +1,7 @@
 <template>
     <div class="v-login-register">
         <div class="v-login-register__lr">
-            <form action="">
+            <form action="" >
                 <div>
                     <div class="single-input">
                         <label for="">Username or email address *</label>
@@ -50,7 +50,17 @@
         name: "v-register-login",
         props:{},
         data(){
-            return {}
+            return {
+                login:{
+                    username:'',
+                    password:''
+                },
+                register:{
+                    username:'',
+                    email:'',
+                    password:''
+                }
+            }
         }
     }
 </script>
