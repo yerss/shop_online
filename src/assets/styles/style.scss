@@ -1,5 +1,6 @@
 @import 'utils/variables';
-
+@import '~normalize.scss/normalize';
+@import '~bootstrap/scss/bootstrap-grid';
 .btn{
   background: #50ad5d;
   padding: $padding $padding*2;
