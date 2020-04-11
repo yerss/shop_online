@@ -153,7 +153,7 @@
           <div class="card-body">
             <blockquote class="blockquote blockquote-primary">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-              <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+              <div class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></div>
             </blockquote>
           </div>
         </div>

@@ -1,5 +1,4 @@
-<template lang="html">
-
+<template>
   <section class="app-footer">
     <div class="footer">
       <div class="container-fluid clearfix">
@@ -8,17 +7,16 @@
       </div>
     </div>
   </section>
-
 </template>
 
-<script lang="js">
+<script>
 export default {
-  name: 'app-footer'
+  name: 'footer'
 }
 </script>
 
 <style scoped lang="scss">
-.app-footer {
+  .app-footer {
 
-}
+  }
 </style>
