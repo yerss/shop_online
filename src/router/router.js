@@ -34,7 +34,17 @@ import register from '../views/sample-pages/register' */
 
 import sign from '../views/layouts/sign'
 import admin from '../views/layouts/admin'
+/*
 import store from '../vuex/store'
+*/
+
+// Admin page components
+import listProduct from '../views/layouts/admin-components/list-products'
+import listOrders from '../views/layouts/admin-components/list-orders'
+import listCategories from '../views/layouts/admin-components/list-categories'
+import listUsers from '../views/layouts/admin-components/list-users'
+import listFilters from '../views/layouts/admin-components/list-filters'
+import addProduct from '../views/layouts/admin-components/add-product'
 Vue.use(Router)
 
 let router = new Router({
@@ -54,6 +64,36 @@ let router = new Router({
           path: 'dashboard',
           name: 'dashboard',
           component: dashboard
+        },
+        {
+          path: 'products',
+          name: 'list-product',
+          component: listProduct
+        },
+        {
+          path: 'add_product',
+          name: 'add-product',
+          component: addProduct
+        },
+        {
+          path: 'categories',
+          name: 'list-categories',
+          component: listCategories
+        },
+        {
+          path: 'orders',
+          name: 'list-orders',
+          component: listOrders
+        },
+        {
+          path: 'users',
+          name: 'list-users',
+          component: listUsers
+        },
+        {
+          path: 'filters',
+          name: 'list-filter',
+          component: listFilters
         },
         {
           path: 'widgets',
@@ -160,11 +200,11 @@ let router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   if ((store.state.role !== 'admin') && (to.path.indexOf('/admin') >= 0)) {
     window.location.href = '/'
   }
   next()
-})
+}) */
 
 export default router
