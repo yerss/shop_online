@@ -68,7 +68,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
 <style scoped>
   .bg-blue{
     background-color: #3c8dbc;
@@ -83,7 +82,4 @@ export default {
   .pointer{
     cursor: pointer;
   }
-=======
-<style>
->>>>>>> 42e30543ab8a4d837d70c54665deebf2f5e76615
 </style>
