@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-4">Наименование группы</h5>
-            <input type="text" class = "form-control bordered border-success" v-model = "filter.name">
+            <input type="text" class = "form-control bordered border-success" v-model = "filter.name" placeholder="Введите имя группы фильтра">
             <br />
             <button class = "btn green  btn-outline-success" @click = "addFilter">Добавить</button>
           </div>
