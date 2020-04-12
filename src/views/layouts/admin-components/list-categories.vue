@@ -1,5 +1,5 @@
 <template>
-<p>list categories</p>
+  <p>cate</p>
 </template>
 
 <script>

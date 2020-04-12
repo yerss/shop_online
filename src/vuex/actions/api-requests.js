@@ -11,7 +11,7 @@ export default {
   SIGN_IN ({commit}, data) {
     return axios.post(`api/login`, data)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         commit('SAVE_TOKEN', response.data)
         return response
       })
@@ -87,20 +87,34 @@ export default {
     })
   },
   GET_USERS ({commit}, data) {
-    return axios(`api/users`, {
-      method: 'GET'
-    }).then((response) => {
-      commit('SET_USERS', response.data)
-    })
+    return axios.get(`api/users`)
+      .then((response) => {
+        commit('SET_USERS', response.data)
+      })
   },
   GET_ORDERS ({commit}, data) {
-    return axios(`api/orders`, {
-      method: 'GET'
-    }).then((response) => {
-      commit('SET_ORDERS', response.data)
-    })
+    return axios.get(`api/orders`)
+      .then((response) => {
+        commit('SET_ORDERS', response.data)
+      })
   },
   GET_ORDER_DETAIL ({commit}, data) {
+    return axios.get(`api/orders/${router.currentRoute.params.id}`)
+      .then((response) => {
+        commit('SET_ORDER_DETAIL', response.data)
+      })
+  },
+  DELETE_ORDER ({commit}, id) {
+    return axios.delete(`api/orders/${id}`)
+      .then((response) => {
+        commit('DELETE_ORDER', id)
+      })
+  },
+  DELETE_USER ({commit}, id) {
+    return axios.delete(`api/users/${id}`)
+      .then((response) => {
+        commit('DELETE_USER', id)
+      })
     return axios(`api/orders/${router.currentRoute.params.id}`, {
       method: 'GET'
     }).then((response) => {

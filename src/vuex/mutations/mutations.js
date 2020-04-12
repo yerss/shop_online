@@ -19,6 +19,14 @@ export default {
     let index = state.filters.findIndex(x => x.id === id)
     state.filters.splice(index, 1)
   },
+  DELETE_ORDER: (state, id) => {
+    let index = state.orders.findIndex(x => x.id === id)
+    state.orders.splice(index, 1)
+  },
+  DELETE_USER: (state, id) => {
+    let index = state.users.findIndex(x => x.id === id)
+    state.users.splice(index, 1)
+  },
   SET_FILTER: (state, filter) => {
     state.filter = filter
   }
