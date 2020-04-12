@@ -16,8 +16,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "filter in filters" :key="filter.id">
-                  <td>{{filter.id}}</td>
+                <tr v-for = "(filter,index) in filters" :key="filter.id">
+                  <td>{{index + 1}}</td>
                   <td>{{filter.name}}</td>
                   <td>
                     <router-link :to = "`filters/edit/group/${filter.id}`">

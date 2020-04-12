@@ -25,10 +25,34 @@ export default {
       })
   },
   DELETE_FILTER ({commit}, id) {
-    return axios.delete(`api/filterGroups/${id}`)
-      .then(({data}) => {
-        commit('DELETE_FILTER', id)
-      })
+    // eslint-disable-next-line no-undef
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(`api/filterGroups/${id}`)
+          .then(({data}) => {
+            // eslint-disable-next-line no-undef
+            swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+
+            commit('DELETE_FILTER', id)
+          }).catch(() => {
+          // eslint-disable-next-line no-undef
+            swal('Filed', 'There was somethind wrong', 'warning')
+          })
+        // eslint-disable-next-line handle-callback-err
+      }
+    })
   },
   GET_USERS ({commit}, data) {
     return axios(`api/users`, {
@@ -63,6 +87,11 @@ export default {
     return axios.put(`api/filterGroups/${filter.id}`, filter)
       .then(response => {
         commit('SET_FILTER', filter)
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно изменена'
+        })
       }).catch(error => {
         console.log(error)
       })
@@ -71,7 +100,11 @@ export default {
     return axios.post('api/filterGroups', filter)
       .then(response => {
         commit('SET_FILTER', filter)
-        console.log('SUCCESS')
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно добавлена'
+        })
       }).catch(error => {
         console.log(error)
       })
