@@ -4,27 +4,29 @@
       <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title mb-4">Группа фильтров</h5>
-            <p class = "mb-4"><router-link tag = "button" :to = "{name:'add-filter-group'}" class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить группу</router-link></p>
+            <h5 class="card-title mb-4">Фильтры</h5>
+            <p class = "mb-4"><router-link tag = "button" :to = "{name:'add-filter-attribute'}" class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить атрибут</router-link></p>
             <div class="table-responsive">
               <table class="table center-aligned-table table-hover">
                 <thead>
                 <tr>
                   <th class="border-bottom-0">ID</th>
                   <th class="border-bottom-0">Наименование</th>
+                  <th class="border-bottom-0">Группа</th>
                   <th class="border-bottom-0">Действие</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for = "(filter,index) in filters" :key="filter.id">
                   <td>{{index + 1}}</td>
-                  <td>{{filter.name}}</td>
+                  <td>{{filter.value}}</td>
+                  <td>{{filter.filter_group_id}}</td>
                   <td>
-                    <router-link :to = "`filters/edit/group/${filter.id}`" tag = "a" style = "color:#3c8dbc;">
+                    <router-link :to = "{name:'edit-filter-attribute',params: {id:filter.id}}" tag = "a" style = "color:#3c8dbc;">
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_FILTER(filter.id)">
+                    <a @click = "DELETE_FILTER_ATTRIBUTE(filter.id)">
                       <font-awesome-icon icon="times" class = "red pointer"/>
                     </a>
                   </td>
@@ -40,30 +42,20 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
-
+import {mapActions} from 'vuex'
 export default {
-  name: 'list-filters',
+  name: 'list-filters-attribute',
   data: function () {
     return {
       filters: []
     }
   },
-  computed: {
-    ...mapGetters([
-      'GET_FILTERS'
-    ])
-  },
   methods: {
-    ...mapActions([
-      'FILTERS_LIST_REQUEST',
-      'DELETE_FILTER'
-    ])
+    ...mapActions(['DELETE_FILTER_ATTRIBUTE'])
   },
   async mounted () {
-    await this.FILTERS_LIST_REQUEST()
-    this.filters = this.GET_FILTERS
-    console.log(this.filters)
+    await this.$store.dispatch('FILTERS_ATTRIBUTES_REQUEST')
+    this.filters = this.$store.getters.GET_FILTERS
   }
 }
 </script>
@@ -72,7 +64,9 @@ export default {
   .bg-blue{
     background-color: #3c8dbc;
   }
-
+  dark{
+    color:black;
+  }
   .red{
     color:#a94442;
   }

@@ -24,31 +24,63 @@ export default {
         console.log(error)
       })
   },
-  DELETE_FILTER ({commit}, id) {
+  DELETE_FILTER_ATTRIBUTE ({commit}, id) {
     // eslint-disable-next-line no-undef
     swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Вы уверены что хотите удалить?',
+      text: 'Вы не сможете потом вернуть эти данные!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Удалить',
+      cancelButtonText: 'Отмена'
     }).then((result) => {
       if (result.value) {
-        axios.delete(`api/filterGroups/${id}`)
+        axios.delete(`api/filterValues/${id}`)
           .then(({data}) => {
             // eslint-disable-next-line no-undef
             swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              'Удалено!',
+              'Данные успешно удалены',
               'success'
             )
 
             commit('DELETE_FILTER', id)
           }).catch(() => {
           // eslint-disable-next-line no-undef
-            swal('Filed', 'There was somethind wrong', 'warning')
+            swal('Filed', 'There was something wrong', 'warning')
+          })
+        // eslint-disable-next-line handle-callback-err
+      }
+    })
+  },
+  DELETE_FILTER ({commit}, id) {
+    // eslint-disable-next-line no-undef
+    swal.fire({
+      title: 'Вы уверены что хотите удалить?',
+      text: 'Вы не сможете потом вернуть эти данные!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Удалить',
+      cancelButtonText: 'Отмена'
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(`api/filterGroups/${id}`)
+          .then(({data}) => {
+            // eslint-disable-next-line no-undef
+            swal.fire(
+              'Удалено!',
+              'Данные успешно удалены',
+              'success'
+            )
+
+            commit('DELETE_FILTER', id)
+          }).catch(() => {
+          // eslint-disable-next-line no-undef
+            swal('Filed', 'There was something wrong', 'warning')
           })
         // eslint-disable-next-line handle-callback-err
       }
@@ -83,8 +115,29 @@ export default {
         console.log(error)
       })
   },
+  FILTER_ATTRIBUTE_REQUEST ({commit}, id) {
+    return axios.get(`api/filterValues/${id}`)
+      .then((response) => {
+        commit('SET_FILTER', response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  },
   UPDATE_FILTER ({commit}, filter) {
     return axios.put(`api/filterGroups/${filter.id}`, filter)
+      .then(response => {
+        commit('SET_FILTER', filter)
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно изменена'
+        })
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  UPDATE_FILTER_ATTRIBUTE ({commit}, filter) {
+    return axios.put(`api/filterValues/${filter.id}`, filter)
       .then(response => {
         commit('SET_FILTER', filter)
         // eslint-disable-next-line no-undef
@@ -105,6 +158,27 @@ export default {
           icon: 'success',
           title: 'Успешно добавлена'
         })
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  ADD_FILTER_ATTRIBUTE ({commit}, filter) {
+    return axios.post('api/filterValues', filter)
+      .then(response => {
+        commit('SET_FILTER', filter)
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно добавлена'
+        })
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  FILTERS_ATTRIBUTES_REQUEST ({commit}) {
+    return axios.get('api/filterValues')
+      .then(({data}) => {
+        commit('SAVE_FILTERS', data)
       }).catch(error => {
         console.log(error)
       })

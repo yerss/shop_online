@@ -36,7 +36,7 @@
           <b-collapse id="filters">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"><router-link class="nav-link" to="/admin/filters">Группы фильтров</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/add_filter">Фильтры</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/filters/attributes">Фильтры</router-link></li>
             </ul>
           </b-collapse>
         </li>
