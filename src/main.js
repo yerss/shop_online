@@ -5,7 +5,8 @@ import App from './App'
 import router from './router/router'
 import BootstrapVue from 'bootstrap-vue'
 import store from './vuex/store'
-
+import {FontAwesomeIcon} from './icons'
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

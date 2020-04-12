@@ -16,6 +16,18 @@ export default {
         return response
       })
   },
+  FILTERS_LIST_REQUEST ({commit}) {
+    return axios.get('api/filterGroups')
+      .then(({data}) => {
+        commit('SAVE_FILTERS', data)
+      })
+  },
+  DELETE_FILTER ({commit}, id) {
+    return axios.delete(`api/filterGroups/${id}`)
+      .then(({data}) => {
+        commit('DELETE_FILTER', id)
+      })
+  },
   GET_USERS ({commit}, data) {
     return axios(`api/users`, {
       method: 'GET'

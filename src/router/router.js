@@ -37,7 +37,7 @@ import admin from '../views/layouts/admin'
 /*
 import store from '../vuex/store'
 */
-
+import addFilter from '../views/layouts/admin-components/add-filter'
 // Admin page components
 import listProduct from '../views/layouts/admin-components/list-products'
 import listOrders from '../views/layouts/admin-components/list-orders'
@@ -46,9 +46,11 @@ import listCategories from '../views/layouts/admin-components/list-categories'
 import listUsers from '../views/layouts/admin-components/list-users'
 import listFilters from '../views/layouts/admin-components/list-filters'
 import addProduct from '../views/layouts/admin-components/add-product'
+import editFilterGroup from '../views/layouts/admin-components/edit-filter-group'
 Vue.use(Router)
 
 let router = new Router({
+  mode: 'history',
   linkActiveClass: 'active',
   routes: [
     {
@@ -100,6 +102,16 @@ let router = new Router({
           path: 'filters',
           name: 'list-filter',
           component: listFilters
+        },
+        {
+          path: 'add_filter',
+          name: 'add-filter',
+          component: addFilter
+        },
+        {
+          path: 'filters/edit/group/:id',
+          name: 'edit-filter-group',
+          component: editFilterGroup
         },
         {
           path: 'widgets',

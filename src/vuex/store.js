@@ -7,7 +7,7 @@ import getters from './getters/getters'
 import axios from 'axios'
 
 let axiosDefaults = require('axios/lib/defaults')
-axiosDefaults.baseURL = 'http://localhost:8000'
+axiosDefaults.baseURL = 'http://localhost:8000/'
 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`
 const actions = {...vuexActions, ...apiRequests}
 
@@ -20,8 +20,8 @@ let store = new Vuex.Store({
     order_detail: [],
     products: [],
     categories: [],
-    filters: [],
-    role: ''
+    role: '',
+    filters: []
   },
   mutations,
   actions,

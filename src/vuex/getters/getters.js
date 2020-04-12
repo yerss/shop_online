@@ -10,5 +10,8 @@ export default {
   },
   ORDER_DETAIL (state) {
     return state.order_detail
+  },
+  GET_FILTERS (state) {
+    return state.filters
   }
 }

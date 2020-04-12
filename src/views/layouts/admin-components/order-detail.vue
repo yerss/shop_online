@@ -22,8 +22,8 @@ export default {
       'GET_ORDER_DETAIL'
     ])
   },
-  mounted () {
-    this.GET_ORDER_DETAIL()
+  async mounted() {
+    await this.GET_ORDER_DETAIL()
   }
 }
 </script>
