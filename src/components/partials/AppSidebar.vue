@@ -31,12 +31,12 @@
         <li class="nav-item"><router-link class="nav-link" to="/admin/users"><img class="menu-icon" src="../../assets/images/menu_icons/users.png" alt="menu icon"><span class="menu-title">Users</span></router-link></li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'filters'">
-            <img class="menu-icon" src="../../assets/images/menu_icons/filter.png" alt="menu icon"><span class="menu-title">Filters</span><i class="menu-arrow"></i>
+            <img class="menu-icon" src="../../assets/images/menu_icons/filter.png" alt="menu icon"><span class="menu-title">Фильтры</span><i class="menu-arrow"></i>
           </span>
           <b-collapse id="filters">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><router-link class="nav-link" to="/admin/filters">List Filters</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/add_filter">Add Filters</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/filters">Группы фильтров</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/add_filter">Фильтры</router-link></li>
             </ul>
           </b-collapse>
         </li>

@@ -5,9 +5,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-4">Filters</h5>
-            <p class = "mb-4"><button class = "btn bg-blue"><i class = "mdi mdi-hospital"></i>Добавить группу</button></p>
+            <p class = "mb-4"><button class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить группу</button></p>
             <div class="table-responsive">
-              <table class="table center-aligned-table table-hover table-sm">
+              <table class="table center-aligned-table table-hover">
                 <thead>
                 <tr>
                   <th class="border-bottom-0">ID</th>
@@ -16,13 +16,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>034</td>
-                  <td>Iphone 7</td>
+                <tr v-for = "filter in filters">
+                  <td>{{filter.id}}</td>
+                  <td>{{filter.name}}</td>
                   <td>
-                    <a href="#" class = "icon"><i class = "mdi mdi-lead-pencil"></i></a>
+                    <router-link :to = "`filters/edit/group/${filter.id}`">
+                      <font-awesome-icon icon="edit" class = "blue pointer"/>
+                    </router-link>
                     /
-                    <a href="#" class = "icon red"><i class = "mdi mdi-close"></i></a>
+                    <a @click = "DELETE_FILTER(filter.id)">
+                      <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                    </a>
                   </td>
                 </tr>
                 </tbody>
@@ -42,7 +46,7 @@ export default {
   name: 'list-filters',
   data: function () {
     return {
-      id: 0
+      filters: []
     }
   },
   computed: {
@@ -52,11 +56,14 @@ export default {
   },
   methods: {
     ...mapActions([
-      'FILTERS_LIST'
+      'FILTERS_LIST_REQUEST',
+      'DELETE_FILTER'
     ])
   },
-  mounted () {
-    this.FILTERS_LIST()
+  async mounted () {
+    await this.FILTERS_LIST_REQUEST()
+    this.filters = this.GET_FILTERS
+    console.log(this.filters)
   }
 }
 </script>
@@ -65,10 +72,16 @@ export default {
   .bg-blue{
     background-color: #3c8dbc;
   }
+  .blue{
+    color:blue;
+  }
   .red{
     color:red;
   }
   .icon{
     font-size: 1.1rem;
+  }
+  .pointer{
+    cursor: pointer;
   }
 </style>

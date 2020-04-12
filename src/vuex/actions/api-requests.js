@@ -15,11 +15,16 @@ export default {
         return response
       })
   },
-  FILTERS_LIST ({commit}) {
+  FILTERS_LIST_REQUEST ({commit}) {
     return axios.get('api/filterGroups')
-      .then((response) => {
-        console.log(response.data)
-        commit('SAVE_FILTERS', response.data)
+      .then(({data}) => {
+        commit('SAVE_FILTERS', data)
+      })
+  },
+  DELETE_FILTER ({commit}, id) {
+    return axios.delete(`'api/filterGroups/${id}`)
+      .then(({data}) => {
+        commit('DELETE_FILTER', id)
       })
   }
 }

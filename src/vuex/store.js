@@ -16,7 +16,7 @@ Vue.use(Vuex)
 let store = new Vuex.Store({
   state: {
     role: '',
-    filter: ''
+    filters: []
   },
   mutations,
   actions,

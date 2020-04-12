@@ -45,6 +45,7 @@ import listCategories from '../views/layouts/admin-components/list-categories'
 import listUsers from '../views/layouts/admin-components/list-users'
 import listFilters from '../views/layouts/admin-components/list-filters'
 import addProduct from '../views/layouts/admin-components/add-product'
+import editFilterGroup from '../views/layouts/admin-components/edit-filter-group'
 Vue.use(Router)
 
 let router = new Router({
@@ -100,6 +101,11 @@ let router = new Router({
           path: 'add_filter',
           name: 'add-filter',
           component: addFilter
+        },
+        {
+          path: 'filters/edit/group/:id',
+          name: 'edit-filter-group',
+          component: editFilterGroup
         },
         {
           path: 'widgets',
