@@ -1,10 +1,30 @@
 <template>
-  <p>order detail</p>
+    <p>{dsdasdasdasdao,likmunjybterwecefvrbtynuioimnubytvr</p>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
+
 export default {
-  name: 'order-detail'
+  name: 'order-detail',
+  data () {
+    return {}
+  },
+  components: {
+  },
+  computed: {
+    ...mapGetters([
+      'ORDER_DETAIL'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'GET_ORDER_DETAIL'
+    ])
+  },
+  mounted () {
+    this.GET_ORDER_DETAIL()
+  }
 }
 </script>
 

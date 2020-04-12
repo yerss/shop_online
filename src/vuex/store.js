@@ -15,6 +15,12 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
+    users: [],
+    orders: [],
+    order_detail: [],
+    products: [],
+    categories: [],
+    filters: [],
     role: ''
   },
   mutations,

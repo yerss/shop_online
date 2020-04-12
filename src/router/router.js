@@ -41,6 +41,7 @@ import store from '../vuex/store'
 // Admin page components
 import listProduct from '../views/layouts/admin-components/list-products'
 import listOrders from '../views/layouts/admin-components/list-orders'
+import orderDetail from '../views/layouts/admin-components/order-detail'
 import listCategories from '../views/layouts/admin-components/list-categories'
 import listUsers from '../views/layouts/admin-components/list-users'
 import listFilters from '../views/layouts/admin-components/list-filters'
@@ -84,6 +85,11 @@ let router = new Router({
           path: 'orders',
           name: 'list-orders',
           component: listOrders
+        },
+        {
+          path: 'orders/detail/:id',
+          name: 'order-detail',
+          component: orderDetail
         },
         {
           path: 'users',

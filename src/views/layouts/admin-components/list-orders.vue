@@ -9,65 +9,31 @@
               <thead>
               <tr>
                 <th class="border-bottom-0">Order No</th>
-                <th class="border-bottom-0">Product Name</th>
+                <th class="border-bottom-0">Customer Name</th>
                 <th class="border-bottom-0">Purchased On</th>
                 <th class="border-bottom-0">Shipping Status</th>
-                <th class="border-bottom-0">Payment Method</th>
+                <th class="border-bottom-0">Order Sum</th>
+<!--
                 <th class="border-bottom-0">Payment Status</th>
+-->
                 <th class="border-bottom-0"></th>
                 <th class="border-bottom-0"></th>
                 <th class="border-bottom-0"></th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>034</td>
-                <td>Iphone 7</td>
-                <td>12 May 2017</td>
-                <td>Dispatched</td>
-                <td>Credit card</td>
+              <tr v-for="order in ORDERS" :key="order.id">
+                <td>{{order.id}}</td>
+                <td>{{order.user.name}}</td>
+                <td>{{order.created_at}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.sum}}</td>
+<!--
                 <td><label class="badge badge-teal">Approved</label></td>
-                <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
-              </tr>
-              <tr>
-                <td>035</td>
-                <td>Galaxy S8</td>
-                <td>15 May 2017</td>
-                <td>Dispatched</td>
-                <td>Internet banking</td>
-                <td><label class="badge badge-warning">Pending</label></td>
-                <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
-              </tr>
-              <tr>
-                <td>036</td>
-                <td>Amazon Echo</td>
-                <td>17 May 2017</td>
-                <td>Dispatched</td>
-                <td>Credit card</td>
-                <td><label class="badge badge-teal">Approved</label></td>
-                <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
-              </tr>
-              <tr>
-                <td>037</td>
-                <td>Google Pixel</td>
-                <td>17 May 2017</td>
-                <td>Dispatched</td>
-                <td>Cash on delivery</td>
-                <td><label class="badge badge-danger">Rejected</label></td>
-                <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
-              </tr>
-              <tr>
-                <td>038</td>
-                <td>Mac Mini</td>
-                <td>19 May 2017</td>
-                <td>Dispatched</td>
-                <td>Debit card</td>
-                <td><label class="badge badge-teal">Approved</label></td>
-                <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
+-->
+                <router-link  :to="`/admin/orders/detail/${order.id}`">
+                  <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
+                </router-link>
                 <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
               </tr>
               </tbody>
@@ -80,8 +46,28 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
+
 export default {
-  name: 'list-orders'
+  name: 'list-orders',
+  data () {
+    return {}
+  },
+  components: {
+  },
+  computed: {
+    ...mapGetters([
+      'ORDERS'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'GET_ORDERS'
+    ])
+  },
+  mounted () {
+    this.GET_ORDERS()
+  }
 }
 </script>
 
