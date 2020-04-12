@@ -5,36 +5,39 @@
         <div class="card-body">
           <h5 class="card-title mb-4">Orders</h5>
           <div class="table-responsive">
-            <table class="table center-aligned-table">
+            <table class="table center-aligned-table table-hover">
               <thead>
               <tr>
-                <th class="border-bottom-0">Order No</th>
-                <th class="border-bottom-0">Customer Name</th>
-                <th class="border-bottom-0">Purchased On</th>
-                <th class="border-bottom-0">Shipping Status</th>
-                <th class="border-bottom-0">Order Sum</th>
+                <th class="border-bottom-0 text-center">Order No</th>
+                <th class="border-bottom-0 text-center">Customer Name</th>
+                <th class="border-bottom-0 text-center">Purchased On</th>
+                <th class="border-bottom-0 text-center">Shipping Status</th>
+                <th class="border-bottom-0 text-center">Order Sum</th>
 <!--
                 <th class="border-bottom-0">Payment Status</th>
 -->
-                <th class="border-bottom-0"></th>
-                <th class="border-bottom-0"></th>
                 <th class="border-bottom-0"></th>
               </tr>
               </thead>
               <tbody>
               <tr v-for="order in ORDERS" :key="order.id">
-                <td>{{order.id}}</td>
-                <td>{{order.user.name}}</td>
-                <td>{{order.created_at}}</td>
-                <td>{{order.status}}</td>
-                <td>{{order.sum}}</td>
+                <td class="text-center">{{order.id}}</td>
+                <td class="text-center">{{order.user.name}}</td>
+                <td class="text-center">{{order.created_at}}</td>
+                <td class="text-center">{{order.status}}</td>
+                <td class="text-center">{{order.sum}}</td>
 <!--
                 <td><label class="badge badge-teal">Approved</label></td>
 -->
-                <router-link  :to="`/admin/orders/detail/${order.id}`">
-                  <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                </router-link>
-                <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                <td>
+                  <router-link  :to="`/admin/orders/detail/${order.id}`">
+                    <font-awesome-icon icon="eye" class = "blue pointer"/>
+                  </router-link>
+                  /
+                  <a @click = "DELETE_ORDER(order.id)">
+                    <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                  </a>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -62,7 +65,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'GET_ORDERS'
+      'GET_ORDERS',
+      'DELETE_ORDER'
     ])
   },
   mounted () {

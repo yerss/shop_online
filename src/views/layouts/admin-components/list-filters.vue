@@ -68,20 +68,5 @@ export default {
 }
 </script>
 
-<style scoped>
-  .bg-blue{
-    background-color: #3c8dbc;
-  }
-  .blue{
-    color:blue;
-  }
-  .red{
-    color:red;
-  }
-  .icon{
-    font-size: 1.1rem;
-  }
-  .pointer{
-    cursor: pointer;
-  }
+<style>
 </style>

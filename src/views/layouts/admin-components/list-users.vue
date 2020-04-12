@@ -5,7 +5,7 @@
         <div class="card-body">
           <h5 class="card-title mb-4">Users</h5>
           <div class="table-responsive">
-            <table class="table center-aligned-table">
+            <table class="table center-aligned-table table-hover">
               <thead>
               <tr>
                 <th class="border-bottom-0">ID</th>
@@ -13,7 +13,7 @@
                 <th class="border-bottom-0">Email</th>
                 <th class="border-bottom-0">Type</th>
                 <th class="border-bottom-0">Registered At</th>
-                <th class="border-bottom-0">Modify</th>
+                <th class="border-bottom-0"></th>
               </tr>
               </thead>
               <tbody>
@@ -24,12 +24,10 @@
                 <td>{{user.role.name}}</td>
                 <td>{{user.created_at}}</td>
                 <td>
-                  <a href="#">
-                    <i class = "mdi mdi-tooltip-edit"></i>
-                  </a>
+                  <font-awesome-icon icon="edit" class="blue pointer"/>
                   /
-                  <a href="#">
-                    <i class = "mdi mdi-delete-forever"></i>
+                  <a @click = "DELETE_USER(user.id)">
+                    <font-awesome-icon icon="trash-alt" class="red pointer"/>
                   </a>
                 </td>
               </tr>
@@ -56,7 +54,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'GET_USERS'
+      'GET_USERS',
+      'DELETE_USER'
     ])
   },
   mounted () {
