@@ -37,7 +37,7 @@ import admin from '../views/layouts/admin'
 /*
 import store from '../vuex/store'
 */
-
+import addFilter from '../views/layouts/admin-components/add-filter'
 // Admin page components
 import listProduct from '../views/layouts/admin-components/list-products'
 import listOrders from '../views/layouts/admin-components/list-orders'
@@ -48,6 +48,7 @@ import addProduct from '../views/layouts/admin-components/add-product'
 Vue.use(Router)
 
 let router = new Router({
+  mode: 'history',
   linkActiveClass: 'active',
   routes: [
     {
@@ -94,6 +95,11 @@ let router = new Router({
           path: 'filters',
           name: 'list-filter',
           component: listFilters
+        },
+        {
+          path: 'add_filter',
+          name: 'add-filter',
+          component: addFilter
         },
         {
           path: 'widgets',

@@ -1,4 +1,4 @@
-<template lang="html">
+чё<template lang="html">
   <section class="dashboard">
     <div class="row">
       <div class="col-xl-3 col-sm-6 grid-margin stretch-card">

@@ -29,8 +29,17 @@
         <li class="nav-item"><router-link class="nav-link" to="/admin/orders"><img class="menu-icon" src="../../assets/images/menu_icons/orders.png" alt="menu icon"><span class="menu-title">Orders</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/admin/categories"><img class="menu-icon" src="../../assets/images/menu_icons/list.png" alt="menu icon"><span class="menu-title">Categories</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/admin/users"><img class="menu-icon" src="../../assets/images/menu_icons/users.png" alt="menu icon"><span class="menu-title">Users</span></router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/filters"><img class="menu-icon" src="../../assets/images/menu_icons/filter.png" alt="menu icon"><span class="menu-title">Filters</span></router-link></li>
-
+        <li class="nav-item">
+          <span class="nav-link" v-b-toggle="'filters'">
+            <img class="menu-icon" src="../../assets/images/menu_icons/filter.png" alt="menu icon"><span class="menu-title">Filters</span><i class="menu-arrow"></i>
+          </span>
+          <b-collapse id="filters">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><router-link class="nav-link" to="/admin/filters">List Filters</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/add_filter">Add Filters</router-link></li>
+            </ul>
+          </b-collapse>
+        </li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'ui-components'">
             <img class="menu-icon" src="../../assets/images/menu_icons/03.png" alt="menu icon"><span class="menu-title">UI Components</span><i class="menu-arrow"></i>

@@ -14,5 +14,12 @@ export default {
         commit('SAVE_TOKEN', response.data)
         return response
       })
+  },
+  FILTERS_LIST ({commit}) {
+    return axios.get('api/filterGroups')
+      .then((response) => {
+        console.log(response.data)
+        commit('SAVE_FILTERS', response.data)
+      })
   }
 }
