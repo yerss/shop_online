@@ -20,6 +20,8 @@ export default {
     return axios.get('api/filterGroups')
       .then(({data}) => {
         commit('SAVE_FILTERS', data)
+      }).catch(error => {
+        console.log(error)
       })
   },
   DELETE_FILTER ({commit}, id) {
@@ -48,5 +50,30 @@ export default {
     }).then((response) => {
       commit('SET_ORDER_DETAIL', response.data)
     })
+  },
+  FILTER_GROUP_REQUEST ({commit}, id) {
+    return axios.get(`api/filterGroups/${id}`)
+      .then((response) => {
+        commit('SET_FILTER', response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  UPDATE_FILTER ({commit}, filter) {
+    return axios.put(`api/filterGroups/${filter.id}`, filter)
+      .then(response => {
+        commit('SET_FILTER', filter)
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  ADD_FILTER ({commit}, filter) {
+    return axios.post('api/filterGroups', filter)
+      .then(response => {
+        commit('SET_FILTER', filter)
+        console.log('SUCCESS')
+      }).catch(error => {
+        console.log(error)
+      })
   }
 }

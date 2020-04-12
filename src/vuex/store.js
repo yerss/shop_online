@@ -21,7 +21,8 @@ let store = new Vuex.Store({
     products: [],
     categories: [],
     role: '',
-    filters: []
+    filters: [],
+    filter: {}
   },
   mutations,
   actions,

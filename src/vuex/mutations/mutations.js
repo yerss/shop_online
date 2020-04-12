@@ -18,5 +18,8 @@ export default {
   DELETE_FILTER: (state, id) => {
     let index = state.filters.findIndex(x => x.id === id)
     state.filters.splice(index, 1)
+  },
+  SET_FILTER: (state, filter) => {
+    state.filter = filter
   }
 }
