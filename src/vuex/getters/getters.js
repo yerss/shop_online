@@ -13,5 +13,8 @@ export default {
   },
   GET_FILTERS (state) {
     return state.filters
+  },
+  GET_FILTER (state) {
+    return state.filter
   }
 }

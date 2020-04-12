@@ -5,9 +5,9 @@
          <div class="card">
            <div class="card-body">
              <h5 class="card-title mb-4">Наименование группы</h5>
-             <input type="text" class = "form-control bordered">
+             <input type="text" class = "form-control bordered border-success" v-model = "filter.name">
              <br />
-             <button class = "btn green  btn-outline-success">Изменить</button>
+             <button class = "btn green  btn-outline-success" @click = "changeFilterName(filter)">Изменить</button>
            </div>
          </div>
        </div>
@@ -16,14 +16,24 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
   name: 'edit-filter-group',
-  computed: {
-    ...mapGetters(['GET_FILTERS'])
+  data: function () {
+    return {
+      filter: {}
+    }
   },
-  mounted () {
-    console.log(this.$store.getters.GET_FILTERS)
+  methods: {
+    ...mapActions(['FILTER_GROUP_REQUEST', 'UPDATE_FILTER']),
+    changeFilterName (filter) {
+      this.UPDATE_FILTER(filter)
+      this.$router.push({name: 'list-filter'})
+    }
+  },
+  async mounted () {
+    await this.FILTER_GROUP_REQUEST(this.$route.params.id)
+    this.filter = this.$store.getters.GET_FILTER
   }
 }
 </script>
@@ -35,4 +45,7 @@ export default {
     .green{
       background-color: #00a65a;
     }
+  .border-success{
+    border-color:#00a65a;
+  }
 </style>

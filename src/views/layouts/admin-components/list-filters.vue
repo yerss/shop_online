@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-4">Filters</h5>
-            <p class = "mb-4"><button class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить группу</button></p>
+            <p class = "mb-4"><router-link tag = "button" :to = "{name:'add-filter-group'}" class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить группу</router-link></p>
             <div class="table-responsive">
               <table class="table center-aligned-table table-hover">
                 <thead>
@@ -16,8 +16,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "filter in filters" :key="filter.id">
-                  <td>{{filter.id}}</td>
+                <tr v-for = "(filter,index) in filters" :key="filter.id">
+                  <td>{{index + 1}}</td>
                   <td>{{filter.name}}</td>
                   <td>
                     <router-link :to = "`filters/edit/group/${filter.id}`">
