@@ -20,7 +20,7 @@
                 <tr v-for = "(filter,index) in filters" :key="filter.id">
                   <td>{{index + 1}}</td>
                   <td>{{filter.value}}</td>
-                  <td>{{filter.filter_group_id}}</td>
+                  <td>{{filter.filter_group.name}}</td>
                   <td>
                     <router-link :to = "{name:'edit-filter-attribute',params: {id:filter.id}}" tag = "a" style = "color:#3c8dbc;">
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
