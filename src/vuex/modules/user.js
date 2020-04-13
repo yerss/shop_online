@@ -1,14 +1,11 @@
-// eslint-disable-next-line no-unused-vars
 import axios from 'axios'
 import router from '../../router/router'
 
-// eslint-disable-next-line no-unused-vars
 const state = {
   users: [],
   role: ''
 }
 
-// eslint-disable-next-line no-unused-vars
 const getters = {
   USER_ROLE (state) {
     return state.role
@@ -18,7 +15,6 @@ const getters = {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const mutations = {
   SAVE_TOKEN: (state, data) => {
     localStorage.setItem('access_token', data.token)
@@ -33,7 +29,6 @@ const mutations = {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const actions = {
   SIGN_UP ({commit}, data) {
     return axios.post(`api/register`, data)
