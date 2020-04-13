@@ -60,12 +60,6 @@ const actions = {
       .then((response) => {
         commit('DELETE_USER', id)
       })
-    // eslint-disable-next-line no-unreachable
-    return axios(`api/orders/${router.currentRoute.params.id}`, {
-      method: 'GET'
-    }).then((response) => {
-      commit('SET_ORDER_DETAIL', response.data)
-    })
   }
 }
 export default {
