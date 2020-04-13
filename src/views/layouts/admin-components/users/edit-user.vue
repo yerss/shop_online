@@ -39,9 +39,16 @@
                 </thead>
                 <tbody>
                     <tr v-for = "order in orders" v-bind:key="order.id">
-                      <th>{{order.id}}</th>
-                      <th>{{order.status}}</th>
-                      <th>{{order.products | sumItems}}</th>
+                      <td>{{order.id}}</td>
+                      <td>{{order.status}}</td>
+                      <td>{{order.products | sumItems}}</td>
+                      <td>{{order.created_at | convert}}</td>
+                      <td>{{order.updated_at | convert}}</td>
+                      <td>
+                        <router-link to = "#">
+                          <font-awesome-icon icon="eye" class="blue pointer"/>
+                        </router-link>
+                      </td>
                     </tr>
                 </tbody>
               </table>
@@ -92,6 +99,16 @@ export default {
           title: 'Заполните все поля правильно'
         })
       }
+    },
+    changeStatus () {
+      for (let i = 0; i < this.orders.length; i++) {
+        // eslint-disable-next-line eqeqeq
+        if (this.orders[i].status == 0) this.orders[i].status = 'Новый'
+        // eslint-disable-next-line eqeqeq
+        else if (this.orders[i].status == 1) this.orders[i].status = 'Завершен'
+        // eslint-disable-next-line eqeqeq
+        else if (this.orders[i].status == 2) this.orders[i].status = 'Удален'
+      }
     }
   },
   async mounted () {
@@ -99,6 +116,7 @@ export default {
     await this.GET_USER_REQUEST(this.$route.params.id)
     this.user = this.USER
     this.orders = this.user.orders
+    this.changeStatus()
     // eslint-disable-next-line eqeqeq
     if (this.user.role.name == 'admin') this.user.role_id = 1
     // eslint-disable-next-line eqeqeq
@@ -116,5 +134,8 @@ export default {
   }
   .success{
     background-color: #3c8dbc;
+  }
+  .blue{
+    color:#3c8dbc;
   }
 </style>
