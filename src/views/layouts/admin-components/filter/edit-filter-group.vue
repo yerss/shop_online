@@ -5,9 +5,9 @@
          <div class="card">
            <div class="card-body">
              <h5 class="card-title mb-4">Наименование группы</h5>
-             <input type="text" class = "form-control bordered border-success" v-model = "filter.name" placeholder="Введите имя группы фильтра">
+             <input type="text" class = "form-control bordered border-success" v-model = "value" placeholder="Введите имя группы фильтра">
              <br />
-             <button class = "btn green  btn-outline-success" @click = "changeFilterName(filter)">Изменить</button>
+             <button class = "btn green  btn-outline-success" @click = "updateInfo">Изменить</button>
            </div>
          </div>
        </div>
@@ -16,24 +16,37 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'edit-filter-group',
-  data: function () {
-    return {
-      filter: {}
+  computed: {
+    ...mapGetters([
+      'GET_FILTER_GROUP'
+    ]),
+    value: {
+      get () {
+        return this.GET_FILTER_GROUP.name
+      },
+      set (value) {
+        let filter = {
+          id: this.$route.params.id,
+          name: value
+        }
+        this.SET_FILTER_GROUP_REQUEST(filter)
+      }
     }
   },
   methods: {
-    ...mapActions(['FILTER_GROUP_REQUEST', 'UPDATE_FILTER']),
-    changeFilterName (filter) {
-      this.UPDATE_FILTER(filter)
+    ...mapActions([
+      'UPDATE_FILTER_GROUP', 'FILTER_GROUP_REQUEST', 'SET_FILTER_GROUP_REQUEST'
+    ]),
+    updateInfo () {
+      this.UPDATE_FILTER_GROUP(this.GET_FILTER_GROUP)
       this.$router.push({name: 'list-filter'})
     }
   },
-  async mounted () {
-    await this.FILTER_GROUP_REQUEST(this.$route.params.id)
-    this.filter = this.$store.getters.GET_FILTER
+  mounted () {
+    this.FILTER_GROUP_REQUEST(this.$route.params.id)
   }
 }
 </script>

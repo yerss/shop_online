@@ -5,13 +5,13 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-3">Наименование группы</h5>
-            <input type="text" class = "form-control bordered border-success mb-4" v-model = "filter.value" placeholder="Введите имя группы фильтра">
+            <input type="text" class = "form-control bordered border-success mb-4" v-model = "name" placeholder="Введите имя группы фильтра">
             <h5 class="card-title mb-3">Группа</h5>
-            <select class = "form-control bordered border-success" v-model = "filter.filter_group_id" >
-              <option v-bind:key="group.id" v-for = "group in groups" :value = "group.id">{{group.name}}</option>
+            <select class = "form-control bordered border-success" v-model = "filter_group_id" >
+              <option v-bind:key="group.id" v-for = "group in GET_FILTER_GROUPS" :value = "group.id">{{group.name}}</option>
             </select>
             <br />
-            <button class = "btn green  btn-outline-success" @click = "addFilterAttribute">Добавить</button>
+            <button class = "btn green  btn-outline-success" @click = "addFilter">Добавить</button>
           </div>
         </div>
       </div>
@@ -20,31 +20,36 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
-  name: 'add-filter-attribute',
+  name: 'add-filter-group',
   data: function () {
     return {
-      filter: {
-        value: '',
-        // eslint-disable-next-line no-undef
-        filter_group_id: ''
-      },
-      groups: []
+      name: '',
+      filter_group_id: ''
     }
   },
+  computed: {
+    // eslint-disable-next-line no-undef
+    ...mapGetters(['GET_FILTER_GROUPS'])
+  },
   methods: {
-    async addFilterAttribute () {
-      // eslint-disable-next-line no-undef
-      if (this.filter.value) {
-        await this.$store.dispatch('ADD_FILTER_ATTRIBUTE', this.filter)
-        this.$router.push({name: 'filter-attribute'})
+    ...mapActions(['ADD_FILTER_ATTRIBUTE', 'FILTER_ATTRIBUTES_REQUEST', 'FILTER_GROUPS_REQUEST']),
+    addFilter () {
+      let filter = {
+        id: '',
+        value: this.name,
+        filter_group_id: this.filter_group_id
       }
+      this.ADD_FILTER_ATTRIBUTE(filter)
+      this.FILTER_ATTRIBUTES_REQUEST()
+      this.$router.push({name: 'filter-attribute'})
     }
   },
   async mounted () {
-    await this.$store.dispatch('FILTERS_LIST_REQUEST')
-    this.groups = this.$store.getters.GET_FILTERS
-    this.filter.filter_group_id = this.groups[0].id
+    await this.FILTER_GROUPS_REQUEST()
+    await this.FILTER_ATTRIBUTES_REQUEST()
+    this.filter_group_id = this.GET_FILTER_GROUPS[0].id
   }
 }
 </script>
