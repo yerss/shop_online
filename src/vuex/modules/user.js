@@ -1,5 +1,4 @@
 import axios from 'axios'
-import router from '../../router/router'
 
 const state = {
   users: [],

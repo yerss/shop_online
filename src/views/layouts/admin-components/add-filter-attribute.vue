@@ -8,7 +8,7 @@
             <input type="text" class = "form-control bordered border-success mb-4" v-model = "filter.value" placeholder="Введите имя группы фильтра">
             <h5 class="card-title mb-3">Группа</h5>
             <select class = "form-control bordered border-success" v-model = "filter.filter_group_id" >
-              <option v-for = "group in groups" :value = "group.id">{{group.name}}</option>
+              <option v-bind:key="group.id" v-for = "group in groups" :value = "group.id">{{group.name}}</option>
             </select>
             <br />
             <button class = "btn green  btn-outline-success" @click = "addFilterAttribute">Добавить</button>

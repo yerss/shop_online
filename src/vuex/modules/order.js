@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import axios from "axios";
-import router from "../../router/router";
+import axios from 'axios'
+import router from '../../router/router'
 
 // eslint-disable-next-line no-unused-vars
 const state = {
   orders: [],
-  order_detail: [],
+  order_detail: {}
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -24,7 +24,7 @@ const mutations = {
     state.orders = data.data
   },
   SET_ORDER_DETAIL: (state, data) => {
-    state.order_detail = data.data
+    state.order_detail = data
   },
   DELETE_ORDER: (state, id) => {
     let index = state.orders.findIndex(x => x.id === id)
@@ -44,6 +44,7 @@ const actions = {
     return axios.get(`api/orders/${router.currentRoute.params.id}`)
       .then((response) => {
         commit('SET_ORDER_DETAIL', response.data)
+        return response
       })
   },
   DELETE_ORDER ({commit}, id) {

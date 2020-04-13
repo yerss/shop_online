@@ -25,7 +25,7 @@
                 <td class="text-center">{{order.user.name}}</td>
                 <td class="text-center">{{order.created_at}}</td>
                 <td class="text-center">{{order.status}}</td>
-                <td class="text-center">{{order.sum}}</td>
+                <td class="text-center">0</td>
 <!--
                 <td><label class="badge badge-teal">Approved</label></td>
 -->

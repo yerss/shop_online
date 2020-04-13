@@ -48,7 +48,11 @@
                     <td>{{product.alias}}</td>
                     <td>{{product.price}}</td>
                     <td class="text-center">{{product.pivot.pieces}}</td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                    <td>
+                      <a>
+                        <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                      </a>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -117,6 +121,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
