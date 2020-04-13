@@ -83,11 +83,6 @@ export default {
       .then((response) => {
         commit('DELETE_USER', id)
       })
-    return axios(`api/orders/${router.currentRoute.params.id}`, {
-      method: 'GET'
-    }).then((response) => {
-      commit('SET_ORDER_DETAIL', response.data)
-    })
   },
   FILTER_GROUP_REQUEST ({commit}, id) {
     return axios.get(`api/filterGroups/${id}`)
