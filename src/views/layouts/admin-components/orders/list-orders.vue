@@ -33,7 +33,7 @@
                   </router-link>
                   /
                   <a @click = "DELETE_ORDER(order.id)">
-                    <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                    <font-awesome-icon icon="trash-alt" class = "btn-red pointer"/>
                   </a>
                 </td>
               </tr>
@@ -76,5 +76,8 @@ export default {
 <style scoped>
   .blue{
     color:#3c8dbc
+  }
+  .btn-red{
+    color:red;
   }
 </style>

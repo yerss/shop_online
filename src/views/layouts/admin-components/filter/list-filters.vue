@@ -25,7 +25,7 @@
                     </router-link>
                     /
                     <a @click = "DELETE_FILTER_GROUP_REQUEST(filter.id)">
-                      <font-awesome-icon icon="times" class = "red pointer"/>
+                      <font-awesome-icon icon="times" class = "btn-red pointer"/>
                     </a>
                   </td>
                 </tr>

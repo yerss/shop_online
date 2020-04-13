@@ -18,7 +18,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for = "product in products" v-bind:key="product.id">
+                  <tr v-for = "product in GET_PRODUCTS" v-bind:key="product.id">
                     <td>{{product.id}}</td>
                     <td>{{product.alias}}</td>
                     <td>{{product.name}}</td>
@@ -64,10 +64,8 @@ export default {
   methods: {
     ...mapActions(['PRODUCTS_LIST_REQUEST'])
   },
-  async mounted () {
-    await this.PRODUCTS_LIST_REQUEST()
-    this.products = this.GET_PRODUCTS
-    console.log(this.products)
+  mounted () {
+    this.PRODUCTS_LIST_REQUEST()
   }
 }
 </script>

@@ -27,7 +27,7 @@
                     </router-link>
                     /
                     <a @click = "DELETE_FILTER_ATTRIBUTE_REQUEST(filter.id)">
-                      <font-awesome-icon icon="times" class = "red pointer"/>
+                      <font-awesome-icon icon="times" class = "icon-red pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -66,8 +66,8 @@ export default {
   dark{
     color:black;
   }
-  .red{
-    color:#a94442;
+  icon-red{
+    color:#a94442 !important;
   }
   .icon{
     font-size: 1.1rem;

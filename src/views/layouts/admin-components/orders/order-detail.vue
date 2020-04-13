@@ -4,7 +4,7 @@
       <div class="card-body">
         <h4 class="card-title">Детали заказа № {{ORDER_DETAIL.id}}</h4>
         <b-tabs class="tab-solid tab-solid-success">
-          <b-tab title="Order" active>
+          <b-tab title="Заказы" active>
             <div class="row">
               <div class="col-md-6">
                 <b-form-group label="Имя заказчика" label-for="input1">
@@ -49,8 +49,16 @@
                 </table>
               </div>
             </div>
+            <div class="row  mt-4">
+              <div class="col-md-12">
+                <div class="d-flex justify-content-end">
+                  <button class = "btn btn-sm green btn-outline-success mr-2">Одобрить</button>
+                  <button class = "btn btn-sm red btn-outline-danger">Отклонить</button>
+                </div>
+              </div>
+            </div>
           </b-tab>
-          <b-tab title="Contact">
+          <b-tab title="Контакты">
                   <div class="row">
                     <div class="col-md-6">
                       <b-form-group label="City" label-for="input11">
@@ -107,5 +115,11 @@ export default {
 </script>
 
 <style>
-
+  .green{
+    background-color: #008d4c;
+  }
+  .red{
+    background-color: #dd4b39;
+    color:#fff;
+  }
 </style>
