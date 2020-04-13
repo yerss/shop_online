@@ -17,12 +17,12 @@
         <li class="nav-item"><router-link class="nav-link" to="/admin/widgets/"><img class="menu-icon" src="../../assets/images/menu_icons/02.png" alt="menu icon"><span class="menu-title">Widgets</span></router-link></li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'products'">
-            <img class="menu-icon" src="../../assets/images/menu_icons/product.png" alt="menu icon"><span class="menu-title">Products</span><i class="menu-arrow"></i>
+            <img class="menu-icon" src="../../assets/images/menu_icons/product.png" alt="menu icon"><span class="menu-title">Товары</span><i class="menu-arrow"></i>
           </span>
           <b-collapse id="products">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><router-link class="nav-link" to="/admin/products">List Products</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/add_product">Add product</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/products">Список товаров</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/add_product">Добавить товар</router-link></li>
             </ul>
           </b-collapse>
         </li>

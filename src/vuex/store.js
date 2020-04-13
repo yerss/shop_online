@@ -4,6 +4,7 @@ import axios from 'axios'
 import filter from './modules/filter'
 import order from './modules/order'
 import user from './modules/user'
+import products from "./modules/products";
 let axiosDefaults = require('axios/lib/defaults')
 axiosDefaults.baseURL = 'http://localhost:8000/'
 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`
@@ -19,7 +20,7 @@ let store = new Vuex.Store({
   actions: {},
   getters: {},
   modules: {
-    filter, order, user
+    filter, order, user, products
   }
 })
 
