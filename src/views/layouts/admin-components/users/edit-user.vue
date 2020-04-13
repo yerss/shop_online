@@ -45,7 +45,7 @@
                       <td>{{order.created_at | convert}}</td>
                       <td>{{order.updated_at | convert}}</td>
                       <td>
-                        <router-link to = "#">
+                        <router-link :to = "{name:'order-detail',params:{id:order.id}}">
                           <font-awesome-icon icon="eye" class="blue pointer"/>
                         </router-link>
                       </td>

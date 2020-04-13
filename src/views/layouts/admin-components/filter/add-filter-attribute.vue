@@ -35,7 +35,6 @@ export default {
   methods: {
     async addFilterAttribute () {
       // eslint-disable-next-line no-undef
-      console.log(this.filter)
       if (this.filter.value) {
         await this.$store.dispatch('ADD_FILTER_ATTRIBUTE', this.filter)
         this.$router.push({name: 'filter-attribute'})

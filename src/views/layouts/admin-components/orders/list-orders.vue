@@ -3,16 +3,17 @@
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title mb-4">Orders</h5>
+          <h5 class="card-title mb-4">Заказы</h5>
           <div class="table-responsive">
             <table class="table center-aligned-table table-hover">
               <thead>
               <tr>
-                <th class="border-bottom-0 text-center">Order No</th>
-                <th class="border-bottom-0 text-center">Customer Name</th>
-                <th class="border-bottom-0 text-center">Purchased On</th>
-                <th class="border-bottom-0 text-center">Shipping Status</th>
-                <th class="border-bottom-0 text-center">Order Sum</th>
+                <th class="border-bottom-0 text-center">ID</th>
+                <th class="border-bottom-0 text-center">Покупатель</th>
+                <th class="border-bottom-0 text-center">Статус</th>
+                <th class="border-bottom-0 text-center">Дата создания</th>
+                <th class="border-bottom-0 text-center">Дата изменения</th>
+                <th class="border-bottom-0 text-center">Действия</th>
 <!--
                 <th class="border-bottom-0">Payment Status</th>
 -->
@@ -23,13 +24,10 @@
               <tr v-for="order in ORDERS" :key="order.id">
                 <td class="text-center">{{order.id}}</td>
                 <td class="text-center">{{order.user.name}}</td>
-                <td class="text-center">{{order.created_at}}</td>
                 <td class="text-center">{{order.status}}</td>
-                <td class="text-center">0</td>
-<!--
-                <td><label class="badge badge-teal">Approved</label></td>
--->
-                <td>
+                <td class="text-center">{{order.created_at | convert}}</td>
+                <td class="text-center">{{order.updated_at | convert}}</td>
+                <td class="text-center">
                   <router-link  :to="`/admin/orders/detail/${order.id}`">
                     <font-awesome-icon icon="eye" class = "blue pointer"/>
                   </router-link>
@@ -76,5 +74,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .blue{
+    color:#3c8dbc
+  }
 </style>
