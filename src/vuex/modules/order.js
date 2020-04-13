@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import axios from "axios";
-import router from "../../router/router";
+import axios from 'axios'
+import router from '../../router/router'
 
 // eslint-disable-next-line no-unused-vars
 const state = {
   orders: [],
-  order_detail: [],
+  order_detail: []
 }
 
 // eslint-disable-next-line no-unused-vars

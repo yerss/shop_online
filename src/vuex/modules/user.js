@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios'
-import router from '../../router/router'
 
 // eslint-disable-next-line no-unused-vars
 const state = {
