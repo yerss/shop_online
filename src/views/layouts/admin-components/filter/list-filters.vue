@@ -1,5 +1,5 @@
 <template lang = "html">
-  <section class="filters">
+  <section class="list-filters">
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">

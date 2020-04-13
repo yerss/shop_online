@@ -1,5 +1,5 @@
 <template>
-  <section class="editGroup">
+  <section class="add-filter-attribute">
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">

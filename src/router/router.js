@@ -37,19 +37,21 @@ import admin from '../views/layouts/admin'
 /*
 import store from '../vuex/store'
 */
-import addFilterGroup from '../views/layouts/admin-components/add-filter-group'
+import addFilterGroup from '../views/layouts/admin-components/filter/add-filter-group'
 // Admin page components
-import listProduct from '../views/layouts/admin-components/list-products'
-import listOrders from '../views/layouts/admin-components/list-orders'
-import orderDetail from '../views/layouts/admin-components/order-detail'
-import listCategories from '../views/layouts/admin-components/list-categories'
-import listUsers from '../views/layouts/admin-components/list-users'
-import listFilters from '../views/layouts/admin-components/list-filters'
-import addProduct from '../views/layouts/admin-components/add-product'
-import editFilterGroup from '../views/layouts/admin-components/edit-filter-group'
-import listFiltersAttributes from '../views/layouts/admin-components/list-filter-attributes'
-import addFilterAttributes from '../views/layouts/admin-components/add-filter-attribute'
-import editFilterAttributes from '../views/layouts/admin-components/edit-filter-attribute'
+import listProduct from '../views/layouts/admin-components/products/list-products'
+import listOrders from '../views/layouts/admin-components/orders/list-orders'
+import orderDetail from '../views/layouts/admin-components/orders/order-detail'
+import listCategories from '../views/layouts/admin-components/categories/list-categories'
+import listUsers from '../views/layouts/admin-components/users/list-users'
+import listFilters from '../views/layouts/admin-components/filter/list-filters'
+import addProduct from '../views/layouts/admin-components/products/add-product'
+import editFilterGroup from '../views/layouts/admin-components/filter/edit-filter-group'
+import listFiltersAttributes from '../views/layouts/admin-components/filter/list-filter-attributes'
+import addFilterAttributes from '../views/layouts/admin-components/filter/add-filter-attribute'
+import editFilterAttributes from '../views/layouts/admin-components/filter/edit-filter-attribute'
+import addUser from '../views/layouts/admin-components/users/add-user'
+import editUser from '../views/layouts/admin-components/users/edit-user'
 Vue.use(Router)
 
 let router = new Router({
@@ -100,6 +102,16 @@ let router = new Router({
           path: 'users',
           name: 'list-users',
           component: listUsers
+        },
+        {
+          path: 'user/add',
+          name: 'add-user',
+          component: addUser
+        },
+        {
+          path: 'user/edit/:id',
+          name: 'edit-user',
+          component: editUser
         },
         {
           path: 'filters',
