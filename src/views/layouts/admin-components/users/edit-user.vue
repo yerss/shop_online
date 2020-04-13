@@ -28,6 +28,23 @@
         <div class="card">
           <div class="card-body">
              <h5>Заказы пользователя</h5>
+              <table class = "table table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>Статус</th>
+                    <th>Сумма</th>
+                    <th>Дата создания</th>
+                    <th>Дата изменения</th>
+                    <th>Действия</th>
+                </thead>
+                <tbody>
+                    <tr v-for = "order in orders" v-bind:key="order.id">
+                      <th>{{order.id}}</th>
+                      <th>{{order.status}}</th>
+                      <th>{{order.products | sumItems}}</th>
+                    </tr>
+                </tbody>
+              </table>
           </div>
         </div>
       </div>
@@ -47,8 +64,17 @@ export default {
         email: '',
         role_id: ''
       },
+      orders: {},
       roles: [],
       confirmedPassword: ''
+    }
+  },
+  filters: {
+    sumItems: function (products) {
+      // eslint-disable-next-line no-unused-vars
+      let sum = 0
+      for (let product of products) sum += (product.price * product.pivot.pieces)
+      return sum
     }
   },
   computed: {
@@ -72,13 +98,13 @@ export default {
     await this.GET_ROLES_REQUEST()
     await this.GET_USER_REQUEST(this.$route.params.id)
     this.user = this.USER
+    this.orders = this.user.orders
     // eslint-disable-next-line eqeqeq
     if (this.user.role.name == 'admin') this.user.role_id = 1
     // eslint-disable-next-line eqeqeq
     if (this.user.role.name == 'moderator') this.user.role_id = 2
     // eslint-disable-next-line eqeqeq
     if (this.user.role.name == 'user') this.user.role_id = 3
-    console.log(this.user.role_id)
     this.roles = this.ROLES
   }
 }

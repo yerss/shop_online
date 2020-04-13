@@ -7,7 +7,9 @@ import BootstrapVue from 'bootstrap-vue'
 import store from './vuex/store'
 import {FontAwesomeIcon} from './icons'
 import Swal from 'sweetalert2'
+
 window.swal = Swal
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
