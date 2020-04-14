@@ -30,10 +30,10 @@ const getters = {
 
 // eslint-disable-next-line no-unused-vars
 const mutations = {
-  SET_FILTER_ATTRIBUTE_NAME: (state, name) =>{
+  SET_FILTER_ATTRIBUTE_NAME: (state, name) => {
     state.filterAttribute.value = name
   },
-  SET_FILTER_ATTRIBUTE_ID: (state, id) =>{
+  SET_FILTER_ATTRIBUTE_ID: (state, id) => {
     state.filterAttribute.filter_group_id = id
   },
   SET_FILTER_GROUPS: (state, result) => {
@@ -75,7 +75,7 @@ const actions = {
   FILTER_GROUP_REQUEST ({commit}, id) {
     return axios.get(`api/filterGroups/${id}`)
       .then(({data}) => {
-        commit('SET_FILTER_GROUP', data)
+        commit('SET_FILTER_GROUP', data.data)
       }).catch(error => {
         console.log(error)
       })
@@ -83,7 +83,7 @@ const actions = {
   FILTER_ATTRIBUTE_REQUEST ({commit}, id) {
     return axios.get(`api/filterValues/${id}`)
       .then(({data}) => {
-        commit('SET_FILTER_ATTRIBUTE', data)
+        commit('SET_FILTER_ATTRIBUTE', data.data)
       }).catch(error => {
         console.log(error)
       })

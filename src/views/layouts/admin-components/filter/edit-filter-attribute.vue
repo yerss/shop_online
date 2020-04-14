@@ -40,7 +40,7 @@ export default {
         return this.GET_FILTER_ATTRIBUTE.filter_group_id
       },
       set (id) {
-        this.SET_FILTER_ATTRIBUTE_ID = id
+        this.SET_FILTER_ATTRIBUTE_ID(id)
       }
     }
   },
