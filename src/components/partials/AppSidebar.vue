@@ -28,6 +28,7 @@
         </li>
         <li class="nav-item"><router-link class="nav-link" to="/admin/orders"><img class="menu-icon" src="../../assets/images/menu_icons/orders.png" alt="menu icon"><span class="menu-title">Orders</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/admin/categories"><img class="menu-icon" src="../../assets/images/menu_icons/list.png" alt="menu icon"><span class="menu-title">Categories</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/admin/brands"><img class="menu-icon" src="../../assets/images/menu_icons/brand.png" alt="menu icon"><span class="menu-title">Бренды</span></router-link></li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'users'">
             <img class="menu-icon" src="../../assets/images/menu_icons/users.png" alt="menu icon"><span class="menu-title">Пользователи</span><i class="menu-arrow"></i>

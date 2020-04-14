@@ -65,7 +65,6 @@ export default {
   .bg-blue{
     background-color: #3c8dbc;
   }
-
   .red{
     color:#a94442;
   }

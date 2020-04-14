@@ -44,6 +44,9 @@ import listOrders from '../views/layouts/admin-components/orders/list-orders'
 import orderDetail from '../views/layouts/admin-components/orders/order-detail'
 import listCategories from '../views/layouts/admin-components/categories/list-categories'
 import categoryDetail from '../views/layouts/admin-components/categories/category-detail'
+import listBrands from '../views/layouts/admin-components/brands/list-brands'
+import addBrand from '../views/layouts/admin-components/brands/add-brand'
+import editBrand from '../views/layouts/admin-components/brands/edit-brand'
 import listUsers from '../views/layouts/admin-components/users/list-users'
 import listFilters from '../views/layouts/admin-components/filter/list-filters'
 import addProduct from '../views/layouts/admin-components/products/add-product'
@@ -93,6 +96,21 @@ let router = new Router({
           path: 'categories/detail/:id',
           name: 'category-detail',
           component: categoryDetail
+        },
+        {
+          path: 'brands',
+          name: 'list-brands',
+          component: listBrands
+        },
+        {
+          path: 'add_brand',
+          name: 'add-brand',
+          component: addBrand
+        },
+        {
+          path: 'brands/detail/:id',
+          name: 'edit-brand',
+          component: editBrand
         },
         {
           path: 'orders',
