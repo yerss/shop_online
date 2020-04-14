@@ -46,10 +46,11 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_FILTER_ATTRIBUTE_NAME', 'SET_FILTER_ATTRIBUTE_ID']),
-    ...mapActions(['FILTER_ATTRIBUTE_REQUEST', 'FILTER_GROUPS_REQUEST', 'UPDATE_FILTER_ATTRIBUTE']),
+    ...mapActions(['FILTER_ATTRIBUTE_REQUEST', 'FILTER_GROUPS_REQUEST', 'UPDATE_FILTER_ATTRIBUTE', 'FILTER_ATTRIBUTES_REQUEST']),
     editFilterAttribute () {
       this.UPDATE_FILTER_ATTRIBUTE(this.GET_FILTER_ATTRIBUTE)
       this.$router.push({name: 'filter-attribute'})
+      this.FILTER_ATTRIBUTES_REQUEST()
     }
   },
   mounted () {
