@@ -42,9 +42,9 @@ const actions = {
           // eslint-disable-next-line eqeqeq,no-unused-expressions
           if (orders[i].status == 0) orders[i].status = 'Новый'
           // eslint-disable-next-line no-unused-expressions,eqeqeq
-          else if (orders[i].status == 1)orders[i].status = 'Завершен'
+          else if (orders[i].status == 1)orders[i].status = 'Одобрен'
           // eslint-disable-next-line eqeqeq,no-unused-expressions
-          else if (orders[i].status == 1)orders[i].status = 'Удален'
+          else if (orders[i].status == 2)orders[i].status = 'Откланен'
         }
         commit('SET_ORDERS', orders)
       })
@@ -54,6 +54,40 @@ const actions = {
       .then((response) => {
         commit('SET_ORDER_DETAIL', response.data.data)
         return response
+      })
+  },
+  UPDATE_ORDER ({commit}, order) {
+    // eslint-disable-next-line no-undef
+    return axios.put(`api/orders/${order.id}`, order)
+      .then(({data}) => {
+        // eslint-disable-next-line no-undef,eqeqeq
+        console.log(order)
+        // eslint-disable-next-line eqeqeq
+        if (order.status == '1') {
+          commit('SET_ORDER_DETAIL', order)
+          // eslint-disable-next-line no-undef
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ одобрен'
+          })
+          // eslint-disable-next-line eqeqeq
+        } else if (order.status == '0') {
+          commit('SET_ORDER_DETAIL', order)
+          // eslint-disable-next-line no-undef
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ вернулся на доработку'
+          })
+        } else {
+          commit('SET_ORDER_DETAIL', order)
+          // eslint-disable-next-line no-undef
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ откланен'
+          })
+        }
+      }).catch(error => {
+        console.log(error)
       })
   },
   DELETE_ORDER ({commit}, id) {

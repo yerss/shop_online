@@ -24,7 +24,9 @@
               <tr v-for="order in ORDERS" :key="order.id">
                 <td class="text-center">{{order.id}}</td>
                 <td class="text-center">{{order.user.name}}</td>
-                <td class="text-center">{{order.status}}</td>
+                <td class="text-center"><span class = "badge" :class = "{'badge-primary':order.status == 'Новый',
+                'badge-success':order.status == 'Одобрен',
+                'badge-danger':order.status == 'Откланен'}" disabled>{{order.status}}</span></td>
                 <td class="text-center">{{order.created_at | convert}}</td>
                 <td class="text-center">{{order.updated_at | convert}}</td>
                 <td class="text-center">
