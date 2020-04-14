@@ -20,12 +20,6 @@ const getters = {
 
 // eslint-disable-next-line no-unused-vars
 const mutations = {
-  // eslint-disable-next-line camelcase
-  SET_ORDER_DETAIL_INFO (state, order) {
-    state.order_detail.status = order.status
-    // eslint-disable-next-line camelcase
-    state.order_detail.edited_at = order.updated_at
-  },
   SET_ORDERS: (state, data) => {
     state.orders = data
   },
@@ -50,7 +44,7 @@ const actions = {
           // eslint-disable-next-line no-unused-expressions,eqeqeq
           else if (orders[i].status == 1)orders[i].status = 'Одобрен'
           // eslint-disable-next-line eqeqeq,no-unused-expressions
-          else if (orders[i].status == 1)orders[i].status = 'Удален'
+          else if (orders[i].status == 2)orders[i].status = 'Откланен'
         }
         commit('SET_ORDERS', orders)
       })
@@ -67,23 +61,31 @@ const actions = {
     return axios.put(`api/orders/${order.id}`, order)
       .then(({data}) => {
         // eslint-disable-next-line no-undef,eqeqeq
+        console.log(order)
+        // eslint-disable-next-line eqeqeq
         if (order.status == '1') {
+          commit('SET_ORDER_DETAIL', order)
           // eslint-disable-next-line no-undef
-          swal.fire(
-            'Одобрено',
-            'Заявка успешно одобрено!!!',
-            'success'
-          )
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ одобрен'
+          })
           // eslint-disable-next-line eqeqeq
         } else if (order.status == '0') {
+          commit('SET_ORDER_DETAIL', order)
           // eslint-disable-next-line no-undef
-          swal.fire(
-            'Доработка',
-            'Заявка отправлен на доработку!!!',
-            'warning'
-          )
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ вернулся на доработку'
+          })
+        } else {
+          commit('SET_ORDER_DETAIL', order)
+          // eslint-disable-next-line no-undef
+          toast.fire({
+            icon: 'success',
+            title: 'Заказ откланен'
+          })
         }
-        commit('SET_ORDER', order)
       }).catch(error => {
         console.log(error)
       })

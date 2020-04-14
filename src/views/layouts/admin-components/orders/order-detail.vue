@@ -26,42 +26,44 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <table class="table center-aligned-table">
-                  <thead>
-                  <tr>
-                    <th class="border-bottom-0">ID</th>
-                    <th class="border-bottom-0">Наименование</th>
-                    <th class="border-bottom-0">Короткое имя</th>
-                    <th class="border-bottom-0">Цена</th>
-                    <th class="border-bottom-0 text-center">Кол-во</th>
-                    <th class="border-bottom-0"></th>
-                  </tr>
-                  </thead>
-                  <tbody v-if="ORDER_DETAIL">
-                  <tr v-for="product in ORDER_DETAIL.products" :key="product.id">
-                    <td>{{product.id}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.alias}}</td>
-                    <td>{{product.price}}</td>
-                    <td class="text-center">{{product.pivot.pieces}}</td>
-                  </tr>
-                  <tr class = "table_result_bg_color">
-                    <td>Итог</td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ORDER_DETAIL.products | sumPrice}}</td>
-                    <td class="text-center">{{ORDER_DETAIL.products | sumCount}}</td>
-                  </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table center-aligned-table">
+                    <thead>
+                    <tr>
+                      <th class="border-bottom-0">ID</th>
+                      <th class="border-bottom-0">Наименование</th>
+                      <th class="border-bottom-0">Короткое имя</th>
+                      <th class="border-bottom-0">Цена</th>
+                      <th class="border-bottom-0 text-center">Кол-во</th>
+                      <th class="border-bottom-0"></th>
+                    </tr>
+                    </thead>
+                    <tbody v-if="ORDER_DETAIL">
+                    <tr v-for="product in ORDER_DETAIL.products" :key="product.id">
+                      <td>{{product.id}}</td>
+                      <td>{{product.name}}</td>
+                      <td>{{product.alias}}</td>
+                      <td>{{product.price}}</td>
+                      <td class="text-center">{{product.pivot.pieces}}</td>
+                    </tr>
+                    <tr class = "table_result_bg_color">
+                      <td>Итог</td>
+                      <td></td>
+                      <td></td>
+                      <td>{{ORDER_DETAIL.products | sumPrice}}</td>
+                      <td class="text-center">{{ORDER_DETAIL.products | sumCount}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="row  mt-4">
               <div class="col-md-12">
                 <div class="d-flex justify-content-end">
-                  <button class = "btn btn-sm bg-blue btn-outline-primary mr-2" @click = "Return" v-if = "ORDER_DETAIL.status == '1'">Вернуть на доработку</button>
+                  <button class = "btn btn-sm bg-blue btn-outline-primary mr-2" @click = "Return" v-if = "ORDER_DETAIL.status == '1' || ORDER_DETAIL.status =='2'">Вернуть на доработку</button>
                   <button class = "btn btn-sm green btn-outline-success mr-2" @click = "Approve" v-else>Одобрить</button>
-                  <button class = "btn btn-sm red btn-outline-danger">Отклонить</button>
+                  <button class = "btn btn-sm red btn-outline-danger mr-5" @click = "Decline" v-if = "ORDER_DETAIL.status != '2'">Отклонить</button>
                 </div>
               </div>
             </div>
@@ -98,7 +100,7 @@
   </div>
 </template>
 <script>
-import {mapActions, mapGetters, mapMutations} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'order-detail',
@@ -129,21 +131,24 @@ export default {
     ])
   },
   methods: {
-    ...mapMutations([
-      'SET_ORDER_DETAIL_INFO'
-    ]),
     ...mapActions([
       'GET_ORDER_DETAIL', 'UPDATE_ORDER'
     ]),
     Approve () {
       let order = this.ORDER_DETAIL
-      order.status = '0'
+      order.status = '1'
+      order.updated_at = new Date()
+      this.UPDATE_ORDER(order)
+    },
+    Decline () {
+      let order = this.ORDER_DETAIL
+      order.status = '2'
       order.updated_at = new Date()
       this.UPDATE_ORDER(order)
     },
     Return () {
       let order = this.ORDER_DETAIL
-      order.status = '1'
+      order.status = '0'
       order.updated_at = new Date()
       this.UPDATE_ORDER(order)
     }
