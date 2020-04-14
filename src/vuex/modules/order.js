@@ -52,7 +52,7 @@ const actions = {
   GET_ORDER_DETAIL ({commit}, data) {
     return axios.get(`api/orders/${router.currentRoute.params.id}`)
       .then((response) => {
-        commit('SET_ORDER_DETAIL', response.data)
+        commit('SET_ORDER_DETAIL', response.data.data)
         return response
       })
   },
