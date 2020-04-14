@@ -45,6 +45,13 @@
                     <td>{{product.price}}</td>
                     <td class="text-center">{{product.pivot.pieces}}</td>
                   </tr>
+                  <tr class = "table_result_bg_color">
+                    <td>Итог</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ORDER_DETAIL.products | sumPrice}}</td>
+                    <td class="text-center">{{ORDER_DETAIL.products | sumCount}}</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
@@ -52,7 +59,8 @@
             <div class="row  mt-4">
               <div class="col-md-12">
                 <div class="d-flex justify-content-end">
-                  <button class = "btn btn-sm green btn-outline-success mr-2">Одобрить</button>
+                  <button class = "btn btn-sm bg-blue btn-outline-primary mr-2" @click = "Return" v-if = "ORDER_DETAIL.status == '1'">Вернуть на доработку</button>
+                  <button class = "btn btn-sm green btn-outline-success mr-2" @click = "Approve" v-else>Одобрить</button>
                   <button class = "btn btn-sm red btn-outline-danger">Отклонить</button>
                 </div>
               </div>
@@ -89,12 +97,28 @@
     </div>
   </div></template>
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: 'order-detail',
   data () {
     return {}
+  },
+  filters: {
+    sumPrice (products) {
+      let sum = 0
+      for (let product of products) {
+        sum += product.price
+      }
+      return sum
+    },
+    sumCount (products) {
+      let sum = 0
+      for (let product of products) {
+        sum += product.pivot.pieces
+      }
+      return sum
+    }
   },
   components: {
   },
@@ -104,9 +128,24 @@ export default {
     ])
   },
   methods: {
+    ...mapMutations([
+      'SET_ORDER_DETAIL_INFO'
+    ]),
     ...mapActions([
-      'GET_ORDER_DETAIL'
-    ])
+      'GET_ORDER_DETAIL', 'UPDATE_ORDER'
+    ]),
+    Approve () {
+      let order = this.ORDER_DETAIL
+      order.status = '0'
+      order.updated_at = new Date()
+      this.UPDATE_ORDER(order)
+    },
+    Return () {
+      let order = this.ORDER_DETAIL
+      order.status = '1'
+      order.updated_at = new Date()
+      this.UPDATE_ORDER(order)
+    }
   },
   mounted () {
     this.GET_ORDER_DETAIL()
@@ -121,5 +160,11 @@ export default {
   .red{
     background-color: #dd4b39;
     color:#fff;
+  }
+  .table_result_bg_color{
+   background-color: #f5f5f5;
+  }
+  .bg-blue {
+    background-color: #1991EA;
   }
 </style>

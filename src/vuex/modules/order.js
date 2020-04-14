@@ -20,6 +20,12 @@ const getters = {
 
 // eslint-disable-next-line no-unused-vars
 const mutations = {
+  // eslint-disable-next-line camelcase
+  SET_ORDER_DETAIL_INFO (state, order) {
+    state.order_detail.status = order.status
+    // eslint-disable-next-line camelcase
+    state.order_detail.edited_at = order.updated_at
+  },
   SET_ORDERS: (state, data) => {
     state.orders = data
   },
@@ -42,7 +48,7 @@ const actions = {
           // eslint-disable-next-line eqeqeq,no-unused-expressions
           if (orders[i].status == 0) orders[i].status = 'Новый'
           // eslint-disable-next-line no-unused-expressions,eqeqeq
-          else if (orders[i].status == 1)orders[i].status = 'Завершен'
+          else if (orders[i].status == 1)orders[i].status = 'Одобрен'
           // eslint-disable-next-line eqeqeq,no-unused-expressions
           else if (orders[i].status == 1)orders[i].status = 'Удален'
         }
@@ -54,6 +60,32 @@ const actions = {
       .then((response) => {
         commit('SET_ORDER_DETAIL', response.data.data)
         return response
+      })
+  },
+  UPDATE_ORDER ({commit}, order) {
+    // eslint-disable-next-line no-undef
+    return axios.put(`api/orders/${order.id}`, order)
+      .then(({data}) => {
+        // eslint-disable-next-line no-undef,eqeqeq
+        if (order.status == '1') {
+          // eslint-disable-next-line no-undef
+          swal.fire(
+            'Одобрено',
+            'Заявка успешно одобрено!!!',
+            'success'
+          )
+          // eslint-disable-next-line eqeqeq
+        } else if (order.status == '0') {
+          // eslint-disable-next-line no-undef
+          swal.fire(
+            'Доработка',
+            'Заявка отправлен на доработку!!!',
+            'warning'
+          )
+        }
+        commit('SET_ORDER', order)
+      }).catch(error => {
+        console.log(error)
       })
   },
   DELETE_ORDER ({commit}, id) {
