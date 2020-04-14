@@ -94,7 +94,8 @@
         </b-tabs>
       </div>
     </div>
-  </div></template>
+  </div>
+</template>
 <script>
 import {mapActions, mapGetters} from 'vuex'
 

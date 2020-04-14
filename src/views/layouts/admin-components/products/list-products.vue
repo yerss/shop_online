@@ -13,29 +13,24 @@
                     <th class="border-bottom-0">Категория</th>
                     <th class="border-bottom-0">Наименование</th>
                     <th class="border-bottom-0">Цена</th>
-                    <th class="border-bottom-0">Статус</th>
-                    <th class="border-bottom-0">Действия</th>
+                    <th class="border-bottom-0 text-center">Статус</th>
+                    <th class="border-bottom-0 text-center">Действия</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for = "product in products" v-bind:key="product.id">
+                  <tr v-for = "product in PRODUCTS" v-bind:key="product.id">
                     <td>{{product.id}}</td>
                     <td>{{product.alias}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td>{{product.status}}</td>
-                    <td>
+                    <td class="text-center">{{product.status}}</td>
+                    <td class="text-center">
                       <router-link tag = "a" to = "#">
-                        <!--                        :to = "{name:'edit-user',params: {id:user.id}}"-->
                         <font-awesome-icon icon="eye" class="blue pointer"/>
                       </router-link>
                       /
-                      <router-link tag = "a" to = "#">
-                        <font-awesome-icon icon="times" class="blue pointer"/>
-                      </router-link>
-                      /
-                      <a>
-                        <font-awesome-icon icon="times" class="red pointer"/>
+                      <a to = "#" @click="DELETE_PRODUCT(product.id)">
+                        <font-awesome-icon icon="trash-alt" class="red pointer"/>
                       </a>
                     </td>
                   </tr>
@@ -54,20 +49,21 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'list-products',
   data () {
-    return {
-      products: []
-    }
+    return {}
   },
   computed: {
-    ...mapGetters(['GET_PRODUCTS'])
+    ...mapGetters([
+      'PRODUCTS'
+    ])
   },
   methods: {
-    ...mapActions(['PRODUCTS_LIST_REQUEST'])
+    ...mapActions([
+      'PRODUCTS_LIST_REQUEST',
+      'DELETE_PRODUCT'
+    ])
   },
   async mounted () {
-    await this.PRODUCTS_LIST_REQUEST()
-    this.products = this.GET_PRODUCTS
-    console.log(this.products)
+    this.PRODUCTS_LIST_REQUEST()
   }
 }
 </script>
