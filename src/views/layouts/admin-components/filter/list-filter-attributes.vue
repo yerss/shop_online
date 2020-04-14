@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "(filter,index) in filters" :key="filter.id">
+                <tr v-for = "(filter,index) in GET_FILTER_ATTRIBUTES" :key="filter.id">
                   <td>{{index + 1}}</td>
                   <td>{{filter.value}}</td>
                   <td>{{filter.filter_group.name}}</td>
@@ -26,8 +26,8 @@
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_FILTER_ATTRIBUTE(filter.id)">
-                      <font-awesome-icon icon="times" class = "red pointer"/>
+                    <a @click = "DELETE_FILTER_ATTRIBUTE_REQUEST(filter.id)">
+                      <font-awesome-icon icon="times" class = "icon-red pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -42,20 +42,19 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'list-filters-attribute',
-  data: function () {
-    return {
-      filters: []
-    }
+  computed: {
+    ...mapGetters([
+      'GET_FILTER_ATTRIBUTES'
+    ])
   },
   methods: {
-    ...mapActions(['DELETE_FILTER_ATTRIBUTE'])
+    ...mapActions(['DELETE_FILTER_ATTRIBUTE_REQUEST', 'FILTER_ATTRIBUTES_REQUEST'])
   },
-  async mounted () {
-    await this.$store.dispatch('FILTERS_ATTRIBUTES_REQUEST')
-    this.filters = this.$store.getters.GET_FILTERS
+  mounted () {
+    this.FILTER_ATTRIBUTES_REQUEST()
   }
 }
 </script>
@@ -67,8 +66,8 @@ export default {
   dark{
     color:black;
   }
-  .red{
-    color:#a94442;
+  icon-red{
+    color:#a94442 !important;
   }
   .icon{
     font-size: 1.1rem;

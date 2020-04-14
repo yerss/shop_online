@@ -62,7 +62,7 @@ export default {
       'DELETE_PRODUCT'
     ])
   },
-  async mounted () {
+  mounted () {
     this.PRODUCTS_LIST_REQUEST()
   }
 }

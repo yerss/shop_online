@@ -3,55 +3,95 @@ import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 const state = {
-  filters: [],
-  filter: {}
+  filterGroups: [],
+  filterAttributes: [],
+  filterAttribute: {},
+  filterGroup: {}
+
 }
 // eslint-disable-next-line no-unused-vars
 const getters = {
-  GET_FILTERS (state) {
-    return state.filters
+  GET_FILTER_GROUPS (state) {
+    return state.filterGroups
   },
-  GET_FILTER (state) {
-    return state.filter
+  GET_FILTER_ATTRIBUTES (state) {
+    return state.filterAttributes
+  },
+  GET_FILTER_GROUP (state) {
+    return state.filterGroup
+  },
+  GET_FILTER_GROUP_NAME (state) {
+    return state.filterGroup.name
+  },
+  GET_FILTER_ATTRIBUTE (state) {
+    return state.filterAttribute
   }
 }
 
 // eslint-disable-next-line no-unused-vars
 const mutations = {
-  SAVE_FILTERS: (state, result) => {
-    state.filters = result.data
+  SET_FILTER_ATTRIBUTE_NAME: (state, name) => {
+    state.filterAttribute.value = name
   },
-  DELETE_FILTER: (state, id) => {
-    let index = state.filters.findIndex(x => x.id === id)
-    state.filters.splice(index, 1)
+  SET_FILTER_ATTRIBUTE_ID: (state, id) => {
+    state.filterAttribute.filter_group_id = id
   },
-  SET_FILTER: (state, filter) => {
-    state.filter = filter
+  SET_FILTER_GROUPS: (state, result) => {
+    state.filterGroups = result
+  },
+  DELETE_FILTER_ATTRIBUTE: (state, id) => {
+    let index = state.filterAttributes.findIndex(x => x.id === id)
+    state.filterAttributes.splice(index, 1)
+  },
+  DELETE_FILTER_GROUP: (state, id) => {
+    let index = state.filterGroups.findIndex(x => x.id === id)
+    state.filterGroups.splice(index, 1)
+  },
+  SET_FILTER_ATTRIBUTES: (state, result) => {
+    state.filterAttributes = result
+  },
+  SET_FILTER_ATTRIBUTE (state, result) {
+    state.filterAttribute = result
+  },
+  SET_FILTER_GROUP (state, result) {
+    state.filterGroup = result
+  },
+  PLUS_FILTER_GROUP (state, filter) {
+    state.filterGroups.push(filter)
+  },
+  PLUS_FILTER_ATTRIBUTE (state, filter) {
+    state.filterAttributes.push(filter)
+  },
+  SET_FILTER_GROUP_NAME (state, name) {
+    state.filterGroup.name = name
   }
 }
 
 // eslint-disable-next-line no-unused-vars
 const actions = {
+  SET_FILTER_GROUP_REQUEST ({commit}, result) {
+    commit('SET_FILTER_GROUP', result)
+  },
   FILTER_GROUP_REQUEST ({commit}, id) {
     return axios.get(`api/filterGroups/${id}`)
-      .then((response) => {
-        commit('SET_FILTER', response.data)
+      .then(({data}) => {
+        commit('SET_FILTER_GROUP', data.data)
       }).catch(error => {
         console.log(error)
       })
   },
   FILTER_ATTRIBUTE_REQUEST ({commit}, id) {
     return axios.get(`api/filterValues/${id}`)
-      .then((response) => {
-        commit('SET_FILTER', response.data)
+      .then(({data}) => {
+        commit('SET_FILTER_ATTRIBUTE', data.data)
       }).catch(error => {
         console.log(error)
       })
   },
-  UPDATE_FILTER ({commit}, filter) {
+  UPDATE_FILTER_GROUP ({commit}, filter) {
     return axios.put(`api/filterGroups/${filter.id}`, filter)
-      .then(response => {
-        commit('SET_FILTER', filter)
+      .then(({data}) => {
+        commit('SET_FILTER_GROUP', filter)
         // eslint-disable-next-line no-undef
         toast.fire({
           icon: 'success',
@@ -63,8 +103,8 @@ const actions = {
   },
   UPDATE_FILTER_ATTRIBUTE ({commit}, filter) {
     return axios.put(`api/filterValues/${filter.id}`, filter)
-      .then(response => {
-        commit('SET_FILTER', filter)
+      .then(({data}) => {
+        commit('SET_FILTER_ATTRIBUTE', filter)
         // eslint-disable-next-line no-undef
         toast.fire({
           icon: 'success',
@@ -74,10 +114,10 @@ const actions = {
         console.log(error)
       })
   },
-  ADD_FILTER ({commit}, filter) {
+  ADD_FILTER_GROUP ({commit}, filter) {
     return axios.post('api/filterGroups', filter)
       .then(response => {
-        commit('SET_FILTER', filter)
+        commit('PLUS_FILTER_GROUP', filter)
         // eslint-disable-next-line no-undef
         toast.fire({
           icon: 'success',
@@ -90,7 +130,7 @@ const actions = {
   ADD_FILTER_ATTRIBUTE ({commit}, filter) {
     return axios.post('api/filterValues', filter)
       .then(response => {
-        commit('SET_FILTER', filter)
+        commit('PLUS_FILTER_ATTRIBUTE', filter)
         // eslint-disable-next-line no-undef
         toast.fire({
           icon: 'success',
@@ -100,23 +140,23 @@ const actions = {
         console.log(error)
       })
   },
-  FILTERS_ATTRIBUTES_REQUEST ({commit}) {
+  FILTER_ATTRIBUTES_REQUEST ({commit}) {
     return axios.get('api/filterValues')
       .then(({data}) => {
-        commit('SAVE_FILTERS', data)
+        commit('SET_FILTER_ATTRIBUTES', data.data)
       }).catch(error => {
         console.log(error)
       })
   },
-  FILTERS_LIST_REQUEST ({commit}) {
+  FILTER_GROUPS_REQUEST ({commit}) {
     return axios.get('api/filterGroups')
       .then(({data}) => {
-        commit('SAVE_FILTERS', data)
+        commit('SET_FILTER_GROUPS', data.data)
       }).catch(error => {
         console.log(error)
       })
   },
-  DELETE_FILTER_ATTRIBUTE ({commit}, id) {
+  DELETE_FILTER_ATTRIBUTE_REQUEST ({commit}, id) {
     // eslint-disable-next-line no-undef
     swal.fire({
       title: 'Вы уверены что хотите удалить?',
@@ -137,8 +177,7 @@ const actions = {
               'Данные успешно удалены',
               'success'
             )
-
-            commit('DELETE_FILTER', id)
+            commit('DELETE_FILTER_ATTRIBUTE', id)
           }).catch(() => {
           // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')
@@ -147,7 +186,7 @@ const actions = {
       }
     })
   },
-  DELETE_FILTER ({commit}, id) {
+  DELETE_FILTER_GROUP_REQUEST ({commit}, id) {
     // eslint-disable-next-line no-undef
     swal.fire({
       title: 'Вы уверены что хотите удалить?',
@@ -168,8 +207,7 @@ const actions = {
               'Данные успешно удалены',
               'success'
             )
-
-            commit('DELETE_FILTER', id)
+            commit('DELETE_FILTER_GROUP', id)
           }).catch(() => {
           // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')

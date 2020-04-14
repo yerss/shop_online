@@ -16,7 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "(filter,index) in filters" :key="filter.id">
+                <tr v-for = "(filter,index) in GET_FILTER_GROUPS" :key="filter.id">
                   <td>{{index + 1}}</td>
                   <td>{{filter.name}}</td>
                   <td>
@@ -24,8 +24,8 @@
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_FILTER(filter.id)">
-                      <font-awesome-icon icon="times" class = "red pointer"/>
+                    <a @click = "DELETE_FILTER_GROUP_REQUEST(filter.id)">
+                      <font-awesome-icon icon="times" class = "btn-red pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -44,26 +44,19 @@ import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'list-filters',
-  data: function () {
-    return {
-      filters: []
-    }
-  },
   computed: {
     ...mapGetters([
-      'GET_FILTERS'
+      'GET_FILTER_GROUPS'
     ])
   },
   methods: {
     ...mapActions([
-      'FILTERS_LIST_REQUEST',
-      'DELETE_FILTER'
+      'FILTER_GROUPS_REQUEST',
+      'DELETE_FILTER_GROUP_REQUEST'
     ])
   },
-  async mounted () {
-    await this.FILTERS_LIST_REQUEST()
-    this.filters = this.GET_FILTERS
-    console.log(this.filters)
+  mounted () {
+    this.FILTER_GROUPS_REQUEST()
   }
 }
 </script>

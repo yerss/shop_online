@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title mb-4">Наименование группы</h5>
-            <input type="text" class = "form-control bordered border-success" v-model = "filter.name" placeholder="Введите имя группы фильтра">
+            <input type="text" class = "form-control bordered border-success" v-model = "name" placeholder="Введите имя группы фильтра">
             <br />
             <button class = "btn green  btn-outline-success" @click = "addFilter">Добавить</button>
           </div>
@@ -16,20 +16,24 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'add-filter-group',
   data: function () {
     return {
-      filter: {}
+      name: ''
     }
   },
   methods: {
+    ...mapActions(['ADD_FILTER_GROUP', 'FILTER_GROUPS_REQUEST']),
     addFilter () {
-      // eslint-disable-next-line no-undef
-      if (this.filter.name) {
-        this.$store.dispatch('ADD_FILTER', this.filter)
-        this.$router.push({name: 'list-filter'})
+      let filter = {
+        id: '',
+        name: this.name
       }
+      this.ADD_FILTER_GROUP(filter)
+      this.FILTER_GROUPS_REQUEST()
+      this.$router.push({name: 'list-filter'})
     }
   }
 }
