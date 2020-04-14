@@ -1,11 +1,13 @@
 import axios from 'axios'
+import router from '../../router/router'
+
 const state = {
   products: [],
   product_detail: {}
 }
 
 const getters = {
-  GET_PRODUCTS (state) {
+  PRODUCTS (state) {
     return state.products
   },
   PRODUCT_DETAIL (state) {
@@ -21,7 +23,7 @@ const mutations = {
   },
   DELETE_PRODUCT: (state, id) => {
     let index = state.products.findIndex(x => x.id === id)
-    state.orders.splice(index, 1)
+    state.products.splice(index, 1)
   }
 }
 const actions = {
@@ -32,8 +34,24 @@ const actions = {
       }).catch(error => {
         console.log(error)
       })
+  },
+  GET_PRODUCT_DETAIL ({commit}, data) {
+    return axios.get(`api/products/${router.currentRoute.params.id}`)
+      .then((response) => {
+        commit('SET_PRODUCT_DETAIL')
+        return response
+      })
+  },
+  DELETE_PRODUCT ({commit}, id) {
+    return axios.delete(`api/products/${id}`)
+      .then((response) => {
+        commit('DELETE_PRODUCT', id)
+      })
   }
 }
 export default {
-  state, getters, mutations, actions
+  state,
+  getters,
+  mutations,
+  actions
 }
