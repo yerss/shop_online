@@ -3,7 +3,8 @@ import router from '../../router/router'
 
 const state = {
   categories: [],
-  category_detail: []
+  category_detail: [],
+  subcategory: []
 }
 
 const getters = {
@@ -12,6 +13,9 @@ const getters = {
   },
   CATEGORY_DETAIL (state) {
     return state.category_detail
+  },
+  SUBCATEGORY (state) {
+    return state.subcategory
   }
 }
 
@@ -21,6 +25,9 @@ const mutations = {
   },
   SET_CATEGORY_DETAIL: (state, data) => {
     state.category_detail = data.data
+  },
+  SET_SUBCATEGORY: (state, category) => {
+    state.subcategory = category.categories
   }
 }
 
@@ -30,6 +37,11 @@ const actions = {
       .then((response) => {
         commit('SET_CATEGORIES', response.data)
       })
+  },
+  GET_SUBCATEGORY ({commit}, data) {
+    let id = data | 0
+    let category = state.categories.find(x => x.id === id)
+    commit('SET_SUBCATEGORY', category)
   },
   GET_CATEGORY_DETAIL ({commit}, data) {
     return axios.get(`api/categories/${router.currentRoute.params.id}`)
