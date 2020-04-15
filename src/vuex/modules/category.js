@@ -52,7 +52,7 @@ const actions = {
   },
   DELETE_CATEGORY ({commit}, id) {
     // eslint-disable-next-line no-undef
-    swal.fire({
+    return swal.fire({
       title: 'Вы уверены что хотите удалить?',
       text: 'Вы не сможете потом вернуть эти данные!',
       icon: 'warning',
@@ -75,7 +75,9 @@ const actions = {
             // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')
           })
+        return true
       }
+      return false
     })
   },
   ADD_CATEGORY ({commit}, data) {
