@@ -28,6 +28,9 @@
                         <b-form-input v-if="!CATEGORY_DETAIL.parent_id" type="text" id="input11" placeholder="Type" size="lg" value="Parent"></b-form-input>
                         <b-form-input v-else type="text" id="input11" placeholder="Type" size="lg" value="Child"></b-form-input>
                       </div>
+                      <div class="col-md-6">
+                        <img :src="CATEGORY_DETAIL.image" alt="" class="w-25">
+                      </div>
                     </div>
                   </div>
                 </b-form-group>

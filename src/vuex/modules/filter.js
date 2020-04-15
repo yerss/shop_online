@@ -6,7 +6,9 @@ const state = {
   filterGroups: [],
   filterAttributes: [],
   filterAttribute: {},
-  filterGroup: {}
+  filterGroup: {},
+  filter_values: [],
+  product_filters: []
 
 }
 // eslint-disable-next-line no-unused-vars
@@ -25,6 +27,12 @@ const getters = {
   },
   GET_FILTER_ATTRIBUTE (state) {
     return state.filterAttribute
+  },
+  FILTER_VALUES (state) {
+    return state.filter_values
+  },
+  PRODUCT_FILTERS (state) {
+    return state.product_filters
   }
 }
 
@@ -64,6 +72,20 @@ const mutations = {
   },
   SET_FILTER_GROUP_NAME (state, name) {
     state.filterGroup.name = name
+  },
+  SET_FILTER_VALUES: (state, data) => {
+    state.filter_values = data.filter_values
+  },
+  ADD_PRODUCT_FILTER: (state, id) => {
+    let data = {id: '', value: ''}
+    let value = state.filter_values.find(x => x.id === id)
+    data.id = id
+    data.value = value.value
+    state.product_filters.push(data)
+  },
+  DELETE_PRODUCT_FILTER: (state, id) => {
+    let index = state.product_filters.findIndex(x => x.id === id)
+    state.product_filters.splice(index, 1)
   }
 }
 
@@ -215,6 +237,18 @@ const actions = {
         // eslint-disable-next-line handle-callback-err
       }
     })
+  },
+  GET_FILTER_VALUES ({commit}, id) {
+    return axios.get(`api/filterGroups/${id}`)
+      .then((response) => {
+        commit('SET_FILTER_VALUES', response.data.data)
+      })
+  },
+  ADD_PRODUCT_FILTER ({commit}, id) {
+    commit('ADD_PRODUCT_FILTER', id)
+  },
+  DELETE_PRODUCT_FILTER ({commit}, id) {
+    commit('DELETE_PRODUCT_FILTER', id)
   }
 }
 export default {
