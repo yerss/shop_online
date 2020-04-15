@@ -217,7 +217,7 @@ export default {
       fd.append('alias', this.form.alias)
       fd.append('description', this.form.description)
       fd.append('keywords', this.form.keywords)
-      fd.append('parent_id', this.form.parent_id)
+      fd.append('parent_id', this.form.parent_id == null ? '' : this.form.parent_id)
       fd.append('image', this.form.image)
       this.ADD_CATEGORY(fd)
       this.GET_CATEGORIES()

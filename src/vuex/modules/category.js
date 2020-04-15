@@ -67,7 +67,6 @@ const actions = {
     })
   },
   ADD_CATEGORY ({commit}, data) {
-    console.log(data)
     return axios.post(`api/categories`, data)
       .then((response) => {
         // eslint-disable-next-line no-undef
