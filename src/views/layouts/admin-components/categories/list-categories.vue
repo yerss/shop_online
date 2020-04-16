@@ -207,7 +207,7 @@ export default {
       source.splice(index, 1)
     },
     async deleteCategory (id, source, index) {
-      this.DELETE_CATEGORY(id,index).then(() => {
+      this.DELETE_CATEGORY(id, index).then(() => {
         this.deleteItem(source, index)
       })
     },
@@ -232,6 +232,9 @@ export default {
 <style scoped>
   .v-expansion-panel-header--active {
     min-height: 50px;
+  }
+  .v-expansion-panel-content__wrap {
+    padding: 0 !important;
   }
 .category{
   margin: 3px 0;
