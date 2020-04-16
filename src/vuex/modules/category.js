@@ -4,7 +4,6 @@ import router from '../../router/router'
 const state = {
   categories: [],
   category_detail: [],
-  category_subcategories: [],
   product_categories: []
 }
 
@@ -14,9 +13,6 @@ const getters = {
   },
   CATEGORY_DETAIL (state) {
     return state.category_detail
-  },
-  CATEGORY_SUBCATEGORIES (state) {
-    return state.category_subcategories
   },
   PRODUCT_CATEGORIES (state) {
     return state.product_categories
@@ -30,14 +26,7 @@ const mutations = {
   SET_CATEGORY_DETAIL: (state, data) => {
     state.category_detail = data.data
   },
-  SET_CATEGORY_SUBCATEGORIES: (state, data) => {
-    state.category_subcategories = data.categories
-  },
-  ADD_PRODUCT_CATEGORY: (state, id) => {
-    let data = {id: '', name: ''}
-    let subcategory = state.category_subcategories.find(x => x.id === id)
-    data.id = id
-    data.name = subcategory.name
+  ADD_PRODUCT_CATEGORY: (state, data) => {
     state.product_categories.push(data)
   },
   DELETE_PRODUCT_CATEGORY: (state, id) => {
@@ -51,12 +40,6 @@ const actions = {
     return axios.get(`api/categories`)
       .then((response) => {
         commit('SET_CATEGORIES', response.data)
-      })
-  },
-  GET_CATEGORY_SUBCATEGORIES ({commit}, id) {
-    return axios.get(`api/categories/${id}`)
-      .then((response) => {
-        commit('SET_CATEGORY_SUBCATEGORIES', response.data.data)
       })
   },
   GET_CATEGORY_DETAIL ({commit}, data) {
@@ -108,8 +91,8 @@ const actions = {
         console.log(error)
       })
   },
-  ADD_PRODUCT_CATEGORY ({commit}, id) {
-    commit('ADD_PRODUCT_CATEGORY', id)
+  ADD_PRODUCT_CATEGORY ({commit}, data) {
+    commit('ADD_PRODUCT_CATEGORY', data)
   },
   DELETE_PRODUCT_CATEGORY ({commit}, id) {
     commit('DELETE_PRODUCT_CATEGORY', id)

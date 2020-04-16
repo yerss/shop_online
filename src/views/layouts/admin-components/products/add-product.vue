@@ -19,80 +19,63 @@
               </b-form-group>
             </div>
           </div>
-          <div class="col-md-12 pl-0">
-            <b-form-group label="Price"  label-for="price-input">
-              <b-form-input type="number" id="price-input" placeholder="Price" v-model="product.price"></b-form-input>
-            </b-form-group>
+          <div class="row">
+            <div class="col-md-8">
+              <b-form-group label="Price"  label-for="price-input">
+                <b-form-input type="number" id="price-input" placeholder="Price" v-model="product.price"></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="col-md-4">
+              <b-form-group label="Pieces"  label-for="price-input">
+                <b-form-input type="number" id="price-input" placeholder="Pieces" v-model="product.pieces_left"></b-form-input>
+              </b-form-group>
+            </div>
           </div>
           <b-form-group label="Categories">
-            <div class="col-md-12">
-              <div class="row mb-3">
-                <div class="col-md-5 pl-0">
-                  <select name="categories" id="category_select" class="custom-select custom-select-sm" v-model="category_id" @change="GET_CATEGORY_SUBCATEGORIES(category_id)">
-                    <option v-for="(category, index) in CATEGORIES" :value="category.id" :key="index">{{category.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-5">
-                  <select name="categories" id="subcategory_select" class="custom-select custom-select-sm" v-model="subcategory_id">
-                    <option v-for="(subcategory, index) in CATEGORY_SUBCATEGORIES" :value="subcategory.id" :key="index">{{subcategory.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <b-button variant="success" class="btn btn-fw" @click="ADD_PRODUCT_CATEGORY(subcategory_id)">Add</b-button>
-                </div>
-              </div>
-              <div class="row">
-                <div v-for="(product_category, index) in PRODUCT_CATEGORIES" :key="index" class="category_item">
-                  <b-badge variant="primary"><span> {{product_category.name}} </span><font-awesome-icon icon="times" class = "icon-red pointer" @click="DELETE_PRODUCT_CATEGORY(product_category.id)"/></b-badge>
-                </div>
-              </div>
-            </div>
+            <b-form-select v-model="product_category" @change="ADD_PRODUCT_CATEGORY(product_category)">
+              <b-select-option-group v-for="(category, index) in CATEGORIES" :label="category.name" :key="index">
+                <b-form-select-option v-for="(subcategory, index) in category.categories" :key="index" :value="{id: subcategory.id, name: subcategory.name}">{{subcategory.name}}</b-form-select-option>
+              </b-select-option-group>
+            </b-form-select>
           </b-form-group>
+          <div class="row">
+            <div v-for="(product_category, index) in PRODUCT_CATEGORIES" :key="index" class="category_item">
+              <b-badge variant="primary"><span> {{product_category.name}} </span><font-awesome-icon icon="times" class = "icon-red pointer" @click="DELETE_PRODUCT_CATEGORY(product_category.id)"/></b-badge>
+            </div>
+          </div>
           <b-form-group label="Filters">
-            <div class="col-md-12">
-              <div class="row mb-3">
-                <div class="col-md-5 pl-0">
-                  <select name="categories" id="filter_select" class="custom-select custom-select-sm" v-model="filter_id" @change="GET_FILTER_VALUES(filter_id)">
-                    <option v-for="(filter, index) in GET_FILTER_GROUPS" :value="filter.id" :key="index">{{filter.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-5">
-                  <select name="categories" id="filter_value_select" class="custom-select custom-select-sm" v-model="filter_values_id">
-                    <option v-for="(filter_value, index) in FILTER_VALUES" :value="filter_value.id" :key="index">{{filter_value.value}}</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <b-button variant="success" class="btn btn-fw" @click="ADD_PRODUCT_FILTER(filter_values_id)">Add</b-button>
-                </div>
-              </div>
-              <div class="row">
-                <div v-for="(product_filter, index) in PRODUCT_FILTERS" :key="index" class="category_item">
-                  <b-badge variant="primary"><span> {{product_filter.value}}  </span><font-awesome-icon icon="times" class = "icon-red pointer" @click="DELETE_PRODUCT_FILTER(product_filter.id)"/></b-badge>
-                </div>
+            <b-form-select v-model="product_filter" @change="ADD_PRODUCT_FILTER(product_filter)">
+              <b-select-option-group v-for="(filter, index) in GET_FILTER_GROUPS" :label="filter.name" :key="index">
+                <b-form-select-option v-for="(subfilter, index) in filter.filter_values" :key="index" :value="{id: subfilter.id, value: subfilter.value}">{{subfilter.value}}</b-form-select-option>
+              </b-select-option-group>
+            </b-form-select>
+            <div class="row">
+              <div v-for="(product_filter, index) in PRODUCT_FILTERS" :key="index" class="category_item">
+                <b-badge variant="primary"><span> {{product_filter.value}}  </span><font-awesome-icon icon="times" class = "icon-red pointer" @click="DELETE_PRODUCT_FILTER(product_filter.id)"/></b-badge>
               </div>
             </div>
           </b-form-group>
-          <b-form-group label="Brands">
-            <div class="col-md-12">
-              <select name="categories" id="brand_select" class="custom-select custom-select-sm" v-model="product.brand_id">
-                <option selected :value="1">None</option>
-                <option v-for="(brand, index) in BRANDS" :value="brand.id" :key="index">{{brand.name}}</option>
-              </select>
+          <div class="row">
+            <div class="col-md-8">
+              <b-form-group label="Brands">
+                <select name="categories" id="brand_select" class="custom-select custom-select-sm" v-model="product.brand_id">
+                  <option selected :value="1">None</option>
+                  <option v-for="(brand, index) in BRANDS" :value="brand.id" :key="index">{{brand.name}}</option>
+                </select>
+              </b-form-group>
             </div>
-          </b-form-group>
+            <div class="col-md-4">
+              <b-form-group label="Status">
+                <select name="categories" id="status_select" class="custom-select custom-select-sm" v-model="product.status">
+                  <option selected :value="1">Active</option>
+                  <option selected :value="0">Nonactive</option>
+                </select>
+              </b-form-group>
+            </div>
+          </div>
           <b-form-group label="Description"  label-for="description-input">
             <b-form-textarea id="description-input" placeholder="Description" :rows="3" :max-rows="6" v-model="product.description"></b-form-textarea>
           </b-form-group>
-<!--          <b-form-group label="Upload file" label-for="input8">-->
-<!--          <b-form-file multiple drop-placeholder="Image put here" v-model="product.images">-->
-<!--            <template slot="file-name" slot-scope="{ names }">-->
-<!--              <b-badge variant="primary">{{ names[0] }}</b-badge>-->
-<!--              <b-badge v-if="names.length > 1" variant="primary" class="ml-1">-->
-<!--                + {{ names.length - 1 }} More files-->
-<!--              </b-badge>-->
-<!--            </template>-->
-<!--          </b-form-file>-->
-<!--        </b-form-group>-->
           <div class="row">
             <div class="col-md-4">
               <div class="box box-danger box-solid">
@@ -103,14 +86,14 @@
                   <img width="50%" height="50%" id="preview_image">
                 </div>
                 <p style="text-align: center">
-                  <a href="#" style="text-decoration: none;" data-name="single">
+                  <a href="javascript:void(0)" style="text-decoration: none;" data-name="single" @click.prevent="$refs.fileUploadImage.click()">
                     <font-awesome-icon icon="edit" class="blue pointer"/> Загрузить
                   </a>
-                  <a href="#" style="color: red;text-decoration: none;">
+                  <a href="javascript:void(0)" style="color: red;text-decoration: none;">
                     <font-awesome-icon icon="trash-alt" class="bg-red pointer"/> Удалить
                   </a>
                 </p>
-                <input type="file" id="file" style="display: none">
+                <input ref="fileUploadImage" type="file" id="file" style="display: none" @change="handleUploadImage">
                 <input type="hidden" id="file_name">
                 <p style="text-align: center"><small>Рекомендуемые размеры: 125ш.х200в.</small></p>
               </div>
@@ -121,9 +104,13 @@
                   <h3 class="box-title">Картинки галереи</h3>
                 </div>
                 <div class="box-body" id="galleryjs">
-                  <div id="multi" class="btn btn-success" data-url="http://laraveladminpanel-master/public/admin/products/gallery" data-name="multi">Загрузить</div>
+                  <div id="multi" class="btn btn-success" data-name="multi" @click.prevent="$refs.fileUploadImages.click()">Загрузить</div>
+                    <input multiple ref="fileUploadImages" type="file" id="files" style="display: none" @change="handleUploadImages">
                   <div class="multi">
-
+                    <div v-for="(imageSource, index) in imageSources" :key="index">
+                      <img width="50%" height="50%" :src="imageSource"  alt="image">
+                      <a href="javascript:void(0)" @click="deleteImage(index)">x</a>
+                    </div>
                   </div>
                   <p>
                     <small>Вы можете загружать по очереди любое кол-во.</small><br>
@@ -147,8 +134,15 @@ export default {
   name: 'add-product',
   data () {
     return {
-      category_id: '',
-      subcategory_id: '',
+      product_category: {
+        id: '',
+        name: ''
+      },
+      product_filter: {
+        id: '',
+        value: ''
+      },
+      imageSources: [],
       filter_id: '',
       filter_values_id: '',
       product: {
@@ -156,20 +150,21 @@ export default {
         alias: '',
         description: '',
         brand_id: '',
+        status: '',
         price: '',
+        pieces_left: '',
         categories: [],
         filters: [],
-        images: []
+        image: {},
+        product_images: []
       }
     }
   },
   computed: {
     ...mapGetters([
       'CATEGORIES',
-      'CATEGORY_SUBCATEGORIES',
       'PRODUCT_CATEGORIES',
       'GET_FILTER_GROUPS',
-      'FILTER_VALUES',
       'PRODUCT_FILTERS',
       'BRANDS'
     ])
@@ -178,15 +173,40 @@ export default {
     ...mapActions([
       'ADD_PRODUCT',
       'GET_CATEGORIES',
-      'GET_CATEGORY_SUBCATEGORIES',
       'ADD_PRODUCT_CATEGORY',
       'DELETE_PRODUCT_CATEGORY',
       'FILTER_GROUPS_REQUEST',
-      'GET_FILTER_VALUES',
       'ADD_PRODUCT_FILTER',
       'DELETE_PRODUCT_FILTER',
       'GET_BRANDS'
     ]),
+    handleUploadImage (event) {
+      let reader = new FileReader()
+      reader.onload = function () {
+        let output = document.getElementById('preview_image')
+        output.src = reader.result
+      }
+      reader.readAsDataURL(event.target.files[0])
+      this.product.image = event.target.files[0]
+    },
+    handleUploadImages (event, index) {
+      index = index || 0
+      let reader = new FileReader()
+      reader.onload = () => {
+        this.imageSources.push(reader.result)
+        if (event.target.files[index + 1]) {
+          this.handleUploadImages(event, index + 1)
+        } else {
+          event.target.value = ''
+        }
+      }
+      reader.readAsDataURL(event.target.files[index])
+      this.product.product_images.push(event.target.files[index])
+    },
+    deleteImage (index) {
+      this.imageSources.splice(index)
+      this.product.product_images.splice(index)
+    },
     addProduct () {
       const fd = new FormData()
       this.product.categories = this.PRODUCT_CATEGORIES
@@ -196,9 +216,12 @@ export default {
       fd.append('description', this.product.description)
       fd.append('brand_id', this.product.brand_id)
       fd.append('price', this.product.price)
+      fd.append('pieces_left', this.product.pieces_left)
+      fd.append('status', this.product.status)
       fd.append('categories', this.product.categories)
       fd.append('filters', this.product.filters)
-      fd.append('images', this.product.images)
+      fd.append('image', this.product.image)
+      fd.append('product_images', this.product.product_images)
       this.ADD_PRODUCT(fd)
     }
   },
