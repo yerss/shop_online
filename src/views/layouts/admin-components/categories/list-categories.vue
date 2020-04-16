@@ -110,67 +110,8 @@
            </v-expansion-panel-content>
          </v-expansion-panel>
        </v-expansion-panels>
-
      </div>
     </div>
-<!--    <div class="row">-->
-<!--      <div class="col-md-12 mt-2 mb-2 border category">-->
-<!--        <b-form-group label="Categories"  label-for="input10">-->
-<!--            <div v-b-toggle="'categories'" class="pl-2 category">-->
-<!--              <span>All</span>-->
-<!--            </div>-->
-<!--            <b-collapse id="categories">-->
-<!--              <ul class="nav flex-column sub-menu">-->
-<!--                <li v-for="(category, index) in CATEGORIES" :key="category.id" class="nav-item">-->
-<!--                  <div>-->
-<!--                    <div v-b-toggle="`categories${category.id}`">-->
-<!--                      <div class="row">-->
-<!--                        <div class="col-md-1">-->
-<!--                        </div>-->
-<!--                        <div class="col-md-3">-->
-<!--                          <span>{{category.name}}</span>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2">-->
-<!--                          <router-link  :to="`/admin/categories/detail/${category.id}`">-->
-<!--                            <font-awesome-icon icon="eye" class = "blue pointer"/>-->
-<!--                          </router-link>-->
-<!--                          /-->
-<!--                          <a @click = "deleteCategory(category.id, CATEGORIES, index)">-->
-<!--                            <font-awesome-icon icon="trash-alt" class = "red pointer"/>-->
-<!--                          </a>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <b-collapse :id="`categories${category.id}`">-->
-<!--                      <ul class="nav flex-column sub-menu">-->
-<!--                        <div>-->
-<!--                          <li v-for="(subcategory, index) in category.categories" :key="subcategory.id" class="nav-item">-->
-<!--                            <div class="row">-->
-<!--                              <div class="col-md-2"></div>-->
-<!--                              <div class="col-md-2">-->
-<!--                                <span>{{subcategory.name}}</span>-->
-<!--                              </div>-->
-<!--                              <div class="col-md-2">-->
-<!--                                <router-link  :to="`/admin/categories/detail/${subcategory.id}`">-->
-<!--                                  <font-awesome-icon icon="eye" class = "blue pointer"/>-->
-<!--                                </router-link>-->
-<!--&lt;!&ndash;                                /&ndash;&gt;-->
-<!--                                <a @click = "deleteCategory(subcategory.id, category.categories, index)">-->
-<!--                                  <font-awesome-icon icon="trash-alt" class = "red pointer"/>-->
-<!--                                </a>-->
-<!--                              </div>-->
-<!--                            </div>-->
-<!--                          </li>-->
-<!--                        </div>-->
-<!--                      </ul>-->
-<!--                    </b-collapse>-->
-<!--                  </div>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </b-collapse>-->
-<!--        </b-form-group>-->
-<!--      </div>-->
-<!--    </div>-->
   </section>
 </template>
 
@@ -206,9 +147,11 @@ export default {
     deleteItem (source, index) {
       source.splice(index, 1)
     },
-    async deleteCategory (id, source, index) {
-      this.DELETE_CATEGORY(id, index).then(() => {
-        this.deleteItem(source, index)
+    deleteCategory (id, source, index) {
+      this.DELETE_CATEGORY(id, index).then((value) => {
+        if (value) {
+          this.deleteItem(source, index)
+        }
       })
     },
     addCategory () {
@@ -219,8 +162,9 @@ export default {
       fd.append('keywords', this.form.keywords)
       fd.append('parent_id', this.form.parent_id == null ? '' : this.form.parent_id)
       fd.append('image', this.form.image)
-      this.ADD_CATEGORY(fd)
-      this.GET_CATEGORIES()
+      this.ADD_CATEGORY(fd).then(() => {
+        this.GET_CATEGORIES()
+      })
     }
   },
   mounted () {

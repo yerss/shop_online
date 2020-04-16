@@ -4,7 +4,8 @@ import router from '../../router/router'
 const state = {
   categories: [],
   category_detail: [],
-  subcategory: []
+  category_subcategories: [],
+  product_categories: []
 }
 
 const getters = {
@@ -14,8 +15,11 @@ const getters = {
   CATEGORY_DETAIL (state) {
     return state.category_detail
   },
-  SUBCATEGORY (state) {
-    return state.subcategory
+  CATEGORY_SUBCATEGORIES (state) {
+    return state.category_subcategories
+  },
+  PRODUCT_CATEGORIES (state) {
+    return state.product_categories
   }
 }
 
@@ -26,8 +30,19 @@ const mutations = {
   SET_CATEGORY_DETAIL: (state, data) => {
     state.category_detail = data.data
   },
-  SET_SUBCATEGORY: (state, category) => {
-    state.subcategory = category.categories
+  SET_CATEGORY_SUBCATEGORIES: (state, data) => {
+    state.category_subcategories = data.categories
+  },
+  ADD_PRODUCT_CATEGORY: (state, id) => {
+    let data = {id: '', name: ''}
+    let subcategory = state.category_subcategories.find(x => x.id === id)
+    data.id = id
+    data.name = subcategory.name
+    state.product_categories.push(data)
+  },
+  DELETE_PRODUCT_CATEGORY: (state, id) => {
+    let index = state.product_categories.findIndex(x => x.id === id)
+    state.product_categories.splice(index, 1)
   }
 }
 
@@ -38,10 +53,11 @@ const actions = {
         commit('SET_CATEGORIES', response.data)
       })
   },
-  GET_SUBCATEGORY ({commit}, data) {
-    let id = data | 0
-    let category = state.categories.find(x => x.id === id)
-    commit('SET_SUBCATEGORY', category)
+  GET_CATEGORY_SUBCATEGORIES ({commit}, id) {
+    return axios.get(`api/categories/${id}`)
+      .then((response) => {
+        commit('SET_CATEGORY_SUBCATEGORIES', response.data.data)
+      })
   },
   GET_CATEGORY_DETAIL ({commit}, data) {
     return axios.get(`api/categories/${router.currentRoute.params.id}`)
@@ -52,7 +68,7 @@ const actions = {
   },
   DELETE_CATEGORY ({commit}, id) {
     // eslint-disable-next-line no-undef
-    swal.fire({
+    return swal.fire({
       title: 'Вы уверены что хотите удалить?',
       text: 'Вы не сможете потом вернуть эти данные!',
       icon: 'warning',
@@ -75,7 +91,9 @@ const actions = {
             // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')
           })
+        return true
       }
+      return false
     })
   },
   ADD_CATEGORY ({commit}, data) {
@@ -89,6 +107,12 @@ const actions = {
       }).catch(error => {
         console.log(error)
       })
+  },
+  ADD_PRODUCT_CATEGORY ({commit}, id) {
+    commit('ADD_PRODUCT_CATEGORY', id)
+  },
+  DELETE_PRODUCT_CATEGORY ({commit}, id) {
+    commit('DELETE_PRODUCT_CATEGORY', id)
   }
 }
 

@@ -25,7 +25,7 @@
                 <tr v-for = "(brand,index) in BRANDS" :key="brand.id">
                   <td>{{index+1}}</td>
                   <td>
-                    <img :src="brand.image">
+                    <img class="brand-image" :src="brand.image" >
                   </td>
                   <td>{{brand.name}}</td>
                   <td>{{brand.alias}}</td>
@@ -76,5 +76,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .brand-image{
+    max-height: 50px;
+  }
 </style>

@@ -3,8 +3,7 @@ import router from '../../router/router'
 
 const state = {
   products: [],
-  product_detail: {},
-  product_categories: []
+  product_detail: {}
 }
 
 const getters = {
@@ -13,9 +12,6 @@ const getters = {
   },
   PRODUCT_DETAIL (state) {
     return state.product_detail
-  },
-  PRODUCT_CATEGORIES (state) {
-    return state.product_categories
   }
 }
 const mutations = {
@@ -28,13 +24,6 @@ const mutations = {
   DELETE_PRODUCT: (state, id) => {
     let index = state.products.findIndex(x => x.id === id)
     state.products.splice(index, 1)
-  },
-  ADD_PRODUCT_CATEGORY: (state, data) => {
-    state.product_categories.push({...data})
-  },
-  DELETE_PRODUCT_CATEGORIES: (state, id) => {
-    let index = state.product_categories.findIndex(x => x.id === id)
-    state.product_categories.splice(index, 1)
   }
 }
 const actions = {
@@ -59,11 +48,17 @@ const actions = {
         commit('DELETE_PRODUCT', id)
       })
   },
-  ADD_PRODUCT_CATEGORIES ({commit}, data) {
-    commit('ADD_PRODUCT_CATEGORY', data)
-  },
-  DELETE_PRODUCT_CATEGORIES ({commit}, id) {
-    commit('DELETE_PRODUCT_CATEGORIES', id)
+  ADD_PRODUCT ({commit}, data) {
+    return axios.post(`api/products`, data)
+      .then((response) => {
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно добавлена'
+        })
+      }).catch(error => {
+        console.log(error)
+      })
   }
 }
 export default {
