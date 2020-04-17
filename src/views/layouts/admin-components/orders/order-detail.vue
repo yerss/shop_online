@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" style = "position: relative">
         <h4 class="card-title">Детали заказа № {{ORDER_DETAIL.id}}</h4>
         <b-tabs class="tab-solid tab-solid-success">
           <b-tab title="Заказы" active>
@@ -95,6 +95,11 @@
                   </div>
           </b-tab>
         </b-tabs>
+        <div style = "display: none" id = "overlay">
+          <div class="spinner-border mySpinner" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

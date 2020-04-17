@@ -35,6 +35,8 @@ const mutations = {
 // eslint-disable-next-line no-unused-vars
 const actions = {
   GET_ORDERS ({commit}, data) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get(`api/orders`)
       .then((response) => {
         let orders = response.data.data
@@ -47,12 +49,16 @@ const actions = {
           else if (orders[i].status == 2)orders[i].status = 'Откланен'
         }
         commit('SET_ORDERS', orders)
+        if (overlay) overlay.style.display = 'none'
       })
   },
   GET_ORDER_DETAIL ({commit}, data) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get(`api/orders/${router.currentRoute.params.id}`)
       .then((response) => {
         commit('SET_ORDER_DETAIL', response.data.data)
+        if (overlay) overlay.style.display = 'none'
         return response
       })
   },

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 grid-margin">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" style = "position: relative">
           <h5 class="card-title mb-4">Заказы</h5>
           <div class="table-responsive">
             <table class="table center-aligned-table table-hover">
@@ -41,6 +41,11 @@
               </tr>
               </tbody>
             </table>
+          </div>
+          <div style = "display: none" id = "overlay">
+            <div class="spinner-border mySpinner" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
       </div>
