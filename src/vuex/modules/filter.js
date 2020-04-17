@@ -40,7 +40,6 @@ const mutations = {
     state.filterAttribute.filter_group_id = id
   },
   SET_FILTER_GROUPS: (state, result) => {
-    console.log(result)
     state.filterGroups = result
   },
   DELETE_FILTER_ATTRIBUTE: (state, id) => {
@@ -84,8 +83,11 @@ const actions = {
     commit('SET_FILTER_GROUP', result)
   },
   FILTER_GROUP_REQUEST ({commit}, id) {
+    let overlay = document.querySelector('#overlay')
+    overlay.style.display = 'block'
     return axios.get(`api/filterGroups/${id}`)
       .then(({data}) => {
+        overlay.style.display = 'none'
         commit('SET_FILTER_GROUP', data.data)
       }).catch(error => {
         console.log(error)
@@ -152,17 +154,23 @@ const actions = {
       })
   },
   FILTER_ATTRIBUTES_REQUEST ({commit}) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get('api/filterValues')
       .then(({data}) => {
+        if (overlay) overlay.style.display = 'none'
         commit('SET_FILTER_ATTRIBUTES', data.data)
       }).catch(error => {
         console.log(error)
       })
   },
   FILTER_GROUPS_REQUEST ({commit}) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get('api/filterGroups')
       .then(({data}) => {
         commit('SET_FILTER_GROUPS', data.data)
+        if (overlay) overlay.style.display = 'none'
       }).catch(error => {
         console.log(error)
       })

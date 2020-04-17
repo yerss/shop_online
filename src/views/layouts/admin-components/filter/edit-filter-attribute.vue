@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style="position: relative">
             <h5 class="card-title mb-3">Наименование группы</h5>
             <input type="text" class = "form-control bordered border-success mb-4" v-model = "value" placeholder="Введите имя группы фильтра">
             <h5 class="card-title mb-3">Группа</h5>
@@ -12,6 +12,11 @@
             </select>
             <br />
             <button class = "btn green  btn-outline-success" @click = "editFilterAttribute">Изменить</button>
+            <div style = "display: none" id = "overlay">
+              <div class="spinner-border mySpinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -54,6 +59,7 @@ export default {
     }
   },
   mounted () {
+    this.SET_FILTER_ATTRIBUTE_NAME('')
     this.FILTER_ATTRIBUTE_REQUEST(this.$route.params.id)
     this.FILTER_GROUPS_REQUEST()
   }

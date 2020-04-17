@@ -33,6 +33,7 @@ export default {
       }
       this.ADD_FILTER_GROUP(filter)
       this.FILTER_GROUPS_REQUEST()
+      this.name = ''
       this.$router.push({name: 'list-filter'})
     }
   }

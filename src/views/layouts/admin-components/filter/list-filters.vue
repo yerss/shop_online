@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style = "position: relative">
             <h5 class="card-title mb-4">Группа фильтров</h5>
             <p class = "mb-4"><router-link tag = "button" :to = "{name:'add-filter-group'}" class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить группу</router-link></p>
             <div class="table-responsive">
@@ -31,6 +31,11 @@
                 </tr>
                 </tbody>
               </table>
+            </div>
+            <div style = "display: none" id = "overlay">
+              <div class="spinner-border mySpinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
         </div>
@@ -61,7 +66,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .bg-blue{
     background-color: #3c8dbc;
   }

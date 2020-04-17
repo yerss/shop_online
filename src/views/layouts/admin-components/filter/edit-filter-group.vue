@@ -3,11 +3,16 @@
      <div class="row">
        <div class="col-12 grid-margin">
          <div class="card">
-           <div class="card-body">
+           <div class="card-body" style = "position: relative">
              <h5 class="card-title mb-4">Наименование группы</h5>
              <input type="text" class = "form-control bordered border-success" v-model = "value" placeholder="Введите имя группы фильтра">
              <br />
              <button class = "btn green  btn-outline-success" @click = "updateInfo">Изменить</button>
+             <div style = "display: none" id = "overlay">
+               <div class="spinner-border mySpinner" role="status">
+                 <span class="sr-only">Loading...</span>
+               </div>
+             </div>
            </div>
          </div>
        </div>
@@ -16,7 +21,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapMutations} from 'vuex'
 export default {
   name: 'edit-filter-group',
   computed: {
@@ -37,6 +42,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'SET_FILTER_GROUP_NAME'
+    ]),
     ...mapActions([
       'UPDATE_FILTER_GROUP', 'FILTER_GROUP_REQUEST', 'SET_FILTER_GROUP_REQUEST'
     ]),
@@ -46,6 +54,7 @@ export default {
     }
   },
   mounted () {
+    this.SET_FILTER_GROUP_NAME('')
     this.FILTER_GROUP_REQUEST(this.$route.params.id)
   }
 }
