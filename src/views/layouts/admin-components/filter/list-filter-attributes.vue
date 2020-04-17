@@ -7,7 +7,7 @@
             <h5 class="card-title mb-4">Фильтры</h5>
             <p class = "mb-4"><router-link tag = "button" :to = "{name:'add-filter-attribute'}" class = "btn bg-blue btn-primary"><i class = "mdi mdi-hospital"></i>Добавить атрибут</router-link></p>
             <div class="table-responsive">
-              <table class="table center-aligned-table table-hover">
+              <table class="table center-aligned-table table-hover" v-if = "GET_FILTER_ATTRIBUTES.length">
                 <thead>
                 <tr>
                   <th class="border-bottom-0">ID</th>
@@ -33,6 +33,9 @@
                 </tr>
                 </tbody>
               </table>
+              <div v-else>
+                Пока что нет никаких фильтров
+              </div>
             </div>
             <div style = "display: none" id = "overlay">
               <div class="spinner-border mySpinner" role="status">

@@ -7,7 +7,7 @@
             <h5 class="card-title mb-3">Наименование группы</h5>
             <input type="text" class = "form-control bordered border-success mb-4" v-model = "value" placeholder="Введите имя группы фильтра">
             <h5 class="card-title mb-3">Группа</h5>
-            <select class = "form-control bordered border-success" v-model = "groupId" >
+            <select class = "form-control bordered border-success" v-model = "groupId">
               <option v-bind:key="group.id" v-for = "group in GET_FILTER_GROUPS" :value = "group.id">{{group.name}}</option>
             </select>
             <br />
