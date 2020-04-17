@@ -40,7 +40,6 @@ const mutations = {
     state.filterAttribute.filter_group_id = id
   },
   SET_FILTER_GROUPS: (state, result) => {
-    console.log(result)
     state.filterGroups = result
   },
   DELETE_FILTER_ATTRIBUTE: (state, id) => {
