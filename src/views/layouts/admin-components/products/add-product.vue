@@ -219,10 +219,10 @@ export default {
       fd.append('pieces_left', this.product.pieces_left)
       fd.append('status', this.product.status)
       for (let i = 0; i < this.product.categories.length; i++) {
-        fd.append('categories[]', this.product.categories[i])
+        fd.append('categories[]', this.product.categories[i].id)
       }
       for (let i = 0; i < this.product.filters.length; i++) {
-        fd.append('filters[]', this.product.filters[i])
+        fd.append('filters[]', this.product.filters[i].id)
       }
       fd.append('image', this.product.image)
       // fd.append('product_images', this.product.product_images)
