@@ -218,8 +218,12 @@ export default {
       fd.append('price', this.product.price)
       fd.append('pieces_left', this.product.pieces_left)
       fd.append('status', this.product.status)
-      fd.append('categories', this.product.categories)
-      fd.append('filters', this.product.filters)
+      for (let i = 0; i < this.product.categories.length; i++) {
+        fd.append('categories[]', this.product.categories[i])
+      }
+      for (let i = 0; i < this.product.filters.length; i++) {
+        fd.append('filters[]', this.product.filters[i])
+      }
       fd.append('image', this.product.image)
       // fd.append('product_images', this.product.product_images)
       for (let i = 0; i < this.product.product_images.length; i++) {
