@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-4">
               <b-form-group label="Pieces"  label-for="price-input">
-                <b-form-input type="number" id="price-input" placeholder="Pieces" v-model="product.pieces_left"></b-form-input>
+                <b-form-input type="number" id="pieces-input" placeholder="Pieces" v-model="product.pieces_left"></b-form-input>
               </b-form-group>
             </div>
           </div>
@@ -218,10 +218,17 @@ export default {
       fd.append('price', this.product.price)
       fd.append('pieces_left', this.product.pieces_left)
       fd.append('status', this.product.status)
-      fd.append('categories', this.product.categories)
-      fd.append('filters', this.product.filters)
+      for (let i = 0; i < this.product.categories.length; i++) {
+        fd.append('categories[]', this.product.categories[i].id)
+      }
+      for (let i = 0; i < this.product.filters.length; i++) {
+        fd.append('filters[]', this.product.filters[i].id)
+      }
       fd.append('image', this.product.image)
-      fd.append('product_images', this.product.product_images)
+      // fd.append('product_images', this.product.product_images)
+      for (let i = 0; i < this.product.product_images.length; i++) {
+        fd.append('product_images[]', this.product.product_images[i])
+      }
       this.ADD_PRODUCT(fd)
     }
   },

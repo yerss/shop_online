@@ -50,6 +50,7 @@ import editBrand from '../views/layouts/admin-components/brands/edit-brand'
 import listUsers from '../views/layouts/admin-components/users/list-users'
 import listFilters from '../views/layouts/admin-components/filter/list-filters'
 import addProduct from '../views/layouts/admin-components/products/add-product'
+import productDetail from '../views/layouts/admin-components/products/product-detail'
 import editFilterGroup from '../views/layouts/admin-components/filter/edit-filter-group'
 import listFiltersAttributes from '../views/layouts/admin-components/filter/list-filter-attributes'
 import addFilterAttributes from '../views/layouts/admin-components/filter/add-filter-attribute'
@@ -86,6 +87,11 @@ let router = new Router({
           path: 'add_product',
           name: 'add-product',
           component: addProduct
+        },
+        {
+          path: 'products/detail/:id',
+          name: 'product-detail',
+          component: productDetail
         },
         {
           path: 'categories',
