@@ -25,11 +25,11 @@
                     <td>{{product.price}}</td>
                     <td class="text-center">{{product.status}}</td>
                     <td class="text-center">
-                      <router-link tag = "a" to = "#">
+                      <router-link tag = "a" :to = "`/admin/products/detail/${product.id}`">
                         <font-awesome-icon icon="eye" class="blue pointer"/>
                       </router-link>
                       /
-                      <a to = "#" @click="DELETE_PRODUCT(product.id)">
+                      <a href="javascript:void(0)" @click="DELETE_PRODUCT(product.id)">
                         <font-awesome-icon icon="trash-alt" class="red pointer"/>
                       </a>
                     </td>

@@ -19,7 +19,7 @@ const mutations = {
     state.products = products
   },
   SET_PRODUCT_DETAIL: (state, data) => {
-    state.product_detail = data
+    state.product_detail = data.data
   },
   DELETE_PRODUCT: (state, id) => {
     let index = state.products.findIndex(x => x.id === id)
@@ -38,7 +38,7 @@ const actions = {
   GET_PRODUCT_DETAIL ({commit}, data) {
     return axios.get(`api/products/${router.currentRoute.params.id}`)
       .then((response) => {
-        commit('SET_PRODUCT_DETAIL')
+        commit('SET_PRODUCT_DETAIL', response.data)
         return response
       })
   },

@@ -7,6 +7,7 @@
           <b-tab title="Home" active>
             <div class="row">
                 <h5 class="mb-3">Home Content</h5>
+              {{PRODUCT_DETAIL}}
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
             </div>
           </b-tab>
@@ -23,11 +24,29 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
-  name: 'product-detail'
+  name: 'product-detail',
+  data () {
+    return {}
+  },
+  components: {},
+  computed: {
+    ...mapGetters([
+      'PRODUCT_DETAIL'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'GET_PRODUCT_DETAIL'
+    ])
+  },
+  mounted () {
+    this.GET_PRODUCT_DETAIL()
+  }
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
