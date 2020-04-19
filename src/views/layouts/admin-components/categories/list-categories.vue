@@ -82,7 +82,7 @@
                        <font-awesome-icon icon="eye" class = "blue pointer"/>
                      </router-link>
                      <a @click = "deleteCategory(category.id, CATEGORIES, index)">
-                       <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                       <font-awesome-icon icon="trash-alt" class = "red-icon-color pointer"/>
                      </a>
                    </div>
                  </v-expansion-panel-header>

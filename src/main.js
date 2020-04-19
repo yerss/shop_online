@@ -13,6 +13,13 @@ Vue.filter('convert', function (data) {
   if (data == null) return null
   return moment(data).format('LLL')
 })
+Vue.filter('sumPrice', function (products) {
+  let sum = 0
+  for (let product of products) {
+    sum += product.price
+  }
+  return sum
+})
 
 window.swal = Swal
 

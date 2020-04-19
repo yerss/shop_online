@@ -113,13 +113,6 @@ export default {
     return {}
   },
   filters: {
-    sumPrice (products) {
-      let sum = 0
-      for (let product of products) {
-        sum += product.price
-      }
-      return sum
-    },
     sumCount (products) {
       let sum = 0
       for (let product of products) {

@@ -34,7 +34,7 @@ const mutations = {
 
 // eslint-disable-next-line no-unused-vars
 const actions = {
-  GET_ORDERS ({commit}, data) {
+  GET_ORDERS ({commit}) {
     let overlay = document.querySelector('#overlay')
     if (overlay) overlay.style.display = 'block'
     return axios.get(`api/orders`)
