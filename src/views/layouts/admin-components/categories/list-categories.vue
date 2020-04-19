@@ -70,7 +70,7 @@
            :key="1"
          >
            <v-expansion-panel-header>Список категории</v-expansion-panel-header>
-           <v-expansion-panel-content>
+           <v-expansion-panel-content v-if = "CATEGORIES.length">
              <v-expansion-panels multiple hover tile flat>
                <v-expansion-panel
                  v-for="(category,i) in CATEGORIES"
@@ -107,6 +107,9 @@
                  </v-expansion-panel-content>
                </v-expansion-panel>
              </v-expansion-panels>
+           </v-expansion-panel-content>
+           <v-expansion-panel-content v-else style = "color:red;margin: 15px 0;">
+             Пока категории не созданы
            </v-expansion-panel-content>
          </v-expansion-panel>
        </v-expansion-panels>
@@ -173,12 +176,12 @@ export default {
 }
 </script>
 
-<style scoped>
-  .v-expansion-panel-header--active {
-    min-height: 50px;
-  }
+<style>
   .v-expansion-panel-content__wrap {
-    padding: 0 !important;
+    padding: 0 24px;
+  }
+  .v-expansion-panel--active>.v-expansion-panel-header {
+    min-height: 48px;
   }
 .category{
   margin: 3px 0;

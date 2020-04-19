@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style = "position:relative">
             <h5 class="card-title mb-4">Список брендов</h5>
             <p class = "mb-4">
               <router-link tag = "button" :to = "{name:'add-brand'}" class = "btn bg-blue btn-primary">
@@ -34,13 +34,18 @@
                       <font-awesome-icon icon="edit" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_BRAND(brand.id)">
-                      <font-awesome-icon icon="trash-alt" class = "red pointer"/>
+                    <a @click = "deleteBrand(brand.id)">
+                      <font-awesome-icon icon="trash-alt" class = "red-color pointer"/>
                     </a>
                   </td>
                 </tr>
                 </tbody>
               </table>
+            </div>
+            <div style = "display: none" id = "overlay">
+              <div class="spinner-border mySpinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +71,10 @@ export default {
     ...mapActions([
       'GET_BRANDS',
       'DELETE_BRAND'
-    ])
+    ]),
+    deleteBrand (id) {
+      this.DELETE_BRAND({id: id, obj: this})
+    }
   },
   mounted () {
     this.GET_BRANDS()

@@ -30,9 +30,12 @@ const mutations = {
 
 const actions = {
   GET_BRANDS ({commit}, data) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get(`api/brands`)
       .then((response) => {
         commit('SET_BRANDS', response.data)
+        if (overlay) overlay.style.display = 'none'
       })
   },
   GET_BRAND_DETAIL ({commit}, id) {
@@ -42,7 +45,7 @@ const actions = {
         return response
       })
   },
-  DELETE_BRAND ({commit}, id) {
+  DELETE_BRAND ({commit}, d) {
     // eslint-disable-next-line no-undef
     swal.fire({
       title: 'Вы уверены что хотите удалить?',
@@ -55,7 +58,7 @@ const actions = {
       cancelButtonText: 'Отмена'
     }).then((result) => {
       if (result.value) {
-        axios.delete(`api/brands/${id}`)
+        axios.delete(`api/brands/${d.id}`)
           .then(({data}) => {
             // eslint-disable-next-line no-undef
             swal.fire(
@@ -63,7 +66,8 @@ const actions = {
               'Данные успешно удалены',
               'success'
             )
-            commit('DELETE_BRAND', id)
+            commit('DELETE_BRAND', d.id)
+            d.obj.GET_BRANDS()
           }).catch(() => {
           // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')
