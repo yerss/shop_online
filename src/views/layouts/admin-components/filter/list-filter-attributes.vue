@@ -26,7 +26,7 @@
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_FILTER_ATTRIBUTE_REQUEST(filter.id)">
+                    <a @click = "deleteAttribute(filter.id)">
                       <font-awesome-icon icon="times" class = "icon-red pointer"/>
                     </a>
                   </td>
@@ -59,7 +59,10 @@ export default {
     ])
   },
   methods: {
-    ...mapActions(['DELETE_FILTER_ATTRIBUTE_REQUEST', 'FILTER_ATTRIBUTES_REQUEST'])
+    ...mapActions(['DELETE_FILTER_ATTRIBUTE_REQUEST', 'FILTER_ATTRIBUTES_REQUEST']),
+    deleteAttribute (id) {
+      this.DELETE_FILTER_ATTRIBUTE_REQUEST({id: id, obj: this})
+    }
   },
   mounted () {
     this.FILTER_ATTRIBUTES_REQUEST()

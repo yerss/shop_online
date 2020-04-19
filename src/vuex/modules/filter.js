@@ -175,7 +175,7 @@ const actions = {
         console.log(error)
       })
   },
-  DELETE_FILTER_ATTRIBUTE_REQUEST ({commit}, id) {
+  DELETE_FILTER_ATTRIBUTE_REQUEST ({commit}, d) {
     // eslint-disable-next-line no-undef
     swal.fire({
       title: 'Вы уверены что хотите удалить?',
@@ -188,7 +188,7 @@ const actions = {
       cancelButtonText: 'Отмена'
     }).then((result) => {
       if (result.value) {
-        axios.delete(`api/filterValues/${id}`)
+        axios.delete(`api/filterValues/${d.id}`)
           .then(({data}) => {
             // eslint-disable-next-line no-undef
             swal.fire(
@@ -196,7 +196,8 @@ const actions = {
               'Данные успешно удалены',
               'success'
             )
-            commit('DELETE_FILTER_ATTRIBUTE', id)
+            commit('DELETE_FILTER_ATTRIBUTE', d.id)
+            d.obj.FILTER_ATTRIBUTES_REQUEST()
           }).catch(() => {
           // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')
@@ -205,9 +206,9 @@ const actions = {
       }
     })
   },
-  DELETE_FILTER_GROUP_REQUEST ({commit}, id) {
+  DELETE_FILTER_GROUP_REQUEST ({commit}, d) {
     // eslint-disable-next-line no-undef
-    swal.fire({
+    return swal.fire({
       title: 'Вы уверены что хотите удалить?',
       text: 'Вы не сможете потом вернуть эти данные!',
       icon: 'warning',
@@ -218,7 +219,7 @@ const actions = {
       cancelButtonText: 'Отмена'
     }).then((result) => {
       if (result.value) {
-        axios.delete(`api/filterGroups/${id}`)
+        axios.delete(`api/filterGroups/${d.id}`)
           .then(({data}) => {
             // eslint-disable-next-line no-undef
             swal.fire(
@@ -226,13 +227,13 @@ const actions = {
               'Данные успешно удалены',
               'success'
             )
-            commit('DELETE_FILTER_GROUP', id)
-          }).catch(() => {
-          // eslint-disable-next-line no-undef
-            swal('Filed', 'There was something wrong', 'warning')
+            commit('DELETE_FILTER_GROUP', d.id)
+            d.obj.FILTER_GROUPS_REQUEST()
           })
         // eslint-disable-next-line handle-callback-err
       }
+    }).catch(error => {
+      console.log(error)
     })
   },
   ADD_PRODUCT_FILTER ({commit}, id) {

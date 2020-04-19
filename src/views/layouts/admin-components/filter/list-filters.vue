@@ -24,7 +24,7 @@
                       <font-awesome-icon icon="pencil-alt" class = "pointer"/>
                     </router-link>
                     /
-                    <a @click = "DELETE_FILTER_GROUP_REQUEST(filter.id)">
+                    <a @click = "deleteFilterGroup(filter.id)">
                       <font-awesome-icon icon="times" class = "btn-red pointer"/>
                     </a>
                   </td>
@@ -61,7 +61,10 @@ export default {
     ...mapActions([
       'FILTER_GROUPS_REQUEST',
       'DELETE_FILTER_GROUP_REQUEST'
-    ])
+    ]),
+    deleteFilterGroup (id) {
+      this.DELETE_FILTER_GROUP_REQUEST({id: id, obj: this})
+    }
   },
   mounted () {
     this.FILTER_GROUPS_REQUEST()
