@@ -13,8 +13,8 @@
             </div>
           </div>
         </li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/dashboard"><img class="menu-icon" src="../../assets/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">Dashboard</span></router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/widgets/"><img class="menu-icon" src="../../assets/images/menu_icons/02.png" alt="menu icon"><span class="menu-title">Widgets</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/admin/orders"><img class="menu-icon" src="../../assets/images/menu_icons/shop.png" alt="menu icon"><span class="menu-title">В магазин</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/admin/dashboard"><img class="menu-icon" src="../../assets/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">Админ панель</span></router-link></li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'products'">
             <img class="menu-icon" src="../../assets/images/menu_icons/product.png" alt="menu icon"><span class="menu-title">Товары</span><i class="menu-arrow"></i>
@@ -26,8 +26,8 @@
             </ul>
           </b-collapse>
         </li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/orders"><img class="menu-icon" src="../../assets/images/menu_icons/orders.png" alt="menu icon"><span class="menu-title">Orders</span></router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/categories"><img class="menu-icon" src="../../assets/images/menu_icons/list.png" alt="menu icon"><span class="menu-title">Categories</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/admin/orders"><img class="menu-icon" src="../../assets/images/menu_icons/orders.png" alt="menu icon"><span class="menu-title">Заказы</span></router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/admin/categories"><img class="menu-icon" src="../../assets/images/menu_icons/list.png" alt="menu icon"><span class="menu-title">Категории</span></router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/admin/brands"><img class="menu-icon" src="../../assets/images/menu_icons/brand.png" alt="menu icon"><span class="menu-title">Бренды</span></router-link></li>
         <li class="nav-item">
           <span class="nav-link" v-b-toggle="'users'">
@@ -51,30 +51,6 @@
             </ul>
           </b-collapse>
         </li>
-        <li class="nav-item">
-          <span class="nav-link" v-b-toggle="'ui-components'">
-            <img class="menu-icon" src="../../assets/images/menu_icons/03.png" alt="menu icon"><span class="menu-title">UI Components</span><i class="menu-arrow"></i>
-          </span>
-          <b-collapse id="ui-components">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><router-link class="nav-link" to="/admin/alerts/">Alerts</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/buttons/">Button</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/badges/">Badges</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/breadcrumbs/">Breadcrumbs</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/carousel/">Carousel</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/dropdowns/">Dropdowns</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/typography/">Typography</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/paginations/">Paginations</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/tooltips/">Tooltips</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/progress/">Progress</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/tabs/">Tabs</router-link></li>
-              <li class="nav-item"><router-link class="nav-link" to="/admin/modals/">Modals</router-link></li>
-            </ul>
-          </b-collapse>
-        </li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/tables/"><img class="menu-icon" src="../../assets/images/menu_icons/06.png" alt="menu icon"><span class="menu-title">Tables</span></router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/icons/"><img class="menu-icon" src="../../assets/images/menu_icons/07.png" alt="menu icon"><span class="menu-title">Icons</span></router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/admin/forms/"><img class="menu-icon" src="../../assets/images/menu_icons/04.png" alt="menu icon"><span class="menu-title">Forms</span></router-link></li>
       </ul>
     </nav>
   </section>
