@@ -113,6 +113,8 @@ const actions = {
       })
   },
   GET_EDIT_USER_REQUEST ({commit}, id) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get(`api/users/${id}`)
       .then(({data}) => {
         let orders = data.data.orders
@@ -127,24 +129,28 @@ const actions = {
           // eslint-disable-next-line eqeqeq
           if (orders[i].status == '0') orders[i].status = 'Новый'
           // eslint-disable-next-line eqeqeq
-          else if (orders[i].status == '"') orders[i].status = 'Завершен'
+          else if (orders[i].status == '1') orders[i].status = 'Завершен'
           // eslint-disable-next-line eqeqeq
-          else if (orders[i].status == 'ә') orders[i].status = 'Удален'
+          else if (orders[i].status == '2') orders[i].status = 'Удален'
         }
         data.data.orders = orders
         data.data.role = role
         commit('SET_EDIT_USER', data.data)
+        if (overlay) overlay.style.display = 'none'
       }).catch(error => {
         console.log(error)
       })
   },
   GET_USERS ({commit}, data) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
     return axios.get(`api/users`)
       .then((response) => {
+        if (overlay) overlay.style.display = 'none'
         commit('SET_USERS', response.data)
       })
   },
-  DELETE_USER ({commit}, id) {
+  DELETE_USER ({commit}, d) {
     // eslint-disable-next-line no-undef
     swal.fire({
       title: 'Вы уверены что хотите удалить?',
@@ -157,15 +163,16 @@ const actions = {
       cancelButtonText: 'Отмена'
     }).then((result) => {
       if (result.value) {
-        axios.delete(`api/users/${id}`)
+        axios.delete(`api/users/${d.id}`)
           .then(({data}) => {
-            commit('DELETE_USER', id)
+            commit('DELETE_USER', d.id)
             // eslint-disable-next-line no-undef
             swal.fire(
               'Удалено!',
               'Данные успешно удалены',
               'success'
             )
+            d.obj.GET_USERS()
           }).catch(() => {
           // eslint-disable-next-line no-undef
             swal('Filed', 'There was something wrong', 'warning')

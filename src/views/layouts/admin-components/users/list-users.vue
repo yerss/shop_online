@@ -3,10 +3,10 @@
    <div class="row">
      <div class="col-12 grid-margin">
        <div class="card">
-         <div class="card-body">
+         <div class="card-body" style="position:relative">
            <h5 class="card-title mb-4">Пользователи</h5>
            <div class="table-responsive">
-             <table class="table center-aligned-table table-hover">
+             <table class="table center-aligned-table table-hover" v-if = "USERS.length">
                <thead>
                <tr>
                  <th class="border-bottom-0">ID</th>
@@ -27,13 +27,21 @@
                      <font-awesome-icon icon="edit" class="blue pointer"/>
                    </router-link>
                    /
-                   <a @click = "DELETE_USER(user.id)">
-                     <font-awesome-icon icon="trash-alt" class="red pointer"/>
+                   <a @click = "deleteUser(user.id)">
+                     <font-awesome-icon icon="trash-alt" class="red-color pointer"/>
                    </a>
                  </td>
                </tr>
                </tbody>
              </table>
+             <div v-else>
+               Пока что нет никаких пользователей
+             </div>
+           </div>
+           <div style = "display: none" id = "overlay">
+             <div class="spinner-border mySpinner" role="status">
+               <span class="sr-only">Loading...</span>
+             </div>
            </div>
          </div>
        </div>
@@ -59,7 +67,10 @@ export default {
     ...mapActions([
       'GET_USERS',
       'DELETE_USER'
-    ])
+    ]),
+    deleteUser (id) {
+      this.DELETE_USER({id: id, obj: this})
+    }
   },
   mounted () {
     this.GET_USERS()
@@ -67,6 +78,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .red-color{
+    color: orangered;
+  }
 </style>

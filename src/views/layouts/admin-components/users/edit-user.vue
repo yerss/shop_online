@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style="position:relative">
             <h5 class = "mb-4">Редактирование пользователя</h5>
             <label for="name" class = "input-label my-2">Имя</label>
             <input type="text" id = "name" class = "form-control input-border-black" placeholder="Введите ваше имя" v-model="GET_EDIT_USER.name">
@@ -19,6 +19,11 @@
             </select>
             <br />
             <button class = "btn btn-sm success btn-outline-primary" @click = "editUser">Сохранить</button>
+            <div style = "display: none" id = "overlay">
+              <div class="spinner-border mySpinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -28,7 +33,7 @@
         <div class="card">
           <div class="card-body">
              <h5>Заказы пользователя</h5>
-              <table class = "table table-hover">
+              <table class = "table table-hover" v-if = "GET_EDIT_USER.orders.length">
                 <thead>
                     <th>ID</th>
                     <th>Статус</th>
@@ -52,6 +57,9 @@
                     </tr>
                 </tbody>
               </table>
+            <div v-else style = "font-size:.8em;color:red;margin-top:1.5em;">
+              Этот пользователь не сделал никаких заказов
+            </div>
           </div>
         </div>
       </div>
@@ -139,9 +147,8 @@ export default {
     }
   },
   async mounted () {
-    await this.GET_ROLES_REQUEST()
     await this.GET_EDIT_USER_REQUEST(this.$route.params.id)
-    console.log(this.GET_EDIT_USER)
+    await this.GET_ROLES_REQUEST()
   }
 }
 </script>

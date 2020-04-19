@@ -150,7 +150,7 @@ const actions = {
           title: 'Успешно добавлена'
         })
       }).catch(error => {
-        console.log(error)
+        return new Promise((resolve, reject) => resolve(error.response.data.message))
       })
   },
   FILTER_ATTRIBUTES_REQUEST ({commit}) {
