@@ -25,7 +25,7 @@
                     </router-link>
                     /
                     <a @click = "deleteFilterGroup(filter.id)">
-                      <font-awesome-icon icon="times" class = "btn-red pointer"/>
+                      <font-awesome-icon icon="times" class = "red-icon-color pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -75,9 +75,6 @@ export default {
 <style>
   .bg-blue{
     background-color: #3c8dbc;
-  }
-  .red{
-    color:#a94442;
   }
   .icon{
     font-size: 1.1rem;

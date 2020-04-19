@@ -35,7 +35,7 @@
                     </router-link>
                     /
                     <a @click = "deleteBrand(brand.id)">
-                      <font-awesome-icon icon="trash-alt" class = "red-color pointer"/>
+                      <font-awesome-icon icon="trash-alt" class = "red-icon-color pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -83,7 +83,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .brand-image{
     max-height: 50px;
   }

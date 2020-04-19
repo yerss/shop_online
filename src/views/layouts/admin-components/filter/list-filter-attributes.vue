@@ -27,7 +27,7 @@
                     </router-link>
                     /
                     <a @click = "deleteAttribute(filter.id)">
-                      <font-awesome-icon icon="times" class = "icon-red pointer"/>
+                      <font-awesome-icon icon="times" class = "red-icon-color pointer"/>
                     </a>
                   </td>
                 </tr>
@@ -70,18 +70,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .bg-blue{
     background-color: #3c8dbc;
   }
   dark{
     color:black;
-  }
-  icon-red{
-    color:#a94442 !important;
-  }
-  .icon{
-    font-size: 1.1rem;
   }
   .pointer{
     cursor: pointer;

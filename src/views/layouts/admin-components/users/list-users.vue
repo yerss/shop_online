@@ -28,7 +28,7 @@
                    </router-link>
                    /
                    <a @click = "deleteUser(user.id)">
-                     <font-awesome-icon icon="trash-alt" class="red-color pointer"/>
+                     <font-awesome-icon icon="trash-alt" class="red-icon-color pointer"/>
                    </a>
                  </td>
                </tr>
@@ -79,7 +79,5 @@ export default {
 </script>
 
 <style>
-  .red-color{
-    color: orangered;
-  }
+
 </style>

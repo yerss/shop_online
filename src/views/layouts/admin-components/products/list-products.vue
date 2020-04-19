@@ -30,7 +30,7 @@
                       </router-link>
                       /
                       <a href="javascript:void(0)" @click="DELETE_PRODUCT(product.id)">
-                        <font-awesome-icon icon="trash-alt" class="red pointer"/>
+                        <font-awesome-icon icon="trash-alt" class="red-icon-color pointer"/>
                       </a>
                     </td>
                   </tr>
@@ -68,6 +68,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

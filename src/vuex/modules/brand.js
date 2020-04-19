@@ -1,5 +1,4 @@
 import axios from 'axios'
-import router from '../../router/router'
 
 const state = {
   brands: [],
@@ -29,7 +28,7 @@ const mutations = {
 }
 
 const actions = {
-  GET_BRANDS ({commit}, data) {
+  GET_BRANDS ({commit}) {
     let overlay = document.querySelector('#overlay')
     if (overlay) overlay.style.display = 'block'
     return axios.get(`api/brands`)
@@ -38,11 +37,28 @@ const actions = {
         if (overlay) overlay.style.display = 'none'
       })
   },
-  GET_BRAND_DETAIL ({commit}, id) {
-    return axios.get(`api/brands/${router.currentRoute.params.id}`)
+  UPDATE_BRAND_DETAIL ({commit}, d) {
+    return axios.put(`api/brands/${d.id}`, d.brand)
       .then((response) => {
-        commit('SET_BRAND_DETAIL', response.data)
-        return response
+        // eslint-disable-next-line no-undef
+        toast.fire({
+          icon: 'success',
+          title: 'Успешно изменена'
+        })
+        d.obj.GET_BRANDS()
+      }).catch(error => {
+        console.log(error)
+      })
+  },
+  GET_BRAND_DETAIL ({commit}, id) {
+    let overlay = document.querySelector('#overlay')
+    if (overlay) overlay.style.display = 'block'
+    return axios.get(`api/brands/${id}`)
+      .then(({data}) => {
+        if (overlay) overlay.style.display = 'none'
+        commit('SET_BRAND_DETAIL', data.data)
+      }).catch(error => {
+        console.log(error)
       })
   },
   DELETE_BRAND ({commit}, d) {

@@ -57,6 +57,7 @@ import addFilterAttributes from '../views/layouts/admin-components/filter/add-fi
 import editFilterAttributes from '../views/layouts/admin-components/filter/edit-filter-attribute'
 import addUser from '../views/layouts/admin-components/users/add-user'
 import editUser from '../views/layouts/admin-components/users/edit-user'
+import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 Vue.use(Router)
 
 let router = new Router({
@@ -76,7 +77,7 @@ let router = new Router({
         {
           path: 'dashboard',
           name: 'dashboard',
-          component: dashboard
+          component: mainPage
         },
         {
           path: 'products',

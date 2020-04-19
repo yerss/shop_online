@@ -57,6 +57,10 @@ export default {
       fd.append('description', this.brand.description)
       fd.append('image', this.brand.image)
       this.ADD_BRAND(fd)
+      this.brand.name = ''
+      this.brand.alias = ''
+      this.brand.description = ''
+      this.brand.image = null
     }
   }
 }
