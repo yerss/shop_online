@@ -98,7 +98,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "order in ORDERS">
+                <tr v-for = "order in ORDERS" :key="order.id">
                   <td class="border-bottom-0">{{order.id}}</td>
                   <td class="border-bottom-0">{{order.user.name}}</td>
                   <td class="border-bottom-0">{{order.status}}</td>
@@ -119,9 +119,9 @@
                 <thead>
                 <tr>
                   <th class="border-bottom-0">ID</th>
-                  <th class="border-bottom-0">Покупатель</th>
-                  <th class="border-bottom-0">Статус</th>
-                  <th class="border-bottom-0">Сумма</th>
+                  <th class="border-bottom-0">Категория</th>
+                  <th class="border-bottom-0">Наименование</th>
+                  <th class="border-bottom-0">Цена</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -156,7 +156,8 @@ export default {
       'GET_PRODUCTS_COUNT',
       'GET_USERS_COUNT',
       'GET_CATEGORIES_COUNT',
-      'ORDERS'
+      'ORDERS',
+      'PRODUCTS'
     ])
   },
   methods: {
@@ -165,7 +166,8 @@ export default {
       'PRODUCTS_COUNT_REQUEST',
       'USERS_COUNT_REQUEST',
       'CATEGORIES_COUNT_REQUEST',
-      'GET_ORDERS'
+      'GET_ORDERS',
+      'GET_PRODUCTS'
     ])
   },
   mounted () {
