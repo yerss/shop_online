@@ -98,7 +98,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                <tr v-for = "order in ORDERS">
+                <tr v-for = "(order, index) in ORDERS" :key="index">
                   <td class="border-bottom-0">{{order.id}}</td>
                   <td class="border-bottom-0">{{order.user.name}}</td>
                   <td class="border-bottom-0">{{order.status}}</td>
