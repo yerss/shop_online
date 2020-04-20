@@ -2,7 +2,7 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Colored Tab</h4>
+        <h4 class="card-title">Product details</h4>
         <b-tabs class="tab-solid tab-solid-danger">
           <b-tab title="Home" active>
             <div class="row">
