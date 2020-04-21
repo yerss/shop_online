@@ -30,6 +30,8 @@ import editFilterAttributes from '../views/layouts/admin-components/filter/edit-
 import addUser from '../views/layouts/admin-components/users/add-user'
 import editUser from '../views/layouts/admin-components/users/edit-user'
 import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
+import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
+import productCatalog from '../views/layouts/shop-components/product/product-catalog'
 Vue.use(Router)
 
 let router = new Router({
@@ -147,6 +149,16 @@ let router = new Router({
           component: editFilterAttributes
         }
       ]
+    },
+    {
+      path: '/categories/:id',
+      name: 'category-catalog',
+      component: categoryCatalog
+    },
+    {
+      path: '/products/category/:id',
+      name: 'product-catalog',
+      component: productCatalog
     }
     /* {
       path: '/login',

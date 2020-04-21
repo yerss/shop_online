@@ -3,7 +3,8 @@ import router from '../../router/router'
 
 const state = {
   products: [],
-  product_detail: {}
+  product_detail: {},
+  category_products: []
 }
 
 const getters = {
@@ -12,10 +13,13 @@ const getters = {
   },
   PRODUCT_DETAIL (state) {
     return state.product_detail
+  },
+  CATEGORY_PRODUCTS (state) {
+    return state.category_products
   }
 }
 const mutations = {
-  SET_PRODUCTS (state, products) {
+  SET_PRODUCTS: (state, products) => {
     state.products = products
   },
   SET_PRODUCT_DETAIL: (state, data) => {
@@ -24,6 +28,9 @@ const mutations = {
   DELETE_PRODUCT: (state, id) => {
     let index = state.products.findIndex(x => x.id === id)
     state.products.splice(index, 1)
+  },
+  SET_CATEGORY_PRODUCTS: (state, data) => {
+    state.category_products = data.data
   }
 }
 const actions = {
@@ -58,6 +65,13 @@ const actions = {
         })
       }).catch(error => {
         console.log(error)
+      })
+  },
+  GET_CATEGORY_PRODUCTS ({commit}, data) {
+    return axios.get(`api/products?categories[]=${router.currentRoute.params.id}`)
+      .then((response) => {
+        commit('SET_CATEGORY_PRODUCTS', response.data)
+        return response
       })
   }
 }
