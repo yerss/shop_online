@@ -26,27 +26,26 @@
 </style>
 
 <script>
-  import sidebar from './sidebar'
-  import content from './content'
-  import {mapActions, mapGetters} from 'vuex'
-
-  export default {
-    name: 'main',
-    components: {
-      sidebar, content
-    },
-    created() {
-      this.GET_CATEGORIES()
-    },
-    computed: {
-      ...mapGetters([
-        'CATEGORIES'
-      ])
-    },
-    methods: {
-      ...mapActions([
-        'GET_CATEGORIES'
-      ])
-    }
+import sidebar from './sidebar'
+import content from './content'
+import {mapActions, mapGetters} from 'vuex'
+export default {
+  name: 'main',
+  components: {
+    sidebar, content
+  },
+  created () {
+    this.GET_CATEGORIES()
+  },
+  computed: {
+    ...mapGetters([
+      'CATEGORIES'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'GET_CATEGORIES'
+    ])
   }
+}
 </script>
