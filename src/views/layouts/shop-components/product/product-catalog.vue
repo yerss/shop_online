@@ -2,7 +2,6 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-2">
-        dasdasd
       </div>
       <div class="col-md-10">
         <product-item
@@ -20,9 +19,15 @@ import productItem from './product-item'
 import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'product-catalog',
+  data () {
+    return {
+      selected: ''
+    }
+  },
   computed: {
     ...mapGetters([
-      'CATEGORY_PRODUCTS'
+      'CATEGORY_PRODUCTS',
+      'GET_FILTER_GROUPS'
     ])
   },
   components: {
@@ -30,11 +35,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      'GET_CATEGORY_PRODUCTS'
+      'GET_CATEGORY_PRODUCTS',
+      'FILTER_GROUPS_REQUEST'
     ])
   },
   mounted () {
     this.GET_CATEGORY_PRODUCTS()
+    this.FILTER_GROUPS_REQUEST()
   }
 }
 </script>
