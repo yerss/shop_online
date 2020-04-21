@@ -1,24 +1,25 @@
 <template>
-  <div class = "container">
-    <div class="row">
-      <div class="col-md-4">
-        <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
-      </div>
-      <div class="col-md-8">
-        <content></content>
-      </div>
-    </div>
-    <div class="sidebar-wrapper "></div>
+  <div class="d-flex mx-auto justify-content-center position-relative" style="max-width: 70vw">
+    <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
+    <app-content></app-content>
+    <div class="sidebar-wrapper"></div>
   </div>
 </template>
 
-<style scoped>
-
+<style>
   .sidebar-categories {
     background-color: rgba(20, 220, 80, .5);
-    position: fixed;
+    position: relative;
+    width: 250px;
     z-index: 101;
+    height: 100%;
   }
+  .sidebar-categories:hover {
+    /*position: absolute;*/
+  }
+  /*.sidebar-categories:hover {*/
+  /*  position: relative;*/
+  /*}*/
 
   .sidebar-wrapper {
     background-color: rgb(220, 220, 220);
@@ -35,12 +36,13 @@
 
 <script>
 import sidebar from './sidebar'
-import content from './content'
+import appContent from './content'
 import {mapActions, mapGetters} from 'vuex'
+
 export default {
   name: 'main',
   components: {
-    sidebar, content
+    sidebar, appContent
   },
   created () {
     this.GET_CATEGORIES()
