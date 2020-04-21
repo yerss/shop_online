@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
   .menu__item {
-    border: 0.5px solid #ccc;
+    background-color:#fff;
     border-radius: 2px;
     color: black;
     text-decoration: none;

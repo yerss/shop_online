@@ -1,18 +1,20 @@
 <template>
-    <b-card
-      :title="product_data.alias"
-      :img-src="product_data.image"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
-    >
-      <b-card-text>
-        {{product_data.name}}
-      </b-card-text>
-      <b-button href="javascript:void()" variant="success">ADD TO CART</b-button>
-    </b-card>
+   <div class="col-md-5">
+     <b-card
+       :title="product_data.alias"
+       :img-src="product_data.image"
+       img-alt="Image"
+       img-top
+       tag="article"
+       style="max-width: 20rem;"
+       class="mb-2"
+     >
+       <b-card-text>
+         {{product_data.name}}
+       </b-card-text>
+       <b-button href="javascript:void()" variant="success">ADD TO CART</b-button>
+     </b-card>
+   </div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-12">
+  <div class="container">
     <div class="row">
       <category-item
         v-for="(category,index) in CATEGORY_DETAIL.categories"

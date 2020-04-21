@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
-    <content></content>
+  <div class = "container">
+    <div class="row">
+      <div class="col-md-4">
+        <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
+      </div>
+      <div class="col-md-8">
+        <content></content>
+      </div>
+    </div>
     <div class="sidebar-wrapper "></div>
   </div>
 </template>
 
 <style scoped>
+
   .sidebar-categories {
     background-color: rgba(20, 220, 80, .5);
     position: fixed;
@@ -21,6 +28,7 @@
     height: 100%;
     z-index: 100;
     top: 0;
+    left:0;
     transition: all .3s;
   }
 </style>
