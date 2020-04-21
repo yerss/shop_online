@@ -1,14 +1,16 @@
 <template>
-  <div class="col-md-12">
+  <div class="container">
     <div class="row">
       <div class="col-md-2">
       </div>
       <div class="col-md-10">
-        <product-item
-          v-for="(product,index) in CATEGORY_PRODUCTS"
-          :key="index"
-          :product_data="product"
-        />
+        <div class="row">
+          <product-item
+            v-for="(product,index) in CATEGORY_PRODUCTS"
+            :key="index"
+            :product_data="product"
+          />
+        </div>
       </div>
     </div>
   </div>

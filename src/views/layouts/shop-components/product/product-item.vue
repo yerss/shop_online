@@ -1,4 +1,5 @@
 <template>
+  <div class="col-md-5">
     <b-card
       :title="product_data.alias"
       :img-src="product_data.image"
@@ -13,6 +14,8 @@
       </b-card-text>
       <b-button href="javascript:void()" variant="success" @click="ADD_ITEM_TO_CART(product_data)">ADD TO CART</b-button>
     </b-card>
+  </div>
+
 </template>
 
 <script>
