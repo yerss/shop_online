@@ -17,6 +17,8 @@ export default {
 
 <style scoped lang="scss">
   .app-footer {
-
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 </style>

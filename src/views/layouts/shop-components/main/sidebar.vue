@@ -1,0 +1,52 @@
+<template>
+  <div class="d-flex" @mouseleave="resetChosenCategory">
+    <div class="d-flex flex-column">
+      <router-link :to="`/categories/${category.id}`" v-for="category in nodes" @mouseover="changeChosenCategory(category)" class="menu__item">
+        {{category.name}}
+    </router-link>
+    </div>
+    <sidebar  v-if="chosenCategory"
+              :nodes="chosenCategory.categories"
+    ></sidebar>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['nodes'],
+  data () {
+    return {
+      chosenCategory: ''
+    }
+  },
+  name: 'sidebar',
+  methods: {
+    changeChosenCategory (category) {
+      let overlay = document.querySelector('.sidebar-wrapper')
+      overlay.style.opacity = 0.2
+      this.chosenCategory = category
+    },
+    resetChosenCategory () {
+      let overlay = document.querySelector('.sidebar-wrapper')
+      overlay.style.opacity = 0
+      this.chosenCategory = ''
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .menu__item {
+    border: 0.5px solid #ccc;
+    border-radius: 2px;
+    color: black;
+    text-decoration: none;
+    padding: 5px 15px;
+    font-family: "Poppins", sans-serif;
+  }
+  .menu__item:hover {
+    background-color: #00c292;
+    cursor: pointer;
+    color: white;
+  }
+</style>

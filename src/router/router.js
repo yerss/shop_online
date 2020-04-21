@@ -32,6 +32,7 @@ import editUser from '../views/layouts/admin-components/users/edit-user'
 import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
+import main from "../views/layouts/shop-components/main/main";
 Vue.use(Router)
 
 let router = new Router({
@@ -40,8 +41,8 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'sign',
-      component: sign
+      name: 'main',
+      component: main
     },
     {
       path: '/admin',
