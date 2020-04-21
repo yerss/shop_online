@@ -30,6 +30,7 @@ import editFilterAttributes from '../views/layouts/admin-components/filter/edit-
 import addUser from '../views/layouts/admin-components/users/add-user'
 import editUser from '../views/layouts/admin-components/users/edit-user'
 import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
+import main from "../views/layouts/shop-components/main/main";
 Vue.use(Router)
 
 let router = new Router({
@@ -38,8 +39,8 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'sign',
-      component: sign
+      name: 'main',
+      component: main
     },
     {
       path: '/admin',
@@ -147,7 +148,7 @@ let router = new Router({
           component: editFilterAttributes
         }
       ]
-    }
+    },
     /* {
       path: '/login',
       name: 'login',
