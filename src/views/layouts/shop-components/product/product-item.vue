@@ -11,16 +11,20 @@
       <b-card-text>
         {{product_data.name}}
       </b-card-text>
-      <b-button href="javascript:void()" variant="success">ADD TO CART</b-button>
+      <b-button href="javascript:void()" variant="success" @click="ADD_ITEM_TO_CART(product_data)">ADD TO CART</b-button>
     </b-card>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'product-item',
   components: {},
   computed: {},
   methods: {
+    ...mapActions([
+      'ADD_ITEM_TO_CART'
+    ])
   },
   props: {
     product_data: {

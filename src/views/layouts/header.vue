@@ -66,7 +66,7 @@
                 <div class="basket">
                   <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
                   <div class="cart-product-count">
-                    <span>1</span>
+                    <span>{{CART.length}}</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +134,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'USER_ROLE'
+      'USER_ROLE',
+      'CART'
     ])
   }
 }
