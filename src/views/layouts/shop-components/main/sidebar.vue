@@ -1,9 +1,9 @@
 <template>
   <div class="d-flex" @mouseleave="resetChosenCategory">
     <div class="d-flex flex-column">
-      <div v-for="category in nodes" @mouseover="changeChosenCategory(category)" class="menu__item">
+      <router-link :to="`/categories/${category.id}`" v-for="category in nodes" @mouseover="changeChosenCategory(category)" class="menu__item">
         {{category.name}}
-    </div>
+    </router-link>
     </div>
     <sidebar  v-if="chosenCategory"
               :nodes="chosenCategory.categories"
@@ -39,6 +39,8 @@ export default {
   .menu__item {
     border: 0.5px solid #ccc;
     border-radius: 2px;
+    color: black;
+    text-decoration: none;
     padding: 5px 15px;
     font-family: "Poppins", sans-serif;
   }
