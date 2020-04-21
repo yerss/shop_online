@@ -4,7 +4,6 @@ import Router from 'vue-router'
 /* import login from '../views/sample-pages/login'
 import register from '../views/sample-pages/register' */
 
-import sign from '../views/layouts/sign'
 import admin from '../views/layouts/admin'
 /*
 import store from '../vuex/store'
@@ -32,7 +31,7 @@ import editUser from '../views/layouts/admin-components/users/edit-user'
 import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
-import main from "../views/layouts/shop-components/main/main";
+import main from '../views/layouts/shop-components/main/main'
 Vue.use(Router)
 
 let router = new Router({

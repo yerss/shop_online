@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class = "col-md-3">
     <router-link :to="category_data.categories.length>0 ? `/categories/${category_data.id}` : `/products/category/${category_data.id}`">
       <b-card
         :img-src="category_data.image"

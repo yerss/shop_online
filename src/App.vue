@@ -28,6 +28,11 @@ export default{
   @import "../node_modules/mdi/css/materialdesignicons.min.css";
   @import "../node_modules/flag-icon-css/css/flag-icon.min.css";
   @import "../node_modules/font-awesome/css/font-awesome.min.css";
+  * {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+  }
 </style>
 
 <style lang="scss">
