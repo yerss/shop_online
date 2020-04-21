@@ -2,7 +2,7 @@
   <div class="d-flex" @mouseleave="resetChosenCategory">
     <div class="d-flex flex-column">
       <div v-for="(category,index) in nodes" @mouseover="changeChosenCategory(category)" :key="index" class="menu__item">
-        <router-link :to="`/categories/${category.id}`" class="menu__item">
+        <router-link :to="category.categories.length>0 ? `/categories/${category.id}` :  `/products/category/${category.id}`" class="menu__item">
           {{category.name}}
         </router-link>
       </div>
