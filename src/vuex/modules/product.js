@@ -67,8 +67,9 @@ const actions = {
         console.log(error)
       })
   },
-  GET_CATEGORY_PRODUCTS ({commit}, data) {
-    return axios.get(`api/products?categories[]=${router.currentRoute.params.id}`)
+  GET_CATEGORY_PRODUCTS ({commit}, data = '') {
+    const param = data ? `filter_values[]=${data}` : ''
+    return axios.get(`api/products?categories[]=${router.currentRoute.params.id}&${param}`)
       .then((response) => {
         commit('SET_CATEGORY_PRODUCTS', response.data)
         return response
