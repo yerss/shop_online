@@ -8,14 +8,16 @@
 
 <style>
   .sidebar-categories {
-    background-color: rgba(20, 220, 80, .5);
+    background-color:#fff;
     position: relative;
     width: 250px;
     z-index: 101;
-    height: 100%;
+    height: 480px;
+    border-radius: .7px;
+    position: relative;
   }
   .sidebar-categories:hover {
-    /*position: absolute;*/
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,.3);
   }
   /*.sidebar-categories:hover {*/
   /*  position: relative;*/
@@ -23,7 +25,7 @@
 
   .sidebar-wrapper {
     background-color: rgb(220, 220, 220);
-    opacity: 0;
+    opacity: .2;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -31,6 +33,8 @@
     top: 0;
     left:0;
     transition: all .3s;
+    box-shadow:10px 15px 30px 1px red;
+    display: none;
   }
 </style>
 

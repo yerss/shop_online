@@ -8,12 +8,13 @@
       </div>
     </div>
     <sidebar  v-if="chosenCategory && chosenCategory.categories && chosenCategory.categories.length"
-              :nodes="chosenCategory.categories"
+              :nodes="chosenCategory.categories" class = "sidebar-categories sidebar-inner"
     ></sidebar>
   </div>
 </template>
 
 <script>
+
 export default {
   props: ['nodes'],
   data () {
@@ -25,12 +26,12 @@ export default {
   methods: {
     changeChosenCategory (category) {
       let overlay = document.querySelector('.sidebar-wrapper')
-      overlay.style.opacity = 0.2
+      overlay.style.display = 'block'
       this.chosenCategory = category
     },
     resetChosenCategory () {
       let overlay = document.querySelector('.sidebar-wrapper')
-      overlay.style.opacity = 0
+      overlay.style.display = 'none'
       this.chosenCategory = ''
     }
   }
@@ -38,6 +39,10 @@ export default {
 </script>
 
 <style scoped>
+  .sidebar-inner {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.3);
+    border:.5px solid rgba(0,0,0,.1);
+  }
   .menu__item {
     background-color:#fff;
     border-radius: 2px;
@@ -59,4 +64,8 @@ export default {
     cursor: pointer;
     color: white;
   }
+  .menu__item:hover a.menu__item {
+    background-color: #00c292;
+  }
+
 </style>
