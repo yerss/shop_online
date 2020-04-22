@@ -72,7 +72,7 @@ export default {
         this.filter_values.push(id)
       }
       this.filter_values = [...new Set(this.filter_values)]
-      this.GET_CATEGORY_PRODUCTS(this.filter_values.toString())
+      this.GET_CATEGORY_PRODUCTS(this.filter_values)
     }
   },
   mounted () {
