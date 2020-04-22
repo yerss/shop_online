@@ -1,23 +1,18 @@
 <template>
   <div class = "container">
-    <div class="row">
-      <div class="col-md-4">
         <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
-      </div>
-      <div class="col-md-8">
         <content></content>
-      </div>
-    </div>
-    <div class="sidebar-wrapper "></div>
+        <div class="sidebar-wrapper"></div>
   </div>
 </template>
 
 <style scoped>
-
   .sidebar-categories {
-    background-color: rgba(20, 220, 80, .5);
+    background-color: #fff;
     position: fixed;
     z-index: 101;
+    height: 400px;
+    overflow: hidden;
   }
 
   .sidebar-wrapper {

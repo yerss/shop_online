@@ -1,46 +1,4 @@
 <template>
-<!--   <div class = "header">-->
-<!--      <div class="container">-->
-<!--         <div class="row">-->
-<!--            <div class="header-nav">-->
-<!--               <nav>-->
-<!--                  <ul>-->
-<!--                     <li>-->
-<!--                        <a href="#">-->
-<!--                           <router-link :to="{name: 'sign'}">-->
-<!--                              Home-->
-<!--                           </router-link>-->
-<!--                        </a>-->
-<!--                     </li>-->
-<!--                     <li>-->
-<!--                        <a href="#">-->
-<!--                           <router-link :to="{name: 'sign'}">-->
-<!--                              Shop-->
-<!--                           </router-link>-->
-<!--                        </a>-->
-<!--                     </li>-->
-<!--                     <li><a href="#">About us</a></li>-->
-<!--                     <li><a href="#">Contact</a></li>-->
-<!--                     <li v-if="(USER_ROLE === 'admin')">-->
-<!--                      <a href="#">-->
-<!--                        <router-link :to="{name: 'admin'}">-->
-<!--                          ADMIN PANEL-->
-<!--                        </router-link>-->
-<!--                      </a>-->
-<!--                     </li>-->
-<!--                    <li v-if="(USER_ROLE === 'moderator')">-->
-<!--                      <a href="#">-->
-<!--                        &lt;!&ndash;<router-link :to="{name: 'my_products'}">&ndash;&gt;-->
-<!--                          MY PRODUCTS-->
-<!--                        &lt;!&ndash;</router-link>&ndash;&gt;-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--               </nav>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--   </div>-->
   <header>
     <div class="header-wrapper">
       <div class="container">
@@ -219,6 +177,8 @@ export default {
     .nav-item{
       display: inline-block;
       padding:.5em 1em;
+    }
+    .nav-item + .nav-item {
       margin-left: 2em;
     }
     a{
