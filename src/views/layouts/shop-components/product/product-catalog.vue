@@ -78,6 +78,12 @@ export default {
   mounted () {
     this.GET_CATEGORY_PRODUCTS()
     this.FILTER_GROUPS_REQUEST()
+  },
+  watch: {
+    $route () {
+      this.GET_CATEGORY_PRODUCTS()
+      this.FILTER_GROUPS_REQUEST()
+    }
   }
 }
 </script>

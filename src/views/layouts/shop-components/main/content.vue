@@ -72,7 +72,7 @@
 </style>
 
 <script>
-  export default {
-    name: 'content'
-  }
+export default {
+  name: 'content'
+}
 </script>
