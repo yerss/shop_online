@@ -38,7 +38,7 @@
           <div class="col-12 p-0">
             <nav>
               <ul class="header-nav">
-                <li class = "nav-item">
+                <li class = "nav-item active">
                   <router-link :to="{name: 'sign'}" tag = "a">
                     Home
                   </router-link></li>
@@ -171,22 +171,29 @@ export default {
        background-color: $yellow;
      }
    }
-  .header-nav{
-    margin-left: 1em;
-    list-style: none;
-    .nav-item{
-      display: inline-block;
-      padding:.5em 1em;
-    }
-    .nav-item + .nav-item {
-      margin-left: 2em;
-    }
-    a{
-      display: block;
-      color:rgba(0,0,0,.8);
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-  }
+   .header-nav-wrapper{
+     box-shadow: 0 0 7px 0 #ccc;
+     margin-bottom: 1.5em;
+     .header-nav{
+       display: flex;
+       list-style: none;
+       text-align: center;
+       margin-bottom:0;
+       .nav-item{
+         padding: .5em 0;
+         flex:1;
+         height: 40px;
+         &:hover{
+           border-bottom: 2px solid #f5c002;
+           min-height: 38px;
+           background-color: #f6f8fd;
+         }
+       }
+       a{
+         display: block;
+         color:rgba(0,0,0,.8);
+         text-decoration: none;
+       }
+     }
+   }
 </style>
