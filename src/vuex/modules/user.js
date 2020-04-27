@@ -13,9 +13,6 @@ const state = {
 }
 
 const getters = {
-  USER_ROLE (state) {
-    return state.role
-  },
   GET_ORDERS (state) {
     return state.editUser.orders
   },
@@ -74,10 +71,6 @@ const mutations = {
     // eslint-disable-next-line camelcase
     state.editUser.role.id = role_id
   },
-  SAVE_TOKEN: (state, data) => {
-    localStorage.setItem('access_token', data.token)
-    state.role = data.role.name
-  },
   SET_USERS: (state, data) => {
     state.users = data.data
   },
@@ -98,20 +91,6 @@ const mutations = {
 }
 
 const actions = {
-  SIGN_UP ({commit}, data) {
-    return axios.post(`api/register`, data)
-      .then((response) => {
-        return response
-      })
-  },
-  SIGN_IN ({commit}, data) {
-    return axios.post(`api/login`, data)
-      .then((response) => {
-        // console.log(response.data)
-        commit('SAVE_TOKEN', response.data)
-        return response
-      })
-  },
   GET_EDIT_USER_REQUEST ({commit}, id) {
     let overlay = document.querySelector('#overlay')
     if (overlay) overlay.style.display = 'block'

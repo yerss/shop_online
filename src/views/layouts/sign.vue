@@ -12,7 +12,7 @@
             <input type="text" v-model="login.password">
           </div>
           <div class="single-input">
-            <button class="btn__dark" type="submit" @click="signIn">Login</button>
+            <button class="btn__dark" type="button" @click="signIn">Login</button>
             <!--<div>
                 <input type="checkbox">
                 <label for="">Remember me</label>
@@ -37,7 +37,7 @@
             <input type="password" v-model="register.password">
           </div>
           <div class="single-input">
-            <button class="btn__dark" type="submit" @click="signUp">Register</button>
+            <button class="btn__dark" type="button" @click="signUp">Register</button>
           </div>
         </div>
       </form>
@@ -65,13 +65,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'SIGN_UP',
-      'SIGN_IN'
+      'SIGN_IN',
+      'SIGN_UP'
     ]),
     signUp () {
       this.SIGN_UP(this.register)
         .then(() => {
-          window.location.href = '/'
         })
     },
     signIn () {

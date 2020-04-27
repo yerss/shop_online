@@ -32,7 +32,16 @@ import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
 import main from '../views/layouts/shop-components/main/main'
+import sign from '../views/layouts/sign'
 Vue.use(Router)
+
+const ifAdmin = (to, from, next) => {
+  if (localStorage.getItem('user_role') === 'admin') {
+    next()
+    return
+  }
+  next('/')
+}
 
 let router = new Router({
   mode: 'history',
@@ -44,9 +53,15 @@ let router = new Router({
       component: main
     },
     {
+      path: '/sign',
+      name: 'sign',
+      component: sign
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: admin,
+      beforeEnter: ifAdmin,
       children: [
         {
           path: 'dashboard',
@@ -172,12 +187,5 @@ let router = new Router({
     }, */
   ]
 })
-
-/* router.beforeEach((to, from, next) => {
-  if ((store.state.role !== 'admin') && (to.path.indexOf('/admin') >= 0)) {
-    window.location.href = '/'
-  }
-  next()
-}) */
 
 export default router

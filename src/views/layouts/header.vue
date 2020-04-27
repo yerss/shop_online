@@ -21,6 +21,11 @@
                 <div class="likedProducts">
                   <font-awesome-icon icon = "heart"></font-awesome-icon>
                 </div>
+                <router-link :to="`/sign`" style="text-decoration: none;">
+                  <div class="likedProducts">
+                    <font-awesome-icon icon = "user"></font-awesome-icon>
+                  </div>
+                </router-link>
                 <div class="basket">
                   <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
                   <div class="cart-product-count">
@@ -39,27 +44,27 @@
             <nav>
               <ul class="header-nav">
                 <li class = "nav-item active">
-                  <router-link :to="{name: 'sign'}" tag = "a">
+                  <router-link :to="`/`" tag = "a">
                     Home
                   </router-link></li>
                 <li class = "nav-item">
-                  <router-link :to="{name: 'sign'}" tag = "a">
+                  <router-link :to="`/`" tag = "a">
                      Shop
                   </router-link></li>
-                <li class = "nav-item"><a href="#">About us</a></li>
-                <li class = "nav-item"><a href="#">Contacts</a></li>
-                <li class = "nav-item" v-if="(USER_ROLE === 'admin')">
+                <li class = "nav-item">About us</li>
+                <li class = "nav-item">Contacts</li>
+                <li class = "nav-item" v-if="(user_role === 'admin')">
                   <a href="#">
                     <router-link :to="{name: 'admin'}">
-                      ADMIN PANEL
+                     Admin Panel
                     </router-link>
                   </a>
                 </li>
-                <li class = "nav-item" v-if="(USER_ROLE === 'moderator')">
+                <li class = "nav-item" v-if="(user_role === 'moderator')">
                   <a href="#">
-                    <!--<router-link :to="{name: 'my_products'}">-->
+                    &lt;!&ndash;<router-link :to="{name: 'my_products'}">&ndash;&gt;
                     MY PRODUCTS
-                    <!--</router-link>-->
+                    &lt;!&ndash;</router-link>&ndash;&gt;
                   </a>
                 </li>
               </ul>
@@ -77,6 +82,7 @@ import {mapGetters} from 'vuex'
 export default {
   data: function () {
     return {
+      user_role: localStorage.getItem('user_role'),
       isOpen: false
     }
   },
@@ -92,7 +98,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'USER_ROLE',
       'CART'
     ])
   }
