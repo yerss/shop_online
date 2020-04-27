@@ -39,7 +39,7 @@
             <nav>
               <ul class="header-nav">
                 <li class = "nav-item active">
-                  <router-link :to="{name: 'sign'}" tag = "a">
+                  <router-link :to="{name: 'main'}" tag = "a">
                     Главная страница
                   </router-link></li>
                 <li class = "nav-item">

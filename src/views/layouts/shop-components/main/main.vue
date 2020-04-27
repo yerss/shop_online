@@ -1,9 +1,11 @@
 <template>
-  <div class="d-flex mx-auto justify-content-center position-relative" style="max-width: 70vw">
-    <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
-    <app-content></app-content>
-    <div class="sidebar-wrapper"></div>
-  </div>
+  <section class="main">
+    <div class="d-flex mx-auto justify-content-center position-relative" style="max-width: 70vw">
+      <sidebar :nodes="CATEGORIES" class="sidebar-categories"></sidebar>
+      <app-content></app-content>
+      <div class="sidebar-wrapper"></div>
+    </div>
+  </section>
 </template>
 
 <style>
@@ -35,6 +37,9 @@
     transition: all .3s;
     box-shadow:10px 15px 30px 1px red;
     display: none;
+  }
+  .main{
+    margin-bottom: 80px;
   }
 </style>
 

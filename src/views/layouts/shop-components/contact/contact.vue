@@ -100,4 +100,7 @@ export default {
   .contact-link:hover{
     text-decoration: none;
   }
+  .contact{
+    margin-bottom: 50px;
+  }
 </style>
