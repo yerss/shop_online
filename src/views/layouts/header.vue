@@ -40,14 +40,14 @@
               <ul class="header-nav">
                 <li class = "nav-item active">
                   <router-link :to="{name: 'sign'}" tag = "a">
-                    Home
+                    Главная страница
                   </router-link></li>
                 <li class = "nav-item">
                   <router-link :to="{name: 'sign'}" tag = "a">
-                     Shop
+                     Магазин
                   </router-link></li>
-                <li class = "nav-item"><a href="#">About us</a></li>
-                <li class = "nav-item"><a href="#">Contacts</a></li>
+                <li class = "nav-item"><a href="#">О нас</a></li>
+                <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
                 <li class = "nav-item" v-if="(USER_ROLE === 'admin')">
                   <a href="#">
                     <router-link :to="{name: 'admin'}">

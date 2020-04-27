@@ -32,6 +32,7 @@ import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
 import main from '../views/layouts/shop-components/main/main'
+import contact from '../views/layouts/shop-components/contact/contact'
 Vue.use(Router)
 
 let router = new Router({
@@ -159,6 +160,11 @@ let router = new Router({
       path: '/products/category/:id',
       name: 'product-catalog',
       component: productCatalog
+    },
+    {
+      path: '/contacts',
+      name: 'contact',
+      component: contact
     }
     /* {
       path: '/login',
