@@ -44,15 +44,15 @@
             <nav>
               <ul class="header-nav">
                 <li class = "nav-item active">
-                  <router-link :to="`/`" tag = "a">
-                    Home
+                  <router-link :to="{name: 'main'}" tag = "a">
+                    Главная страница
                   </router-link></li>
                 <li class = "nav-item">
                   <router-link :to="`/`" tag = "a">
-                     Shop
+                     Магазин
                   </router-link></li>
-                <li class = "nav-item">About us</li>
-                <li class = "nav-item">Contacts</li>
+                <li class = "nav-item"><a href="#">О нас</a></li>
+                <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
                 <li class = "nav-item" v-if="(user_role === 'admin')">
                   <a href="#">
                     <router-link :to="{name: 'admin'}">

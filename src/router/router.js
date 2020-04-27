@@ -33,6 +33,7 @@ import categoryCatalog from '../views/layouts/shop-components/category/category-
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
 import main from '../views/layouts/shop-components/main/main'
 import sign from '../views/layouts/sign'
+import contact from '../views/layouts/shop-components/contact/contact'
 Vue.use(Router)
 
 const ifAdmin = (to, from, next) => {
@@ -174,6 +175,11 @@ let router = new Router({
       path: '/products/category/:id',
       name: 'product-catalog',
       component: productCatalog
+    },
+    {
+      path: '/contacts',
+      name: 'contact',
+      component: contact
     }
     /* {
       path: '/login',
