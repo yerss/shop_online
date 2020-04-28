@@ -17,15 +17,26 @@
             </div>
           </div>
           <div class = "col-lg-3 col-sm-6 order-2 order-lg-3">
-              <div class="tools ml-sm-5">
-                <div class="likedProducts">
-                  <font-awesome-icon icon = "heart"></font-awesome-icon>
-                </div>
-                <router-link :to="`/sign`" style="text-decoration: none;">
-                  <div class="likedProducts">
-                    <font-awesome-icon icon = "user"></font-awesome-icon>
+              <div class="tools">
+<!--                <div class="likedProducts">-->
+<!--                  <font-awesome-icon icon = "heart"></font-awesome-icon>-->
+<!--                </div>-->
+<!--                <router-link :to="`/sign`" style="text-decoration: none;">-->
+<!--                  <div class="likedProducts">-->
+<!--                    <font-awesome-icon icon = "user"></font-awesome-icon>-->
+<!--                  </div>-->
+<!--                </router-link>-->
+                <div class="profile pr-4" @click = "toggleProfileMenu" data-toggle = "dropdownProfile">
+                  <font-awesome-icon icon = "user" class = "mr-2" style = "font-size:1.3em;"></font-awesome-icon>
+                  <span class="myProfile">Мой аккаунт</span>
+                  <font-awesome-icon icon = "chevron-down" class = "ml-1" style = "font-size:.7em;"></font-awesome-icon>
+                  <div class="dropdown-profile">
+                    <ul class = "dropdown-profile-menu" id= "dropdownProfile">
+                      <li class = "dropdown-profile-item"><a href="#">Вход</a></li>
+                      <li class = "dropdown-profile-item last"><a href="#">Регистрация</a></li>
+                    </ul>
                   </div>
-                </router-link>
+                </div>
                 <div class="basket">
                   <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
                   <div class="cart-product-count">
@@ -96,6 +107,14 @@ export default {
       }
     }
   },
+  methods: {
+    toggleProfileMenu (e) {
+      let dropdownId = e.currentTarget.dataset.toggle
+      let dropdown = document.getElementById(dropdownId)
+      console.log(dropdown)
+      if (dropdown) dropdown.classList.toggle('show')
+    }
+  },
   computed: {
     ...mapGetters([
       'CART'
@@ -146,14 +165,69 @@ export default {
      display: flex;
      justify-content: center;
      align-items: center;
-     .likedProducts,.basket{
+     .profile{
+       color:#fff;
+       font-weight: bold;
+       font-size:.9em;
+       cursor:pointer;
+       position: relative;
+       .dropdown-profile-menu{
+         position: absolute;
+         top: 138%;
+         left:0;
+         right: auto;
+         background: #fff;
+         border-bottom: 2px solid #0B88EE;
+         padding: 0 20px;
+         min-width: 150px;
+         text-align: left;
+         box-shadow: 0 2px 13.95px 1.05px rgba(0,0,0,.05);
+         z-index: 99;
+         display: none;
+         .dropdown-profile-item{
+           border-bottom: 1px solid rgba(0,0,0,.2);
+         }
+         .dropdown-profile-item.last{
+           border-bottom: none;
+         }
+         .dropdown-profile-item a{
+           display: block;
+           width: 100%;
+           clear: both;
+           font-weight: 400;
+           white-space: nowrap;
+           background: 0 0;
+           border: 0;
+           padding: 10px 0;
+           color: #7e7e7e;
+           line-height: 25px;
+           font-size: 13px;
+           text-decoration: none;
+           transition: all .4s ease-in-out 0s;
+           &:hover{
+             color:$blue;
+           }
+         }
+       }
+       .dropdown-profile-menu.show{
+         transition: .4s all;
+         display: block;
+       }
+     }
+     .basket{
        box-sizing: border-box;
+       border-radius: 1.5em;
        padding: .8em;
        border:1px solid rgba(0,0,0,.3);
        cursor:pointer;
+       width: 48px;
        height: 48px;
+       background-color:#fff;
+       margin-left: .2em;
+       position: relative;
        &:hover{
-         background-color: rgba(0,0,0,.8);
+         background-color:$blue;
+         border: 1px solid #fff;
          color:#fff;
          transition: .3s all ease-in;
          span{
@@ -161,15 +235,14 @@ export default {
          }
        }
      }
-     .basket{
-       margin-left: .2em;
-       position: relative;
-     }
      .cart-product-count{
        position: absolute;
-       top:-9px;
-       right: -9px;
-       padding:.15em .7em;
+       top:-5px;
+       right: -5px;
+       padding:.1em .5em;
+       min-width: 20px;
+       min-height: 5px;
+       line-height: 1.5;
        font-weight: 500;
        font-size: .8em;
        border-radius: 1.5em;
