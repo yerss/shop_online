@@ -1,21 +1,35 @@
 <template>
-  <div class="col-md-6">
-    <b-card
-      :title="product_data.alias"
-      :img-src="product_data.image"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
-    >
-      <b-card-text>
-        {{product_data.name}}
-      </b-card-text>
-      <b-button href="javascript:void()" variant="success" @click="ADD_ITEM_TO_CART(product_data)">ADD TO CART</b-button>
-    </b-card>
-  </div>
+  <v-flex sm3 class="mr-3">
+    <v-card>
+      <v-img
+        class="white--text align-end"
+        height="250px"
+        :src="product_data.image"
+      >
+      </v-img>
+      <v-card-text class="text--primary">
+        <div>{{product_data.price}}</div>
 
+        <div>{{product_data.alias}}</div>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          color="orange"
+          text
+          @click="ADD_ITEM_TO_CART(product_data)"
+        >
+          ADD TO CART
+        </v-btn>
+
+        <v-btn
+          color="orange"
+          text
+        >
+          LIKE
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-flex>
 </template>
 
 <script>

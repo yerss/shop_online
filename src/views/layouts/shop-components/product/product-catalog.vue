@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
+          <ul class="nav pt-0">
             <li class="nav-item"
                 v-for="(filter,index) in GET_FILTER_GROUPS"
                 :key="index"
@@ -27,7 +27,7 @@
           </ul>
         </nav>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-9">
         <div class="row">
           <product-item
             v-for="(product,index) in CATEGORY_PRODUCTS"

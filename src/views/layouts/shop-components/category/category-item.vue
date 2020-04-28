@@ -1,20 +1,19 @@
 <template>
-  <div class = "col-md-3">
-    <router-link :to="category_data.categories.length>0 ? `/categories/${category_data.id}` : `/products/category/${category_data.id}`">
-      <b-card
-        :img-src="category_data.image"
-        img-alt="Image"
-        img-top
-        tag="article"
-        style="max-width: 20rem;"
-        class="mb-2"
+  <router-link :to="category_data.categories.length>0 ? `/categories/${category_data.id}` : `/products/category/${category_data.id}`">
+    <v-flex ms-3 class="mr-4">
+      <v-card
+        class="mx-auto"
+        max-width="400"
       >
-        <b-card-text>
-          {{category_data.name}}
-        </b-card-text>
-      </b-card>
-    </router-link>
-  </div>
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          :src="category_data.image"
+        ></v-img>
+        <v-card-title>{{category_data.name}}</v-card-title>
+      </v-card>
+    </v-flex>
+  </router-link>
 </template>
 
 <script>
