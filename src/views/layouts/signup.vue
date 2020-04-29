@@ -1,20 +1,19 @@
 <template>
-  <div class="v-login-register">
-
+  <div class="v-login-register" style="width: 50%; margin: auto">
     <div class="v-login-register__lr">
       <form action="">
         <div>
           <div class="single-input">
-            <label for="">Username</label>
-            <input type="text" v-model="register.name">
+            <label>Username</label>
+            <input type="text" v-model="register.name" class="border">
           </div>
           <div class="single-input">
-            <label for="">Email address</label>
-            <input type="text" v-model="register.email">
+            <label>Email address</label>
+            <input type="text" v-model="register.email" class="border">
           </div>
           <div class="single-input">
-            <label for="">Password</label>
-            <input type="password" v-model="register.password">
+            <label>Password</label>
+            <input type="password" v-model="register.password" class="border">
           </div>
           <div class="single-input">
             <button class="btn__dark" type="button" @click="signUp">Register</button>
@@ -28,14 +27,10 @@
 <script>
 import {mapActions} from 'vuex'
 export default {
-  name: 'sign',
+  name: 'signup',
   props: {},
   data () {
     return {
-      login: {
-        email: '',
-        password: ''
-      },
       register: {
         name: '',
         email: '',
@@ -45,16 +40,10 @@ export default {
   },
   methods: {
     ...mapActions([
-      'SIGN_IN',
       'SIGN_UP'
     ]),
     signUp () {
       this.SIGN_UP(this.register)
-        .then(() => {
-        })
-    },
-    signIn () {
-      this.SIGN_IN(this.login)
         .then(() => {
         })
     }
@@ -62,6 +51,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

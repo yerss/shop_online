@@ -76,7 +76,7 @@ const actions = {
       }
     }
     console.log(param)
-    return axios.get(`api/products?categories[]=${router.currentRoute.params.id}${param}`)
+    return axios.get(`api/productList?categories[]=${router.currentRoute.params.id}${param}`)
       .then((response) => {
         commit('SET_CATEGORY_PRODUCTS', response.data)
         return response

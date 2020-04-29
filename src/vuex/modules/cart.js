@@ -20,7 +20,15 @@ const mutations = {
 
 const actions = {
   ADD_ITEM_TO_CART ({commit}, data) {
-    commit('ADD_TO_CART', data)
+    // eslint-disable-next-line no-undef
+    return toast.fire({
+      icon: 'success',
+      position: 'bottom-start',
+      title: 'Добавлено',
+      timer: 700
+    }).then(() => {
+      commit('ADD_TO_CART', data)
+    })
   },
   DELETE_ITEM_FROM_CART ({commit}, id) {
     commit('DELETE_FROM_CART', id)
