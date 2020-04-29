@@ -32,8 +32,12 @@ import mainPage from '../views/layouts/admin-components/mainPage/dashboard'
 import categoryCatalog from '../views/layouts/shop-components/category/category-catalog'
 import productCatalog from '../views/layouts/shop-components/product/product-catalog'
 import main from '../views/layouts/shop-components/main/main'
-import sign from '../views/layouts/sign'
+import signin from '../views/layouts/signin'
+import signup from '../views/layouts/signup'
 import contact from '../views/layouts/shop-components/contact/contact'
+import profileMain from '../views/layouts/shop-components/profile/profile-main'
+import profileOrders from '../views/layouts/shop-components/profile/profile-orders'
+import profileSettings from '../views/layouts/shop-components/profile/profile-settings'
 Vue.use(Router)
 
 const ifAdmin = (to, from, next) => {
@@ -54,9 +58,31 @@ let router = new Router({
       component: main
     },
     {
-      path: '/sign',
-      name: 'sign',
-      component: sign
+      path: '/login',
+      name: 'sigin',
+      component: signin
+    },
+    {
+      path: '/register',
+      name: 'signup',
+      component: signup
+    },
+    {
+      path: '/profile',
+      name: 'profile-main',
+      component: profileMain,
+      children: [
+        {
+          path: '/settings',
+          name: 'profile-settings',
+          component: profileSettings
+        },
+        {
+          path: '/orders',
+          name: 'profile-orders',
+          component: profileOrders
+        }
+      ]
     },
     {
       path: '/admin',

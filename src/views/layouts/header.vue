@@ -32,8 +32,30 @@
                   <font-awesome-icon icon = "chevron-down" class = "ml-1" style = "font-size:.7em;"></font-awesome-icon>
                   <div class="dropdown-profile">
                     <ul class = "dropdown-profile-menu" id= "dropdownProfile">
-                      <li class = "dropdown-profile-item"><a href="#">Вход</a></li>
-                      <li class = "dropdown-profile-item last"><a href="#">Регистрация</a></li>
+                      <div v-if="!isAuthenticated">
+                        <li class = "dropdown-profile-item">
+                          <router-link :to="`/login`" tag="a">
+                            Вход
+                          </router-link>
+                        </li>
+                        <li class = "dropdown-profile-item last">
+                          <router-link :to="`/register`" tag="a">
+                            Регистрация
+                          </router-link>
+                        </li>
+                      </div>
+                      <div v-else>
+                        <li class = "dropdown-profile-item">
+                          <router-link :to="`/profile`" tag="a">
+                            Профиль
+                          </router-link>
+                        </li>
+                        <li class = "dropdown-profile-item last" @click="LOG_OUT">
+                          <a href="javascript:void(0)">
+                            Выйти
+                          </a>
+                        </li>
+                      </div>
                     </ul>
                   </div>
                 </div>
@@ -64,7 +86,7 @@
                   </router-link></li>
                 <li class = "nav-item"><a href="#">О нас</a></li>
                 <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
-                <li class = "nav-item" v-if="(user_role === 'admin')">
+                <li class = "nav-item" v-if="(user_role === 'admin') && isAuthenticated">
                   <a href="#">
                     <router-link :to="{name: 'admin'}">
                      Admin Panel
@@ -74,7 +96,7 @@
                 <li class = "nav-item" v-if="(user_role === 'moderator')">
                   <a href="#">
                     &lt;!&ndash;<router-link :to="{name: 'my_products'}">&ndash;&gt;
-                    MY PRODUCTS
+                    My Products
                     &lt;!&ndash;</router-link>&ndash;&gt;
                   </a>
                 </li>
@@ -88,7 +110,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data: function () {
@@ -108,6 +130,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'LOG_OUT'
+    ]),
     toggleProfileMenu (e) {
       let dropdownId = e.currentTarget.dataset.toggle
       let dropdown = document.getElementById(dropdownId)
@@ -117,7 +142,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'CART'
+      'CART', 'isAuthenticated'
     ])
   }
 }

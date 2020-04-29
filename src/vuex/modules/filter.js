@@ -167,7 +167,7 @@ const actions = {
   FILTER_GROUPS_REQUEST ({commit}) {
     let overlay = document.querySelector('#overlay')
     if (overlay) overlay.style.display = 'block'
-    return axios.get('api/filterGroups')
+    return axios.get('api/filterList')
       .then(({data}) => {
         commit('SET_FILTER_GROUPS', data.data)
         if (overlay) overlay.style.display = 'none'

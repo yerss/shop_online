@@ -37,13 +37,13 @@ const mutations = {
 
 const actions = {
   GET_CATEGORIES ({commit}, data) {
-    return axios.get(`api/categories`)
+    return axios.get(`api/categoryList`)
       .then((response) => {
         commit('SET_CATEGORIES', response.data)
       })
   },
   GET_CATEGORY_DETAIL ({commit}, data) {
-    return axios.get(`api/categories/${router.currentRoute.params.id}`)
+    return axios.get(`api/categoryList${router.currentRoute.params.id}`)
       .then((response) => {
         commit('SET_CATEGORY_DETAIL', response.data)
         return response
