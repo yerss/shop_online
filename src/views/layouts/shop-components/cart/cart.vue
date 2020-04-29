@@ -10,7 +10,7 @@
             <th>Изображение</th>
             <th>Наименовние товара</th>
             <th>Модель</th>
-            <th>Кол-во</th>
+            <th class="text-center">Кол-во</th>
             <th>Цена</th>
             </thead>
             <tbody>
@@ -18,7 +18,7 @@
                 <td><img :src="cart.image" alt="img"></td>
                 <td>{{cart.alias}}</td>
                 <td>{{cart.name}}</td>
-                <td><input type="number" v-model = "count"></td>
+                <td class="text-center"><input type="number" class="text-center" v-model = "count"></td>
                 <td>{{cart.price}}</td>
               </tr>
                 <button class = "btn btn-primary mt-5">Оформить</button>
