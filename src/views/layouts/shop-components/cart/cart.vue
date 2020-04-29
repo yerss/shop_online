@@ -1,6 +1,5 @@
 <template>
-<section class="cart">
-  <div class="container">
+<section class="cart mx-5">
     <div class="row">
       <div class="col-12">
         <h3 class = "cart__heading text-center mb-4">Корзина покупок</h3>
@@ -14,14 +13,18 @@
             <th>Цена</th>
             </thead>
             <tbody>
-              <tr v-for = "cart in CART" :key="cart.id">
-                <td><img :src="cart.image" alt="img"></td>
+              <tr v-for = "cart in CART" :key="cart.id" >
+                <td>
+                  <img :src="cart.image" alt="img">
+                </td>
                 <td>{{cart.alias}}</td>
                 <td>{{cart.name}}</td>
-                <td class="text-center"><input type="number" class="text-center" v-model = "count"></td>
+                <td class="text-center">
+                  <input type="number" class="text-center" v-model = "count">
+                </td>
                 <td>{{cart.price}}</td>
               </tr>
-                <button class = "btn btn-primary mt-5">Оформить</button>
+              <button class = "btn btn-primary mt-5">Оформить</button>
             </tbody>
           </table>
           <div v-else>
@@ -30,7 +33,6 @@
         </div>
       </div>
     </div>
-  </div>
 </section>
 </template>
 
