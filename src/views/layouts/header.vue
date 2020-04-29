@@ -37,12 +37,12 @@
                     </ul>
                   </div>
                 </div>
-                <div class="basket">
+                <router-link tag = "div" class="basket" :to = "{name:'cart'}" >
                   <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
                   <div class="cart-product-count">
                     <span>{{CART.length}}</span>
                   </div>
-                </div>
+                </router-link>
               </div>
           </div>
         </div>
@@ -111,7 +111,6 @@ export default {
     toggleProfileMenu (e) {
       let dropdownId = e.currentTarget.dataset.toggle
       let dropdown = document.getElementById(dropdownId)
-      console.log(dropdown)
       if (dropdown) dropdown.classList.toggle('show')
     }
   },
