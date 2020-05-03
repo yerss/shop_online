@@ -79,12 +79,16 @@
                 <li class = "nav-item">
                   <router-link :to="{name: 'main'}" tag = "a" exact>
                     Главная страница
-                  </router-link></li>
+                  </router-link>
+                </li>
                 <li class = "nav-item">
                   <router-link :to="{name:'payment'}" tag = "a">
                      Оплата и доставка
-                  </router-link></li>
-                <li class = "nav-item"><a href="#">О нас</a></li>
+                  </router-link>
+                </li>
+                <li class = "nav-item">
+                  <router-link :to="{name:'about'}" tag = "a">О нас</router-link>
+                </li>
                 <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
                 <li class = "nav-item" v-if="(user_role === 'admin') && isAuthenticated">
                   <a href="#">
@@ -275,7 +279,6 @@ export default {
    }
    .header-nav-wrapper{
      box-shadow: 0 0 7px 0 #ccc;
-     margin-bottom: 1.5em;
      .header-nav{
        display: flex;
        list-style: none;

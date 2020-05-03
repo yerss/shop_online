@@ -1,7 +1,10 @@
 <template>
     <section class="contact">
-        <div class="container">
+        <div class="container pt-0">
           <div class="row">
+            <div class="col-12 mb-2">
+                <app-breadcrumbs :items = "items"></app-breadcrumbs>
+            </div>
             <div class="col-lg-6">
               <h3 class = "mb-xl-4 text-lg-left text-center mb-md-3 display-5">Оставьте Ваш отзыв!</h3>
               <form>
@@ -62,8 +65,28 @@
 </template>
 
 <script>
+import appBreadcrumbs from '../breadcrumbs'
 export default {
-  name: 'contact'
+  name: 'contact',
+  data () {
+    return {
+      items: [
+        {
+          text: 'Главная',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Контакты',
+          disabled: true,
+          href: ''
+        }
+      ]
+    }
+  },
+  components: {
+    appBreadcrumbs
+  }
 }
 </script>
 

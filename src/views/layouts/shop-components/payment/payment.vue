@@ -3,6 +3,9 @@
       <div class="container pt-0">
         <div class="row">
           <div class="col-12">
+            <app-breadcrumbs :items = "items"></app-breadcrumbs>
+          </div>
+          <div class="col-12 pt-0">
             <div class="payment__heading">
               <h3 class="payment__title">Защита покупателя</h3>
               <div class="payment__text">
@@ -89,8 +92,28 @@
 </template>
 
 <script>
+import appBreadcrumbs from '../breadcrumbs'
 export default {
-  name: 'delivery'
+  name: 'delivery',
+  data: function () {
+    return {
+      items: [
+        {
+          text: 'Главная',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Оплата и доставка',
+          disabled: true,
+          href: ''
+        }
+      ]
+    }
+  },
+  components: {
+    appBreadcrumbs
+  }
 }
 </script>
 

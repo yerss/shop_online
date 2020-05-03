@@ -45,6 +45,7 @@
     display: none;
   }
   .main{
+    margin-top: 1em;
     margin-bottom: 80px;
   }
 </style>
