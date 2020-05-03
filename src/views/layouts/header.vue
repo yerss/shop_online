@@ -76,13 +76,13 @@
           <div class="col-12 p-0">
             <nav>
               <ul class="header-nav">
-                <li class = "nav-item active">
-                  <router-link :to="{name: 'main'}" tag = "a">
+                <li class = "nav-item">
+                  <router-link :to="{name: 'main'}" tag = "a" exact>
                     Главная страница
                   </router-link></li>
                 <li class = "nav-item">
-                  <router-link :to="`/`" tag = "a">
-                     Магазин
+                  <router-link :to="{name:'payment'}" tag = "a">
+                     Оплата и доставка
                   </router-link></li>
                 <li class = "nav-item"><a href="#">О нас</a></li>
                 <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
@@ -282,19 +282,22 @@ export default {
        text-align: center;
        margin-bottom:0;
        .nav-item{
-         padding: .5em 0;
          flex:1;
          height: 40px;
+       }
+       a{
+         display: block;
+         padding: .5em 0;
+         color:rgba(0,0,0,.8);
+         text-decoration: none;
          &:hover{
            border-bottom: 2px solid #f5c002;
            min-height: 38px;
            background-color: #f6f8fd;
          }
        }
-       a{
-         display: block;
-         color:rgba(0,0,0,.8);
-         text-decoration: none;
+       a.active{
+         border-bottom: 2px solid #f5c002;
        }
      }
    }

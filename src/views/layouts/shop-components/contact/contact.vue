@@ -3,7 +3,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h3 class = "mb-xl-4 text-lg-left text-center mb-md-3">Форма обратной связи</h3>
+              <h3 class = "mb-xl-4 text-lg-left text-center mb-md-3 display-5">Оставьте Ваш отзыв!</h3>
               <form>
                 <div class="form-group">
                   <label for="name">Имя</label>
@@ -24,15 +24,14 @@
             </div>
             <div class="col-lg-6">
                 <div class="contact-information ml-lg-4">
-                  <h3 class = "text-lg-left text-center mb-md-3">Наши контакты</h3>
+                  <h3 class = "text-lg-left text-center mb-md-3 contact-information__heading">Свяжитесь с нами</h3>
                   <div class="contact-card mt-lg-4">
                     <span class = "circle-rounded">
                       <font-awesome-icon icon = "map-marker-alt"></font-awesome-icon>
                     </span>
                     <div class="contact-card-text">
-                      <b>Страна : Казахстан</b>
-                      <br />
-                      <span>г. Алматы ул. Назарбаева 145 </span>
+                      МУИТ - Международный Университет Информационных Технологий
+                      Манаса 14а, уг. ул. Жандосова
                     </div>
                   </div>
                   <div class="contact-card">
@@ -42,7 +41,7 @@
                     <div class="contact-card-text">
                       <b>Номер:</b>
                       <br />
-                      <a href="#" class = "contact-link">+7775874824</a>
+                      <a href="#" class = "contact-link">+7 (747) 123 4567</a>
                     </div>
                   </div>
                   <div class="contact-card">
@@ -52,7 +51,7 @@
                     <div class="contact-card-text">
                       <b>Email:</b>
                       <br />
-                      <a href="#" class = "contact-link">info@example.com</a>
+                      <a href="#" class = "contact-link">info@smartdos.com</a>
                     </div>
                   </div>
                 </div>
@@ -72,6 +71,12 @@ export default {
   .form-control{
     border:1px solid rgba(0,0,0,.15);
   }
+  .contact-information__heading{
+    color:rgba(0,0,0,.7);
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
   .contact-card{
     padding: 1.2em 1em;
     position: relative;
@@ -81,6 +86,7 @@ export default {
   }
   .contact-card-text{
     padding-left: 60px;
+    color:rgba(0,0,0,.7);
   }
   .circle-rounded{
     font-size: 27px;
@@ -95,7 +101,7 @@ export default {
     border-radius: 100px;
   }
   .contact-link{
-    color:#000;
+    color:inherit;
   }
   .contact-link:hover{
     text-decoration: none;

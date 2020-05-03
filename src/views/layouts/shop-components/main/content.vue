@@ -27,7 +27,7 @@
     z-index: -1;
     position: relative;
     flex: 5;
-    max-width: 70vw;
+    max-width: 75vw;
   }
 
   .content-top {
@@ -37,10 +37,10 @@
 
   .content-bottom {
     display: flex;
-    justify-content: space-between;
-    margin: 10px;
+    justify-content: center;
+    margin-top:10px;
     border: 1px solid #ccc;
-    padding: 20px 25px;
+    padding: 5px 15px;
   }
 
   .content-right {
@@ -51,7 +51,6 @@
   }
 
   .content-left {
-    margin: 0 10px;
     flex: 2;
     background: url("~@/assets/images/bg-1.jpeg") no-repeat;
     background-size: cover;
@@ -68,6 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: .8em;
   }
 </style>
 
