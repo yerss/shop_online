@@ -26,7 +26,7 @@
 <!--                    <font-awesome-icon icon = "user"></font-awesome-icon>-->
 <!--                  </div>-->
 <!--                </router-link>-->
-                <div class="profile pr-4" @click = "toggleProfileMenu" data-toggle = "dropdownProfile">
+                <div class="profile pr-4" @click = "toggle" data-toggle = "dropdownProfile">
                   <font-awesome-icon icon = "user" class = "mr-2" style = "font-size:1.3em;"></font-awesome-icon>
                   <span class="myProfile">Мой аккаунт</span>
                   <font-awesome-icon icon = "chevron-down" class = "ml-1" style = "font-size:.7em;"></font-awesome-icon>
@@ -59,12 +59,68 @@
                     </ul>
                   </div>
                 </div>
-                <router-link tag = "div" class="basket" :to = "{name:'cart'}" >
-                  <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
-                  <div class="cart-product-count">
-                    <span>{{CART.length}}</span>
+                <div class="basket">
+                  <div class="basket__inner" @click = "toggle" data-toggle = "basketDropdown">
+                    <font-awesome-icon icon = "shopping-cart"></font-awesome-icon>
+                    <div class="cart-product-count">
+                      <span>{{CART.length}}</span>
+                    </div>
                   </div>
-                </router-link>
+                  <div class="basket-dropdown" id = "basketDropdown">
+                    <div class="basket-dropdown__header">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-6 py-0">
+                            <div class="basket-dropdown__title text-left">Корзина</div>
+                          </div>
+                          <div class="col-6 py-0">
+                            <div class="basket-dropdown__close text-right">
+                              <span @click = "hideCart" ><font-awesome-icon icon = "times" class = "basket-dropdown__close-icon" /></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="basket-dropdown__content" v-if = "CART.length">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-12 py-0">
+                            <div class="basket-dropdown__item">
+                              <div class="basket-dropdown__item-inner">
+                                <div class="basket-dropdown__img">
+                                  <img src="https://www.technodom.kz/media/catalog/product/cache/79d62b5a17d20b122cb8cbf050cc7241/4/b/4b99f3c534631c7da597ae0b47eccbc07f0514ba_213588_1.jpg" alt="">
+                                </div>
+                                <p class="basket-dropdown__text">
+                                  Смартфон GSM Samsung SM-A515FZKWSKZ THX-6.5-48-4 Galaxy A51 128Gb Black
+                                </p>
+                                <p class="basket-dropdown__price">117 290 ₸</p>
+                              </div>
+                              <div class="basket-tools">
+                                <div class="basket-tools__count">
+                                  <input type="number" value = "1" @change = "changeCount">
+                                </div>
+                                <div class="basket-tools__actions">
+                                  <span><font-awesome-icon class = "basket-tools__icon-1" icon = "eye" /></span>
+                                  <span><font-awesome-icon class = "basket-tools__icon-2" icon = "trash-alt"/></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-else class = "basket-dropdown__empty">У вас нет товаров в корзине</div>
+                    <div class="basket-dropdown__footer">
+                      <div class="basket-dropdown__total">
+                        <span>3 товара на сумму</span>
+                        <span>351 870 ₸</span>
+                      </div>
+                      <div class="basket-dropdown__btn">
+                        <span  @click = "hideCart"><router-link tag = "button" :to = "{name:'cart'}" class = "btn btn-success w-100">Перейти в корзину</router-link></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
           </div>
         </div>
@@ -137,10 +193,19 @@ export default {
     ...mapActions([
       'LOG_OUT'
     ]),
-    toggleProfileMenu (e) {
+    changeCount (e) {
+
+    },
+    toggle (e) {
       let dropdownId = e.currentTarget.dataset.toggle
       let dropdown = document.getElementById(dropdownId)
+      if (dropdown.classList.contains('hide')) dropdown.classList.remove('hide')
       if (dropdown) dropdown.classList.toggle('show')
+    },
+    hideCart (e) {
+      let hideElement = document.querySelector('#basketDropdown')
+      if (!hideElement.classList.contains('hide')) hideElement.classList.add('hide')
+      if (hideElement.classList.contains('show')) hideElement.classList.remove('show')
     }
   },
   computed: {
@@ -245,7 +310,6 @@ export default {
      .basket{
        box-sizing: border-box;
        border-radius: 1.5em;
-       padding: .8em;
        border:1px solid rgba(0,0,0,.3);
        cursor:pointer;
        width: 48px;
@@ -253,15 +317,6 @@ export default {
        background-color:#fff;
        margin-left: .2em;
        position: relative;
-       &:hover{
-         background-color:$blue;
-         border: 1px solid #fff;
-         color:#fff;
-         transition: .3s all ease-in;
-         span{
-           color:#000;
-         }
-       }
      }
      .cart-product-count{
        position: absolute;
@@ -304,4 +359,119 @@ export default {
        }
      }
    }
+   .basket__inner{
+     padding: .8em;
+   }
+  .basket-dropdown{
+    position: absolute;
+    top:60px;
+    left:-130px;
+    width: 320px;
+    height:auto;
+    background-color: #fff;
+    z-index: 1000;
+    border:1px solid rgba(0,0,0,.1);
+    border-radius: 3px;
+    transition: .2s opacity linear;
+    opacity: 0;
+  }
+  .basket-dropdown.show{
+    z-index: 1;
+    opacity: 1;
+  }
+   .basket-dropdown.hide{
+     z-index: 1000;
+     opacity: 0;
+   }
+  .basket-dropdown__header{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .basket-dropdown__title{
+    font-size: 13px;
+    font-weight: 600;
+    color:rgba(0,0,0,.6)
+  }
+  .basket-dropdown__close-icon{
+    font-weight:200;
+    font-size: 16px;
+  }
+  .basket-dropdown__content{
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  .basket-dropdown__item{
+    box-sizing: border-box;
+    padding: 10px 0 5px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .basket-dropdown__item-inner{
+    display: flex;
+  }
+  .basket-dropdown__img{
+    width: 20%;
+  }
+  .basket-dropdown__img img{
+    max-width: 60px;
+    height: auto;
+  }
+  .basket-dropdown__text{
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.2;
+    overflow: hidden;
+    padding:0 12px 0 18px;
+    box-sizing: border-box;
+    width: 50%;
+  }
+  .basket-dropdown__price{
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: 30%;
+    padding:0 12px;
+  }
+  .basket-dropdown__empty{
+    padding: 12px;
+    font-size: 11px;
+    background-color: #f4f4f4;
+  }
+  .basket-tools{
+    display: flex;
+    padding: 5px 0;
+  }
+  .basket-tools__count{
+    width:50%;
+    padding: 0 25px;
+  }
+  .basket-tools__count input {
+    width: 40px;
+  }
+  .basket-tools__actions{
+    width: 50%;
+    text-align: right;
+    padding:0 25px;
+  }
+  .basket-tools__icon-1{
+    margin-right: 5px;
+    color:darkblue;
+  }
+  .basket-tools__icon-2{
+    color:orangered;
+  }
+  .basket-dropdown__total{
+    display: flex;
+    padding: 10px 30px 12px 12px;
+    font-size: 12px;
+  }
+  .basket-dropdown__total span{
+    display:block;
+    width: 50%;
+  }
+  .basket-dropdown__total span:last-child{
+    font-weight: 700;
+    text-align: right;
+  }
+  .basket-dropdown__btn{
+    padding:7px 12px 12px;
+  }
 </style>
