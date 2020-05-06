@@ -51,7 +51,7 @@
                <div class="col-lg-6">
                     <div class="statistics__item">
                       <div class="statistics__wrapper">
-                        <div class="statistics__progress" style = "width:90%">
+                        <div class="statistics__progress statistics__progress--1" style = "width:90%">
                             Смартфоны
                         </div>
                       </div>
@@ -63,7 +63,7 @@
                     </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:80%">
+                     <div class="statistics__progress statistics__progress--2" style = "width:80%">
                        Чехлы для телефонов
                      </div>
                    </div>
@@ -75,7 +75,7 @@
                  </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:95%">
+                     <div class="statistics__progress statistics__progress--3" style = "width:95%">
                        Бытовая техника
                      </div>
                    </div>
@@ -87,7 +87,7 @@
                  </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:75%">
+                     <div class="statistics__progress statistics__progress--4" style = "width:75%">
                        Обувь
                      </div>
                    </div>
@@ -101,7 +101,7 @@
                <div class="col-lg-6">
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:90%">
+                     <div class="statistics__progress statistics__progress--1" style = "width:90%">
                        Мужская одежда
                      </div>
                    </div>
@@ -113,7 +113,7 @@
                  </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:80%">
+                     <div class="statistics__progress statistics__progress--2" style = "width:80%">
                        Косметика
                      </div>
                    </div>
@@ -125,7 +125,7 @@
                  </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:95%">
+                     <div class="statistics__progress statistics__progress--3" style = "width:95%">
                        Часы
                      </div>
                    </div>
@@ -137,7 +137,7 @@
                  </div>
                  <div class="statistics__item">
                    <div class="statistics__wrapper">
-                     <div class="statistics__progress" style = "width:75%">
+                     <div class="statistics__progress statistics__progress--4" style = "width:75%">
                        Автотовары
                      </div>
                    </div>
@@ -255,6 +255,22 @@ export default {
     color:#fff;
     font-weight: 400;
   }
+  .statistics__progress--1{
+    animation-name: increase1;
+    animation-duration: 3s;
+  }
+  .statistics__progress--2{
+    animation-name: increase2;
+    animation-duration: 3s;
+  }
+  .statistics__progress--3{
+    animation-name: increase3;
+    animation-duration: 3s;
+  }
+  .statistics__progress--4{
+    animation-name: increase4;
+    animation-duration: 3s;
+  }
   .statistics__circle{
     position: absolute;
     top:13.5px;
@@ -272,5 +288,21 @@ export default {
   .statictics__index{
     font-size:.9em;
     text-align: center;
+  }
+  @keyframes increase1 {
+    0% {width:0;}
+    100% {width:90%}
+  }
+  @keyframes increase2 {
+    0% {width:0;}
+    100% {width:80%}
+  }
+  @keyframes increase3 {
+    0% {width:0;}
+    100% {width:95%}
+  }
+  @keyframes increase4 {
+    0% {width:0;}
+    100% {width:75%}
   }
 </style>
