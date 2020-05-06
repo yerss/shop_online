@@ -1,8 +1,8 @@
 <template>
     <section class="payment">
-      <div class="container pt-0">
+      <div class="container">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 pb-0">
             <app-breadcrumbs :items = "items"></app-breadcrumbs>
           </div>
           <div class="col-12 pt-0">

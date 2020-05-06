@@ -2,7 +2,7 @@
     <section class="about">
         <div class="container">
           <div class="row">
-            <div class="col-12 pt-0">
+            <div class="col-12">
               <app-breadcrumbs :items="items"></app-breadcrumbs>
             </div>
               <div class="col-md-6">

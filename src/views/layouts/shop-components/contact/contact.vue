@@ -1,8 +1,8 @@
 <template>
     <section class="contact">
-        <div class="container pt-0">
+        <div class="container">
           <div class="row">
-            <div class="col-12 mb-2">
+            <div class="col-12">
                 <app-breadcrumbs :items = "items"></app-breadcrumbs>
             </div>
             <div class="col-lg-6">

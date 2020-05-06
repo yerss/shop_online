@@ -239,6 +239,10 @@ export default {
       border-radius: .5em;
       padding: .4em 1.5em;
       font-size: .8em;
+      border:1px solid transparent;
+      &:focus{
+        border:1px solid rgba(0,0,139,.5);
+      }
     }
     .search-btn {
       position: absolute;
@@ -307,17 +311,6 @@ export default {
          display: block;
        }
      }
-     .basket{
-       box-sizing: border-box;
-       border-radius: 1.5em;
-       border:1px solid rgba(0,0,0,.3);
-       cursor:pointer;
-       width: 48px;
-       height: 48px;
-       background-color:#fff;
-       margin-left: .2em;
-       position: relative;
-     }
      .cart-product-count{
        position: absolute;
        top:-5px;
@@ -359,8 +352,29 @@ export default {
        }
      }
    }
+   .basket{
+     position: relative;
+   }
    .basket__inner{
      padding: .8em;
+     box-sizing: border-box;
+     border-radius: 1.5em;
+     border:1px solid rgba(0,0,0,.3);
+     cursor:pointer;
+     width: 48px;
+     height: 48px;
+     background-color:#fff;
+     margin-left: .2em;
+     transition: .5s background-color linear;
+   }
+   .basket__inner:hover{
+     border:1px solid #fff;
+     background-color: $blue;
+   }
+   .basket__inner:hover .basket{
+     background-color: $blue;
+     border:1px solid rgba(0,0,0,.1);
+
    }
   .basket-dropdown{
     position: absolute;
@@ -391,6 +405,7 @@ export default {
   .basket-dropdown__close-icon{
     font-weight:200;
     font-size: 16px;
+    cursor: pointer;
   }
   .basket-dropdown__content{
     max-height: 290px;
