@@ -364,24 +364,21 @@ export default {
    }
   .basket-dropdown{
     position: absolute;
-    top:60px;
     left:-130px;
     width: 320px;
     height:auto;
     background-color: #fff;
-    z-index: 1000;
     border:1px solid rgba(0,0,0,.1);
     border-radius: 3px;
-    transition: .2s opacity linear;
-    opacity: 0;
+    transition: .5s all linear;
+    top:-1000px;
+    z-index: 1;
   }
   .basket-dropdown.show{
-    z-index: 1;
-    opacity: 1;
+    top:60px;
   }
    .basket-dropdown.hide{
-     z-index: 1000;
-     opacity: 0;
+     top:-1000px;
    }
   .basket-dropdown__header{
     border-bottom: 1px solid rgba(0,0,0,.1);
@@ -396,7 +393,7 @@ export default {
     font-size: 16px;
   }
   .basket-dropdown__content{
-    max-height: 200px;
+    max-height: 290px;
     overflow-y: scroll;
   }
   .basket-dropdown__item{
