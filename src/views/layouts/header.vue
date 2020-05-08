@@ -388,6 +388,16 @@ export default {
     top:-1000px;
     z-index: 1;
   }
+  .basket-dropdown::after{
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left:50%;
+    transform: translateX(-50%);
+    border-width: 9px;
+    border-style: solid;
+    border-color:transparent transparent white transparent;
+  }
   .basket-dropdown.show{
     top:60px;
   }
