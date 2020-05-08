@@ -140,6 +140,9 @@ export default {
 </script>
 
 <style scoped>
+  .product-catalog{
+    margin-bottom: 50px;
+  }
   .product-filters__item{
     border:1px solid rgba(0,0,0,.1);
     padding: 10px;
