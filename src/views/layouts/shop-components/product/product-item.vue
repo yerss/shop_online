@@ -1,35 +1,4 @@
 <template>
-<!--  <v-flex sm3 class="mr-3">-->
-<!--    <v-card>-->
-<!--      <v-img-->
-<!--        class="white&#45;&#45;text align-end"-->
-<!--        height="250px"-->
-<!--        :src="product_data.image"-->
-<!--      >-->
-<!--      </v-img>-->
-<!--      <v-card-text class="text&#45;&#45;primary">-->
-<!--        <div>{{product_data.price}}</div>-->
-
-<!--        <div>{{product_data.alias}}</div>-->
-<!--      </v-card-text>-->
-<!--      <v-card-actions>-->
-<!--        <v-btn-->
-<!--          color="orange"-->
-<!--          text-->
-<!--          @click="ADD_ITEM_TO_CART(product_data)"-->
-<!--        >-->
-<!--          ADD TO CART-->
-<!--        </v-btn>-->
-
-<!--        <v-btn-->
-<!--          color="orange"-->
-<!--          text-->
-<!--        >-->
-<!--          LIKE-->
-<!--        </v-btn>-->
-<!--      </v-card-actions>-->
-<!--    </v-card>-->
-<!--  </v-flex>-->
   <div class="product-item">
     <div class="product-item__img">
       <img :src="product_data.image" alt="img">

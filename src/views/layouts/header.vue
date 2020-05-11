@@ -85,23 +85,20 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-12 py-0">
-                            <div class="basket-dropdown__item">
+                            <div class="basket-dropdown__item" v-for="(item, index) in CART" :key="index">
                               <div class="basket-dropdown__item-inner">
                                 <div class="basket-dropdown__img">
-                                  <img src="https://www.technodom.kz/media/catalog/product/cache/79d62b5a17d20b122cb8cbf050cc7241/4/b/4b99f3c534631c7da597ae0b47eccbc07f0514ba_213588_1.jpg" alt="">
+                                  <img :src="item.image" alt="">
                                 </div>
                                 <p class="basket-dropdown__text">
-                                  Смартфон GSM Samsung SM-A515FZKWSKZ THX-6.5-48-4 Galaxy A51 128Gb Black
+                                  {{item.alias}}
                                 </p>
-                                <p class="basket-dropdown__price">117 290 ₸</p>
+                                <p class="basket-dropdown__price">{{item.price}}</p>
                               </div>
                               <div class="basket-tools">
-                                <div class="basket-tools__count">
-                                  <input type="number" value = "1" @change = "changeCount">
-                                </div>
                                 <div class="basket-tools__actions">
-                                  <span><font-awesome-icon class = "basket-tools__icon-1" icon = "eye" /></span>
-                                  <span><font-awesome-icon class = "basket-tools__icon-2" icon = "trash-alt"/></span>
+                                  <span><font-awesome-icon class = "basket-tools__icon-1" :icon = "['far','eye']"></font-awesome-icon></span>
+                                  <span @click="DELETE_ITEM_FROM_CART(item.id)"><font-awesome-icon class = "basket-tools__icon-2" :icon = "['far','trash-alt']"/></span>
                                 </div>
                               </div>
                             </div>
@@ -112,8 +109,8 @@
                     <div v-else class = "basket-dropdown__empty">У вас нет товаров в корзине</div>
                     <div class="basket-dropdown__footer">
                       <div class="basket-dropdown__total">
-                        <span>3 товара на сумму</span>
-                        <span>351 870 ₸</span>
+                        <span>{{CART.length}} товара на сумму</span>
+                        <span>{{cartTotal}}</span>
                       </div>
                       <div class="basket-dropdown__btn">
                         <span  @click = "hideCart"><router-link tag = "button" :to = "{name:'cart'}" class = "btn btn-success w-100">Перейти в корзину</router-link></span>
@@ -191,10 +188,10 @@ export default {
   },
   methods: {
     ...mapActions([
-      'LOG_OUT'
+      'LOG_OUT',
+      'DELETE_ITEM_FROM_CART'
     ]),
     changeCount (e) {
-
     },
     toggle (e) {
       let dropdownId = e.currentTarget.dataset.toggle
@@ -211,7 +208,21 @@ export default {
   computed: {
     ...mapGetters([
       'CART', 'isAuthenticated'
-    ])
+    ]),
+    cartTotal () {
+      if (this.CART.length) {
+        let total = []
+        for (let item of this.CART) {
+          total.push(item.price * item.quantity)
+        }
+        total = total.reduce(function (sum, el) {
+          return sum + el
+        })
+        return total
+      } else {
+        return 0
+      }
+    }
   }
 }
 </script>
@@ -476,9 +487,11 @@ export default {
   .basket-tools__icon-1{
     margin-right: 5px;
     color:darkblue;
+    cursor: pointer;
   }
   .basket-tools__icon-2{
     color:orangered;
+    cursor: pointer;
   }
   .basket-dropdown__total{
     display: flex;

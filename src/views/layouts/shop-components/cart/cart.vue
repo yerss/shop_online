@@ -17,27 +17,10 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="products__inner">
-                    <div class="products__content">
-                      <ul class="list">
-                        <li class="list-item">
-                          <div class="list-item__img">
-                            <img src="https://www.technodom.kz/media/catalog/product/cache/1366e688ed42c99cd6439df4031862c6/a/9/a94b45e151407d7f4f5366b86866826fa88137e6_9505290387486.jpg" alt="">
-                          </div>
-                          <div class="list-item__text">
-                            Смартфон GSM Samsung SM-A515FZKWSKZ THX-6.5-48-4 Galaxy A51 128Gb Black
-                          </div>
-                        </li>
-                        <li class="list-item">
-                          <input type="number" class = "form-control" value = "1">
-                        </li>
-                        <li class="list-item">
-                          <span><font-awesome-icon class = "list-item__icon-1" icon = "eye" /></span>
-                          <span><font-awesome-icon class = "list-item__icon-2" icon = "trash-alt"/></span>
-                        </li>
-                        <li class="list-item">15400</li>
-                      </ul>
-                    </div>
+                  <div v-for="(item, index) in CART" :key="index">
+                    <cart-item
+                      :item_data="item"
+                    />
                   </div>
                 </div>
                 <div v-else class = "empty">
@@ -50,11 +33,11 @@
               <div class="sumaries">
                 <div class="sumaries__inner py-1">
                   <div class="sumaries__text">Количество товаров:</div>
-                  <div class="sumaries__count">123</div>
+                  <div class="sumaries__count">{{CART.length}}</div>
                 </div>
                 <div class="sumaries__inner pt-2 pb-1">
                   <div class="sumaries__text">Сумма к оплате</div>
-                  <div class="sumaries__price">13556</div>
+                  <div class="sumaries__price">{{cartTotal}}</div>
                 </div>
                 <div class="row">
                   <div class="col-12">
@@ -72,6 +55,7 @@
 <script>
 import appBreadcrumbs from '../breadcrumbs'
 import {mapGetters} from 'vuex'
+import cartItem from './cart-item'
 
 export default {
   name: 'cart',
@@ -95,10 +79,25 @@ export default {
   computed: {
     ...mapGetters([
       'CART'
-    ])
+    ]),
+    cartTotal () {
+      if (this.CART.length) {
+        let total = []
+        for (let item of this.CART) {
+          total.push(item.price * item.quantity)
+        }
+        total = total.reduce(function (sum, el) {
+          return sum + el
+        })
+        return total
+      } else {
+        return 0
+      }
+    }
   },
   components: {
-    appBreadcrumbs
+    appBreadcrumbs,
+    cartItem
   },
   created () {
 

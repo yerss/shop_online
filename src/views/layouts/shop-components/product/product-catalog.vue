@@ -66,14 +66,13 @@
                 <div class="product-list__icons">
                   <span><font-awesome-icon icon = "th" class="product-list__icons--1 active" /></span>
                 </div>
-                <div class="product-list__text">There Are 12 Products</div>
+                <div class="product-list__text">There Are {{CATEGORY_PRODUCTS.length}} Products</div>
                 <div class="sorting">
                   <strong>Sort By:</strong>
                   <div class="sorting__main" data-toggle = "sortingDropdown">
                     <span>Relevance</span>
                   </div>
                   <div class="sorting__dropdown" id = "sortingDropdown">
-
                   </div>
                 </div>
               </div>
