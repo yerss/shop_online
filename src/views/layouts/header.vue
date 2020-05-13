@@ -397,7 +397,7 @@ export default {
     border-radius: 3px;
     transition: .5s all linear;
     top:-1000px;
-    z-index: 1;
+    z-index: 1000;
   }
   .basket-dropdown::after{
     content:'';
@@ -480,7 +480,7 @@ export default {
     width: 40px;
   }
   .basket-tools__actions{
-    width: 50%;
+    width: 100%;
     text-align: right;
     padding:0 25px;
   }

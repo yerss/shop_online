@@ -41,6 +41,7 @@ import profileSettings from '../views/layouts/shop-components/profile/profile-se
 import cart from '../views/layouts/shop-components/cart/cart'
 import payment from '../views/layouts/shop-components/payment/payment'
 import about from '../views/layouts/shop-components/about/about'
+import shopProductDetail from '../views/layouts/shop-components/product/product-detail'
 Vue.use(Router)
 
 const ifAdmin = (to, from, next) => {
@@ -224,6 +225,11 @@ let router = new Router({
       path: '/about',
       name: 'about',
       component: about
+    },
+    {
+      path: '/products/:id/detail',
+      name: 'productDetail',
+      component: shopProductDetail
     }
     /* {
       path: '/login',
