@@ -1,6 +1,6 @@
 <template>
 <section class="cart mx-5">
-    <div class="container">
+    <div class="container" data-app>
         <div class="data">
           <div class="row">
             <div class="col-lg-8">
@@ -41,7 +41,50 @@
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <button class="btn btn-success w-100 mt-4" :disabled="CART.length">Оформить</button>
+                    <v-dialog v-model="dialog" persistent max-width="600px">
+                      <template v-slot:activator="{ on }">
+                        <button class="btn btn-success w-100 mt-4" v-on="on">Оформить</button>
+                      </template>
+                      <v-card>
+                        <v-card-title>
+                          <span class="headline">Address Data</span>
+                        </v-card-title>
+                        <v-card-text>
+                          <v-container>
+                            <v-row>
+                              <v-col cols="12" sm="9">
+                                <v-text-field label="Address*" type="text" required v-model="order.address"></v-text-field>
+                              </v-col>
+                              <v-col cols="12" sm="3">
+                                <v-text-field label="Zip code*" type="text" required v-model="order.zip_code"></v-text-field>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-text-field label="Full name*" type="text" required v-model="order.full_name"></v-text-field>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-text-field label="Phone number*" type="text" required v-model="order.telephone_number"></v-text-field>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-select
+                                  :items="cities"
+                                  item-value="id"
+                                  item-text="name"
+                                  label="City*"
+                                  v-model="order.city_id"
+                                  required
+                                ></v-select>
+                              </v-col>
+                            </v-row>
+                          </v-container>
+                          <small>*indicates required field</small>
+                        </v-card-text>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn color="blue darken-1" text @click="dialog = false">Отменить</v-btn>
+                          <v-btn color="blue darken-1" text type="submit" @click="orderProducts">Отправить</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
                   </div>
                 </div>
               </div>
@@ -54,13 +97,45 @@
 
 <script>
 import appBreadcrumbs from '../breadcrumbs'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import cartItem from './cart-item'
 
 export default {
   name: 'cart',
   data: function () {
     return {
+      order: {
+        city_id: '',
+        zip_code: '',
+        address: '',
+        full_name: '',
+        note: 'none',
+        telephone_number: '',
+        products: []
+      },
+      dialog: false,
+      cities: [
+        {
+          id: 1,
+          name: 'Нур-Султан'
+        },
+        {
+          id: 2,
+          name: 'Атбасар'
+        },
+        {
+          id: 3,
+          name: 'Акшимрау'
+        },
+        {
+          id: 4,
+          name: 'Алматы'
+        },
+        {
+          id: 5,
+          name: 'Атырау'
+        }
+      ],
       count: 0,
       items: [
         {
@@ -74,6 +149,23 @@ export default {
           href: ''
         }
       ]
+    }
+  },
+  methods: {
+    ...mapActions([
+      'USER_ORDER'
+    ]),
+    orderProducts () {
+      this.dialog = false
+      for (let i = 0; i < this.CART.length; i++) {
+        let p = {
+          id: this.CART[i].id,
+          pieces: this.CART[i].quantity
+        }
+        this.order.products.push(p)
+      }
+      console.log(this.order)
+      this.USER_ORDER(this.order)
     }
   },
   computed: {
