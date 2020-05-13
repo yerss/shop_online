@@ -6,17 +6,17 @@
       </div>
       <div class="content-bottom">
         <div class="bottom-item">
-          <font-awesome-icon :icon="['far','award']" class="pointer fa-3x mx-3"/>
+          <font-awesome-icon icon="award" class="pointer fa-3x mx-3"/>
           <span><b>Крупнейшая торговая<br> площадка Казахстана</b></span><span class="bottom-item__divider"></span></div>
         <div class="bottom-item">
-          <font-awesome-icon :icon="['far','shopping-cart']" class="pointer fa-3x mx-3"/>
+          <font-awesome-icon icon="shopping-cart" class="pointer fa-3x mx-3"/>
           <span><b>Можно купить все</b><br>10&nbsp;966&nbsp;353 товаров и услуг</span><span
           class="bottom-item__divider"></span></div>
         <div class="bottom-item">
-          <font-awesome-icon :icon="['far','dollar-sign']" class="pointer fa-3x mx-3"/>
+          <font-awesome-icon icon="dollar-sign" class="pointer fa-3x mx-3"/>
           <span><b>Лучшие цены</b><br>Найдите дешевле</span><span class="bottom-item__divider"></span></div>
         <div class="bottom-item">
-          <font-awesome-icon :icon="['far','thumbs-up']" class="pointer fa-3x mx-3"/>
+          <font-awesome-icon icon="thumbs-up" class="pointer fa-3x mx-3"/>
           <span><b>Проверенные продавцы</b><br>Рейтинг по отзывам</span></div>
       </div>
   </div>

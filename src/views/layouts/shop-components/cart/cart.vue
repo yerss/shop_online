@@ -81,7 +81,7 @@
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn color="blue darken-1" text @click="dialog = false">Отменить</v-btn>
-                          <v-btn color="blue darken-1" text @click="orderProducts">Отправить</v-btn>
+                          <v-btn color="blue darken-1" text type="submit" @click="orderProducts">Отправить</v-btn>
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
@@ -97,7 +97,7 @@
 
 <script>
 import appBreadcrumbs from '../breadcrumbs'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import cartItem from './cart-item'
 
 export default {
@@ -109,8 +109,9 @@ export default {
         zip_code: '',
         address: '',
         full_name: '',
+        note: 'none',
         telephone_number: '',
-        product: []
+        products: []
       },
       dialog: false,
       cities: [
@@ -151,6 +152,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'USER_ORDER'
+    ]),
     orderProducts () {
       this.dialog = false
       for (let i = 0; i < this.CART.length; i++) {
@@ -158,15 +162,15 @@ export default {
           id: this.CART[i].id,
           pieces: this.CART[i].quantity
         }
-        this.order.product.push(p)
+        this.order.products.push(p)
       }
-      this.ORDER(this.order)
+      console.log(this.order)
+      this.USER_ORDER(this.order)
     }
   },
   computed: {
     ...mapGetters([
-      'CART',
-      'ORDER'
+      'CART'
     ]),
     cartTotal () {
       if (this.CART.length) {

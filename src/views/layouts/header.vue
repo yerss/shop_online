@@ -144,11 +144,9 @@
                 </li>
                 <li class = "nav-item"><router-link :to = "{name:'contact'}" tag="a">Контакты</router-link></li>
                 <li class = "nav-item" v-if="(user_role === 'admin') && isAuthenticated">
-                  <a href="#">
-                    <router-link :to="{name: 'admin'}">
-                     Admin Panel
-                    </router-link>
-                  </a>
+                  <router-link :to="{name: 'admin'}">
+                    Admin Panel
+                  </router-link>
                 </li>
                 <li class = "nav-item" v-if="(user_role === 'moderator')">
                   <a href="#">
