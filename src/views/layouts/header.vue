@@ -12,7 +12,7 @@
             <div class="header-search">
               <input type="search" class = "header-search-input" placeholder="Поиск...">
               <div class="search-btn">
-                <button><font-awesome-icon icon = "search"></font-awesome-icon></button>
+                <button><font-awesome-icon icon="search"></font-awesome-icon></button>
               </div>
             </div>
           </div>
@@ -27,9 +27,9 @@
 <!--                  </div>-->
 <!--                </router-link>-->
                 <div class="profile pr-4" @click = "toggle" data-toggle = "dropdownProfile">
-                  <font-awesome-icon icon = "user" class = "mr-2" style = "font-size:1.3em;"></font-awesome-icon>
+                  <font-awesome-icon icon="user" class = "mr-2" style = "font-size:1.3em;"></font-awesome-icon>
                   <span class="myProfile">Мой аккаунт</span>
-                  <font-awesome-icon icon = "chevron-down" class = "ml-1" style = "font-size:.7em;"></font-awesome-icon>
+                  <font-awesome-icon icon="chevron-down" class = "ml-1" style = "font-size:.7em;"></font-awesome-icon>
                   <div class="dropdown-profile">
                     <ul class = "dropdown-profile-menu" id= "dropdownProfile">
                       <div v-if="!isAuthenticated">

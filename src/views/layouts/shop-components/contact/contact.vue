@@ -49,7 +49,7 @@
                   </div>
                   <div class="contact-card">
                       <span class = "circle-rounded">
-                        <font-awesome-icon icon = "envelope-open-text"></font-awesome-icon>
+                        <font-awesome-icon icon="envelope-open-text"></font-awesome-icon>
                       </span>
                     <div class="contact-card-text">
                       <b>Email:</b>
