@@ -119,7 +119,7 @@ export default {
       const images = document.querySelectorAll('#images .images__item')
       for (let i = 0; i < mainImages.length; i++) {
         if (mainImages[i].classList.contains('active'))mainImages[i].classList.remove('active')
-        if (images[i].classList.contains('active')) images[i].classList.remove('active');
+        if (images[i].classList.contains('active')) images[i].classList.remove('active')
       }
       mainImages[index].classList.add('active')
       images[index].classList.add('active')
