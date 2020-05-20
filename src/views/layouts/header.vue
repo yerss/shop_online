@@ -129,6 +129,9 @@
           <div class="col-12 p-0">
             <nav>
               <ul class="header-nav">
+                <li class = "nav-toggle-wrapper" id = "toggle">
+                  <button class = "nav-toggle"></button>
+                </li>
                 <li class = "nav-item">
                   <router-link :to="{name: 'main'}" tag = "a" exact>
                     Главная страница
@@ -174,6 +177,17 @@ export default {
       isOpen: false
     }
   },
+  mounted () {
+    const li = document.getElementById('toggle')
+    const btn = li.children[0]
+    const lies = document.querySelectorAll('.nav-item')
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('pressed')
+      for (let li of lies) {
+        li.classList.toggle('active')
+      }
+    })
+  },
   directives: {
     'font': {
       bind (el, binding) {
@@ -189,8 +203,6 @@ export default {
       'LOG_OUT',
       'DELETE_ITEM_FROM_CART'
     ]),
-    changeCount (e) {
-    },
     toggle (e) {
       let dropdownId = e.currentTarget.dataset.toggle
       let dropdown = document.getElementById(dropdownId)
@@ -341,15 +353,21 @@ export default {
        list-style: none;
        text-align: center;
        margin-bottom:0;
+       min-height: 40px;
+       position: relative;
        .nav-item{
          flex:1;
          height: 40px;
+         &.active{
+           display: block;
+         }
        }
        a{
          display: block;
          padding: .5em 0;
          color:rgba(0,0,0,.8);
          text-decoration: none;
+         border-bottom: 2px solid transparent;
          &:hover{
            border-bottom: 2px solid #f5c002;
            min-height: 38px;
@@ -358,6 +376,45 @@ export default {
        }
        a.active{
          border-bottom: 2px solid #f5c002;
+       }
+     }
+   }
+
+   .nav-toggle-wrapper{
+     height:40px ;
+   }
+   .nav-toggle{
+     margin-left: auto;
+     display: none;
+     text-align: right;
+     width: 20px;
+     height: 3px;
+     background-color: lighten(#000,30%);
+     position: relative;
+     top:18px;
+     &::after,
+     &::before{
+       content:'';
+       position: absolute;
+       width: 20px;
+       height: 3px;
+       background-color: lighten(#000,30%);
+       left: 0;
+     }
+     &::after{
+       bottom: -6px;
+     }
+     &::before{
+       top:-6px;
+     }
+     &.pressed{
+       width: 0;
+       &::before{
+         transform: rotateZ(45deg) translate(-9px,19px);
+       }
+       &::after{
+         transform: rotateZ(135deg) translate(10px,17px);
+
        }
      }
    }
@@ -506,5 +563,36 @@ export default {
   }
   .basket-dropdown__btn{
     padding:7px 12px 12px;
+  }
+  @media screen and (max-width:992px){
+    .header-nav-wrapper{
+      .header-nav{
+        flex-direction: column;
+        padding: 0 25px;
+        li{
+          display: none;
+          text-align: left;
+          a:hover{
+            background-color: transparent;
+          }
+          &.nav-toggle-wrapper{
+            display: block;
+          }
+        }
+        .nav-toggle{
+          display: block;
+        }
+        .nav-toggle{
+          display: block;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 576px){
+    .header-nav-wrapper{
+      .header-nav{
+        padding: 0 35px;
+      }
+    }
   }
 </style>
