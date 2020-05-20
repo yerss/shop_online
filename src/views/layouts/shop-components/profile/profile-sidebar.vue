@@ -11,12 +11,12 @@
           <a href = "#" class="shop-sidebar__link">Личные данные</a>
         </router-link>
 
-        <router-link tag = "li" to = "" class="shop-sidebar__item">
+        <li class="shop-sidebar__item" @click = "toCart">
           <font-awesome-icon  class = "shop-sidebar__icon"  :icon = "['fas','shopping-cart']"></font-awesome-icon>
           <a href="#" class="shop-sidebar__link">Текущая корзина</a>
-        </router-link>
+        </li>
 
-        <router-link tag = "li" to = "" class="shop-sidebar__item">
+        <router-link tag = "li" :to = "{name:'profile-orders'}" class="shop-sidebar__item">
           <font-awesome-icon  class = "shop-sidebar__icon"  :icon = "['fas','list-ul']"></font-awesome-icon>
           <a href="#" class="shop-sidebar__link">Все заказы</a>
         </router-link>
@@ -36,7 +36,12 @@
 
 <script>
 export default {
-  name: 'profile-sidebar'
+  name: 'profile-sidebar',
+  methods: {
+    toCart (e) {
+      this.$router.push('/cart')
+    }
+  }
 
 }
 </script>
