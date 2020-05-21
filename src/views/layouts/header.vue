@@ -181,7 +181,7 @@ export default {
     const li = document.getElementById('toggle')
     const btn = li.children[0]
     const lies = document.querySelectorAll('.nav-item')
-    btn.addEventListener('click', () => {
+    li.addEventListener('click', () => {
       btn.classList.toggle('pressed')
       for (let li of lies) {
         li.classList.toggle('active')
