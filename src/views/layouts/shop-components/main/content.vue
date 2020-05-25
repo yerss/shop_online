@@ -16,7 +16,7 @@
             <img src="https://99px.ru/sstorage/53/2013/07/tmb_74052_5104.jpg" alt="">
           </div>
           <div class="slider__item">
-            <img src="https://lh3.googleusercontent.com/proxy/X0-dFKNTYredT48qZukzL7i_EY34dNWzYK_Gnfn4vdwo0wFZMNcehuvaXNUXBGgLAyN-jmmQjS12vfl0xI-TIj3lSqhCxHy1kQsM" alt="">
+            <img src="https://postfactum.pro/wp-content/uploads/2020/01/img_5e199449f19e2.png" alt="">
           </div>
         </div>
       </div>
@@ -85,8 +85,8 @@
       transform: translateY(-50%) rotate(-135deg);
       width: 20px;
       height: 20px;
-      border-top:2px solid darken(#fff,65%);
-      border-right: 2px solid darken(#fff,65%);
+      border-top:2px solid darken(#fff,15%);
+      border-right: 2px solid darken(#fff,15%);
       z-index: 2;
       cursor: pointer;
       transition: .2s border linear;

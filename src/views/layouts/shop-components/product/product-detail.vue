@@ -341,4 +341,9 @@ export default {
   .information__text.active{
     display: block;
   }
+  @media screen and (max-width:576px){
+    .information__header{
+      flex-direction: column;;
+    }
+  }
 </style>

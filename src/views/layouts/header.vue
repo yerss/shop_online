@@ -444,7 +444,7 @@ export default {
    }
   .basket-dropdown{
     position: absolute;
-    left:-130px;
+    right:0;
     width: 320px;
     height:auto;
     background-color: #fff;
@@ -458,7 +458,7 @@ export default {
     content:'';
     position: absolute;
     bottom: 100%;
-    left:50%;
+    right:0;
     transform: translateX(-50%);
     border-width: 9px;
     border-style: solid;
@@ -593,6 +593,13 @@ export default {
       .header-nav{
         padding: 0 35px;
       }
+    }
+    .basket-dropdown{
+      right: -120%;
+      width: 300px;
+    }
+    .basket-dropdown::after{
+      right: 65px;
     }
   }
 </style>
